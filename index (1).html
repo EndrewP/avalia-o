@@ -1,0 +1,310 @@
+<!doctype html>
+<html lang="pt-BR">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<meta name="theme-color" content="#F2F4F6" media="(prefers-color-scheme: light)">
+<meta name="theme-color" content="#0E151B" media="(prefers-color-scheme: dark)">
+<meta name="description" content="Questionário rápido de 5 a 8 minutos. Eu analiso as suas respostas e te respondo pelo WhatsApp.">
+<meta property="og:type" content="website">
+<meta property="og:locale" content="pt_BR">
+<meta property="og:site_name" content="Endrew Pereira · Educação Física">
+<meta property="og:title" content="Vamos montar o seu treino">
+<meta property="og:description" content="Questionário rápido de 5 a 8 minutos. Eu analiso as suas respostas e te respondo pelo WhatsApp.">
+<meta property="og:url" content="https://endrewp.github.io/avalia-o/">
+<meta property="og:image" content="https://endrewp.github.io/avalia-o/capa.png">
+<meta property="og:image:width" content="1200">
+<meta property="og:image:height" content="630">
+<meta property="og:image:alt" content="Vamos montar o seu treino. Questionário de Endrew Pereira, Profissional de Educação Física.">
+<meta name="twitter:card" content="summary_large_image">
+<title>Questionário de Avaliação</title>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Barlow+Condensed:wght@600;700&family=Barlow:wght@400;500;600&display=swap">
+<style>
+:root{color-scheme:light dark;box-sizing:border-box;padding-top:env(safe-area-inset-top,0px);padding-bottom:env(safe-area-inset-bottom,0px);--bg:#F2F4F6;--card:#fff;--ink:#12202B;--mute:#566673;--line:#D3DBE1;--chip:#E4E9ED;--ac:#2456C8;--warn:#FFF3D6;--warnink:#5B4300;--bad:#FDE2E0;--badink:#6B1410;--errc:#B3261E;--onac:#fff}
+html{scroll-padding-top:env(safe-area-inset-top,0px)}
+@media (prefers-color-scheme:dark){:root:not([data-theme="light"]){--bg:#0E151B;--card:#17212A;--ink:#EAF0F4;--mute:#9AAAB6;--line:#2C3A46;--chip:#212D37;--ac:#5F8FFF;--warn:#3A2F10;--warnink:#F5DFA0;--bad:#3F1917;--badink:#FFC9C4;--errc:#FF8A80;--onac:#0B1220}}
+:root[data-theme="dark"]{--bg:#0E151B;--card:#17212A;--ink:#EAF0F4;--mute:#9AAAB6;--line:#2C3A46;--chip:#212D37;--ac:#5F8FFF;--warn:#3A2F10;--warnink:#F5DFA0;--bad:#3F1917;--badink:#FFC9C4;--errc:#FF8A80;--onac:#0B1220}
+*{box-sizing:border-box}
+[hidden]{display:none!important}
+body{margin:0;background:var(--bg);color:var(--ink);font:16px/1.4 Barlow,system-ui,sans-serif}
+.w{max-width:560px;margin:0 auto;padding:16px 16px 32px}
+h1,h2{font-family:'Barlow Condensed','Arial Narrow',system-ui,sans-serif;margin:0}
+h2{font-size:28px;line-height:1.1}
+.mt{font-size:14px;color:var(--mute);margin:4px 0 0}
+.hero{background:#14264A;color:#fff;border-radius:24px;padding:24px 22px 22px;margin-top:8px}
+.who{display:flex;align-items:center;gap:12px}
+.mono{flex:none;width:52px;height:52px;border-radius:50%;background:#fff;color:#14264A;display:grid;place-items:center;font:700 22px 'Barlow Condensed',sans-serif}
+.who b{display:block;font-size:17px}.who span{font-size:13px;color:#B9C7E2}
+.hero h1{font-size:clamp(36px,11vw,46px);line-height:.98;margin:22px 0 10px}
+.hero p{margin:0;color:#D3DDF0}
+.facts{display:flex;flex-wrap:wrap;gap:8px;margin:16px 0 18px}
+.facts span{background:rgba(255,255,255,.13);padding:6px 12px;border-radius:999px;font-size:14px}
+.hero button{width:100%;background:#fff;color:#14264A;border:0}
+.pgw{position:sticky;top:env(safe-area-inset-top,0px);z-index:5;background:var(--bg);padding:8px 0 10px}
+.pgb{height:6px;background:var(--chip);border-radius:3px;overflow:hidden;margin-top:8px}
+.pgb i{display:block;height:100%;background:var(--ac);transition:width .3s}
+#lab{font-size:14px;color:var(--mute)}
+.card{background:var(--card);border:1px solid var(--line);border-radius:18px;padding:18px;margin-top:14px}
+.q{margin-top:18px}
+.q>label,.q>.l{display:block;font-weight:600;margin-bottom:8px}
+.g3{display:grid;grid-template-columns:repeat(3,1fr);gap:10px;align-items:end}
+input[type=text],input[type=number],textarea{width:100%;min-height:48px;padding:10px 12px;border:1px solid var(--line);border-radius:12px;background:var(--bg);color:var(--ink);font:inherit}
+textarea{min-height:92px;resize:vertical}
+.opts{display:flex;flex-wrap:wrap;gap:8px}
+.opts label{position:relative}
+.opts input{position:absolute;opacity:0;inset:0;width:100%;height:100%;margin:0}
+.opts span{display:block;min-height:46px;padding:11px 16px;border-radius:14px;background:var(--chip);border:2px solid transparent}
+.opts input:checked+span{background:var(--ac);color:var(--onac);font-weight:600}
+.opts.cb label{flex:1 1 100%}
+.opts.cb span{position:relative;padding-left:52px;font-weight:400;line-height:1.35;background:var(--bg);border-color:var(--line)}
+.opts.cb span::before{content:'';position:absolute;left:14px;top:13px;width:22px;height:22px;border:2px solid var(--mute);border-radius:6px;background:var(--card);text-align:center;line-height:18px;font-size:16px;font-weight:700;color:var(--onac)}
+.opts.cb input:checked+span{background:var(--bg);color:var(--ink);font-weight:400;border-color:var(--ac)}
+.opts.cb input:checked+span::before{content:'✓';background:var(--ac);border-color:var(--ac)}
+input:focus-visible,textarea:focus-visible,button:focus-visible{outline:3px solid var(--ac);outline-offset:2px}
+.opts input:focus-visible+span{outline:3px solid var(--ac);outline-offset:2px}
+.note{margin-top:18px;padding:12px 14px;border-radius:12px;background:var(--warn);color:var(--warnink);font-size:14px}
+.sum{margin-top:12px;padding:14px;border-radius:12px;background:var(--bg);font-size:14px;white-space:pre-wrap}
+button{min-height:52px;padding:0 20px;border-radius:14px;border:2px solid var(--ac);background:transparent;color:var(--ink);font:600 17px Barlow,system-ui,sans-serif}
+button.p{background:var(--ac);color:var(--onac)}
+.nav{position:sticky;bottom:0;display:grid;grid-template-columns:1fr 2fr;gap:10px;padding:14px 0 calc(8px + env(safe-area-inset-bottom,0px));background:var(--bg)}
+.send{display:grid;gap:10px;margin-top:18px}
+#msg{margin-top:10px}
+.okc{width:56px;height:56px;border-radius:50%;background:var(--ac);color:var(--onac);display:grid;place-items:center;font-size:28px;margin-bottom:14px}
+.steps{margin:8px 0 0;padding-left:22px}.steps li{margin:6px 0}
+.opt{font-weight:400;font-size:13px;color:var(--mute);margin-left:6px}
+.hero .priv{margin:16px 0 0;font-size:13px;line-height:1.45;color:#B9C7E2}
+.hero .tl{width:auto;min-height:44px;padding:0;background:none;border:0;color:#fff;font:600 14px Barlow,system-ui,sans-serif;text-decoration:underline}
+.q.err>label,.q.err>.l{color:var(--errc)}
+.q.err input[type=text],.q.err input[type=number],.q.err textarea{border-color:var(--errc);border-width:2px}
+.q.err .opts span{border-color:var(--errc)}
+.q.err::after{content:attr(data-msg);display:block;margin-top:8px;font-size:14px;font-weight:600;color:var(--errc)}
+.hint{margin-top:8px;padding:8px 12px;border-radius:10px;background:var(--warn);color:var(--warnink);font-size:14px;font-weight:600}
+input,textarea{scroll-margin:90px 0}
+button,label,a{touch-action:manipulation;-webkit-tap-highlight-color:transparent}
+@media (max-width:380px){.w{padding:12px 12px 24px}.hero{padding:20px 18px}}
+.note b{font-weight:700}
+.mt a{color:var(--ac);font-weight:600}
+dialog{max-width:520px;width:calc(100% - 32px);max-height:calc(100vh - 48px);max-height:calc(100dvh - 48px);overflow:auto;border:1px solid var(--line);border-radius:18px;background:var(--card);color:var(--ink);padding:20px}
+dialog::backdrop{background:rgba(0,0,0,.55)}
+dialog h3{font-size:16px;margin:16px 0 2px}dialog p{margin:0;font-size:15px}
+dialog button{width:100%;margin-top:20px}
+dialog a{color:var(--ac);font-weight:600;display:inline-block;padding:6px 0}
+</style>
+</head>
+<body>
+<div class="w">
+  <section class="hero" id="hero">
+    <div class="who"><div class="mono">EP</div><div><b>Endrew Pereira</b><span>Profissional de Educação Física · Erechim, RS</span></div></div>
+    <h1>Vamos montar o seu treino</h1>
+    <p>Um treino só funciona quando cabe na sua vida. Com as suas respostas, monto um plano para a sua rotina, o seu objetivo e as suas limitações. Você envia pelo WhatsApp e eu te respondo por lá.</p>
+    <div class="facts"><span>5 a 8 minutos</span><span>6 etapas</span><span>Sem cadastro</span></div>
+    <button type="button" id="go">Começar</button>
+    <p class="priv">Enquanto você preenche, as respostas ficam salvas temporariamente neste navegador, só para você não perder nada. Elas só chegam até mim quando você escolher enviar pelo WhatsApp.</p>
+    <button type="button" class="tl" data-pol>Política de privacidade</button>
+  </section>
+  <div id="app" hidden>
+    <div class="pgw"><div id="lab"></div><div class="pgb"><i id="pg"></i></div></div>
+    <form id="f"></form>
+    <div class="nav"><button type="button" id="back">Voltar</button><button type="button" class="p" id="next">Continuar</button></div>
+  </div>
+  <section class="card" id="done" hidden>
+    <div class="okc">✓</div>
+    <h2 id="dh">Tudo pronto!</h2>
+    <p id="dmsg" style="margin:8px 0 0"></p>
+    <p class="mt" style="margin-top:18px">O que acontece agora</p>
+    <ol class="steps" id="stp"></ol>
+    <div class="send"><button type="button" class="p" id="wa2">Enviar pelo WhatsApp</button><button type="button" id="cp2">Copiar respostas</button><button type="button" id="ed" style="border-color:transparent">Voltar e editar respostas</button><button type="button" id="clr2" style="border-color:transparent">Apagar respostas deste aparelho</button></div>
+  </section>
+  <datalist id="gyms"></datalist>
+  <dialog id="pol" aria-labelledby="polh"><h2 id="polh">Política de privacidade</h2><div id="polb"></div><button type="button" class="p" id="polx">Fechar</button></dialog>
+</div>
+<script>
+/* ===== CONFIGURAÇÃO: edite só esta parte =====
+   WHATS: número do treinador com DDI+DDD (ex.: "5554999999999"). Vazio = a pessoa escolhe o contato.
+   t: chips (escolha uma), multi (várias), yn (Sim/Não), text, number, area
+   r: obrigatório | a: mostra aviso de saúde se "Sim" | dep: [id, valor1, valor2...] só aparece se a resposta for uma dessas | nm: 1 = não mostra o selo "opcional" | a: alerta se "Sim" | m: nome curto no resumo */
+const WHATS="5553999356153";
+const NOME="Endrew Pereira";
+const PRAZO="Mantenho os seus dados enquanto durar o seu acompanhamento. Se você não seguir como aluno, eu os apago em até 6 meses, ou antes, se você pedir."; /* confira se você cumpre esse prazo */
+const GYMS=["Smart Fit","Skyfit","Bluefit","Bio Ritmo","Selfit","Bodytech","Fórmula Academia","Companhia Athletica","Ironberg","Panobianco","Anytime Fitness","Curves"];
+const Q=[
+ {t:"Sobre você",d:"Para começar, o básico.",f:[
+  {id:"nome",l:"Nome completo",t:"text",r:1,ac:"name",cap:1},
+  {id:"sexo",l:"Sexo",t:"chips",r:1,o:["Masculino","Feminino","Prefiro não informar"]},
+  {id:"idade",l:"Idade",t:"number",r:1,g:1,mn:10,mx:100,im:"numeric"},
+  {id:"altura",l:"Altura (cm)",t:"number",r:1,g:1,mn:120,mx:230,im:"numeric"},
+  {id:"peso",l:"Peso (kg)",t:"number",r:1,g:1,mn:30,mx:300},
+  {id:"cidade",l:"Cidade",t:"text",r:1,cap:1,ac:"address-level2",ph:"Ex.: Erechim, RS"}]},
+ {t:"Objetivo e experiência",d:"O que você quer alcançar e de onde parte.",f:[
+  {id:"obj",l:"Quais são os seus objetivos? (pode marcar mais de um)",t:"multi",r:1,m:"Objetivos",o:["Ganhar massa muscular","Emagrecer","Ficar no shape","Condicionamento","Saúde e bem-estar","Ganhar força","Voltar a treinar","Outro"]},
+  {id:"objO",l:"Qual é esse outro objetivo?",t:"text",dep:["obj","Outro"],m:"Outro objetivo"},
+  {id:"meta",l:"Tem alguma meta ou prazo em mente?",t:"text",ph:"Ex.: perder 5 kg até dezembro"},
+  {id:"prior",l:"Alguma região do corpo que você quer priorizar?",t:"multi",m:"Prioridade",o:["Pernas e glúteos","Peito e braços","Costas","Abdômen","Corpo todo","Nenhuma em especial"]},
+  {id:"exp",l:"Há quanto tempo você treina?",t:"chips",r:1,o:["Nunca treinei","Menos de 6 meses","6 meses a 2 anos","Mais de 2 anos"]},
+  {id:"atual",l:"Está treinando atualmente?",t:"yn",r:1},
+  {id:"hoje",l:"Como é o seu treino hoje?",t:"text",dep:["atual","Sim"],ph:"Tipo de treino e quantos dias por semana"},
+  {id:"tecnica",l:"Você sabe fazer os exercícios com a técnica correta?",t:"chips",r:1,m:"Técnica de execução",o:["Sim, com segurança","Mais ou menos","Preciso de ajuda"]},
+  {id:"barr",l:"O que já atrapalhou a sua constância nos treinos?",t:"multi",m:"Dificuldades",o:["Falta de tempo","Falta de motivação","Não sabia o que fazer","Lesão ou dor","Treino repetitivo","Nunca tive dificuldade"]},
+  {id:"outras",l:"Pratica outra atividade? (corrida, luta, esporte...)",t:"text",m:"Outra atividade"}]},
+ {t:"Rotina e estilo de vida",d:"Vamos encaixar o treino na sua semana.",f:[
+  {id:"dias",l:"Quais dias você pode treinar?",t:"multi",r:1,o:["Seg","Ter","Qua","Qui","Sex","Sáb","Dom"]},
+  {id:"tempo",l:"Quanto tempo tem por treino?",t:"chips",r:1,o:["Até 45 min","45 a 60 min","60 a 90 min","Mais de 90 min"]},
+  {id:"hora",l:"Em que horário prefere treinar?",t:"chips",r:1,o:["Manhã","Tarde","Noite","Varia"]},
+  {id:"localT",l:"Onde você vai treinar?",t:"chips",r:1,m:"Local",o:["Academia","Academia do condomínio","Em casa","Ao ar livre"]},
+  {id:"local",l:"Qual academia?",t:"text",list:1,dep:["localT","Academia"],m:"Academia",ph:"Digite ou escolha da lista"},
+  {id:"equip",l:"Quais equipamentos você tem disponíveis?",t:"area",dep:["localT","Academia do condomínio","Em casa","Ao ar livre"],m:"Equipamentos",ph:"Ex.: halteres, elásticos, barra, banco, esteira..."},
+  {id:"trab",l:"Como é o seu dia a dia de trabalho?",t:"chips",m:"Trabalho",o:["Sentado a maior parte do tempo","Em pé ou me movimentando","Trabalho físico pesado","Não trabalho"]},
+  {id:"sono",l:"Quantas horas você dorme por noite, em média?",t:"chips",m:"Sono",o:["Menos de 6h","6 a 7h","7 a 8h","Mais de 8h"]},
+  {id:"nutri",l:"Tem acompanhamento nutricional?",t:"chips",m:"Nutrição",o:["Sim","Não","Quero começar"]}]},
+ {t:"Saúde",d:"Uma triagem inicial para você treinar com segurança. Ela não substitui uma avaliação médica nem é liberação para exercício.",f:[
+  {id:"p1",l:"Algum médico já disse que você tem problema de coração?",t:"yn",r:1,a:1,m:"Problema de coração"},
+  {id:"p2",l:"Sente dor no peito, durante atividade física ou em repouso?",t:"yn",r:1,a:1,m:"Dor no peito"},
+  {id:"p3",l:"Sente tontura, perde o equilíbrio ou já desmaiou?",t:"yn",r:1,a:1,m:"Tontura / desmaio"},
+  {id:"ar",l:"Sente falta de ar fora do normal para o esforço que faz, como ao subir uma escada ou caminhar?",t:"yn",r:1,a:1,m:"Falta de ar desproporcional"},
+  {id:"pa",l:"Tem pressão arterial elevada, diagnosticada ou medida?",t:"yn",r:1,a:1,m:"Pressão alta"},
+  {id:"restr",l:"Algum médico restringiu algum tipo de exercício ou pediu que você só treine com orientação?",t:"yn",r:1,a:1,m:"Restrição médica atual"},
+  {id:"gest",l:"Está grávida ou teve bebê nos últimos 12 meses?",t:"yn",r:1,a:1,dep:["sexo","Feminino"],m:"Gestante / pós-parto"},
+  {id:"frat",l:"Teve fratura ou cirurgia nos últimos 12 meses, ou está em recuperação?",t:"yn",r:1,a:1,m:"Fratura / cirurgia recente"},
+  {id:"fratD",l:"Qual foi e quando aconteceu?",t:"area",dep:["frat","Sim"],m:"Detalhes da fratura / cirurgia"},
+  {id:"lesao",l:"Tem ou já teve lesão ou dor nas articulações?",t:"yn",r:1,m:"Lesão / dor articular"},
+  {id:"lesaoD",l:"Qual e em que região?",t:"area",dep:["lesao","Sim"],m:"Detalhes da lesão",ph:"Ex.: dor no joelho direito ao agachar"},
+  {id:"cond",l:"Tem outra condição de saúde diagnosticada? (diabetes, asma, problema renal, etc.)",t:"yn",r:1,m:"Outra condição de saúde"},
+  {id:"condD",l:"Conte qual.",t:"area",dep:["cond","Sim"],m:"Detalhes da condição"},
+  {id:"med",l:"Usa algum medicamento ou substância que possa afetar o exercício? (para pressão, coração, diabetes, asma, hormônios, estimulantes, etc.)",t:"yn",r:1,a:1,m:"Medicamento / substância"},
+  {id:"medD",l:"Qual e para quê?",t:"area",dep:["med","Sim"],m:"Detalhes do medicamento"}]},
+ {t:"Preferências",d:"Tudo opcional, mas deixa o treino com a sua cara.",nm:1,f:[
+  {id:"gosta",l:"Exercícios ou aparelhos de que você gosta",t:"area",m:"Gosta de"},
+  {id:"evita",l:"Exercícios que não gosta ou não pode fazer",t:"area",m:"Evita"},
+  {id:"obs",l:"Mais alguma coisa que eu deva saber?",t:"area",m:"Observações"}]},
+ {t:"Revisar e enviar",d:"Confira as respostas e envie pelo WhatsApp. É por lá que eu te respondo.",f:[
+  {id:"ciente",l:"Confirmação",t:"multi",r:1,nomsg:1,nm:1,o:["Li a política de privacidade, confirmo que as informações são verdadeiras e autorizo o uso dos meus dados, inclusive os de saúde, para análise, prescrição e acompanhamento do meu treino. Entendo que este questionário não substitui uma avaliação médica."]}]}
+];
+
+/* ===== FIM DA CONFIGURAÇÃO ===== */
+
+const $=s=>document.querySelector(s),f=$('#f'),N=Q.length,KEY='questionario:rascunho',YN=["Sim","Não"];
+const SM=matchMedia('(prefers-reduced-motion:reduce)').matches?'auto':'smooth';
+const esc=s=>String(s).replace(/[&<>"]/g,c=>({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;'}[c]));
+$('#gyms').innerHTML=GYMS.map(g=>`<option value="${esc(g)}">`).join('');
+
+const fld=(x,nm)=>{
+ const {id,l,t,r}=x,ph=esc(x.ph||'');let inp;
+ if(t=='area')inp=`<textarea id="${id}" name="${id}" placeholder="${ph}"></textarea>`;
+ else if(t=='chips'||t=='multi'||t=='yn'){
+  const ty=t=='multi'?'checkbox':'radio',o=t=='yn'?YN:x.o;
+  inp=`<div class="opts${o.length==1?' cb':''}" role="group" aria-label="${esc(l)}"${r&&t=='multi'&&o.length>1?' data-any':''}>${o.map(v=>`<label><input type="${ty}" name="${id}" value="${esc(v)}"${r&&(ty=='radio'||o.length==1)?' required':''}><span>${esc(v)}</span></label>`).join('')}</div>`;
+ }else inp=`<input id="${id}" name="${id}" type="${t}"${x.list?' list="gyms" autocomplete="off"':''}${x.ac?` autocomplete="${x.ac}"`:''}${t=='number'?` inputmode="${x.im||'decimal'}" step="any" min="${x.mn}" max="${x.mx}"`:''}${r?' required':''} enterkeyhint="next"${x.cap?' autocapitalize="words"':''} placeholder="${ph}">`;
+ const mk=(!r&&!x.dep&&!x.nomsg&&!nm&&!x.nm)?'<span class="opt">opcional</span>':'';
+ const lab=(t=='text'||t=='number'||t=='area')?`<label for="${id}">${esc(l)}${mk}</label>`:`<div class="l">${esc(l)}${mk}</div>`;
+ const hint=x.a?'<div class="hint" hidden>Anotado. Vou levar isso em conta no seu treino.</div>':'';
+ return `<div class="q" id="q_${id}"${x.dep?' hidden':''}>${lab}${inp}${hint}</div>`;
+};
+const body=s=>{let h='',g='';s.f.forEach(x=>{if(x.g)g+=fld(x,s.nm);else{if(g){h+=`<div class="g3">${g}</div>`;g=''}h+=fld(x,s.nm)}});return h+(g?`<div class="g3">${g}</div>`:'')};
+f.innerHTML=Q.map(s=>`<section class="card" hidden><h2>${esc(s.t)}</h2><p class="mt">${esc(s.d)}</p>${body(s)}</section>`).join('');
+const hs=Q.findIndex(s=>s.t=='Saúde'),last=f.children[N-1];
+f.children[hs].insertAdjacentHTML('beforeend','<div class="note" id="note" role="alert" hidden></div>');
+const wnum=WHATS.length==13?`+${WHATS.slice(0,2)} ${WHATS.slice(2,4)} ${WHATS.slice(4,9)}-${WHATS.slice(9)}`:WHATS;
+const wl=WHATS?`<a href="https://wa.me/${WHATS}" target="_blank" rel="noopener">${wnum}</a>`:'o meu WhatsApp';
+last.querySelector('.mt').insertAdjacentHTML('afterend',`<div class="note" id="note3" role="alert" hidden></div><div class="sum" id="sum"></div><p class="mt">Seus dados serão usados só para montar e acompanhar o seu treino e não serão compartilhados com terceiros sem a sua autorização. Para pedir correção ou exclusão, é só me chamar no WhatsApp.</p>`);
+last.insertAdjacentHTML('beforeend','<div class="send"><button type="button" class="p" id="wa">Enviar pelo WhatsApp</button><button type="button" id="cp">Copiar respostas</button><button type="button" id="clr" style="border-color:transparent">Apagar respostas deste aparelho</button></div><div class="mt" id="msg" role="status"></div>');
+
+const N1='<b>Atenção:</b> você marcou "Sim" em uma ou mais perguntas de saúde. Vou levar isso em conta ao montar o seu treino e, se precisar, te peço mais detalhes ou uma orientação médica. Este questionário é só uma triagem inicial e não substitui uma avaliação médica.';
+const val=n=>(f.querySelector(`[name="${n}"]:checked`)||{}).value;
+const first=()=>(new FormData(f).get('nome')||'').trim().split(/\s+/)[0];
+function deps(){
+ Q.forEach(s=>s.f.forEach(x=>{if(x.dep)$('#q_'+x.id).hidden=!x.dep.slice(1).some(v=>f.querySelector(`[name="${x.dep[0]}"][value="${v}"]:checked`))}));
+ const all=Q.flatMap(s=>s.f),yes=x=>x.a&&!$('#q_'+x.id).hidden&&val(x.id)=='Sim',h=all.some(yes)?N1:'';
+  all.forEach(x=>{if(x.a){const e=$('#q_'+x.id+' .hint');if(e)e.hidden=val(x.id)!='Sim'}});
+ ['#note','#note3'].forEach(i=>{const e=$(i);if(!e)return;e.hidden=!h;e.innerHTML=h});
+}
+function build(){
+ const fd=new FormData(f),out=[],flags=[];
+ Q.forEach(s=>{const L=[];s.f.forEach(x=>{
+  if(x.nomsg||(x.dep&&!x.dep.slice(1).some(v=>fd.getAll(x.dep[0]).includes(v))))return;
+  let v=x.t=='multi'?fd.getAll(x.id).join(', '):String(fd.get(x.id)||'').trim();
+  if(!v)return;
+  if(x.a&&v=='Sim'){v+=' ⚠️';flags.push(x.m||x.l)}
+  L.push((x.m||x.l.replace(/\?$/,''))+': '+v);
+ });if(L.length)out.push('*'+s.t+'*\n'+L.join('\n'))});
+ const nm=first();return '*Questionário de avaliação'+(nm?' - '+nm:'')+'*'+(flags.length?'\n\n⚠️ *Atenção de saúde:* '+flags.join(', '):'')+'\n\n'+out.join('\n\n');
+}
+let cur=-1;
+function show(n){
+ cur=n;$('#done').hidden=true;$('#hero').hidden=n>=0;$('#app').hidden=n<0;
+ [...f.children].forEach((s,k)=>s.hidden=k!=n);
+ if(n>=0){$('#lab').textContent=`Etapa ${n+1} de ${N} · ${Q[n].t}`;$('#pg').style.width=(n+1)/N*100+'%';$('#next').hidden=n==N-1;$('.nav').style.gridTemplateColumns=n==N-1?'1fr':'1fr 2fr'}
+ if(n==N-1){$('#sum').innerHTML=esc(build()).replace(/\*(.+?)\*/g,'<b>$1</b>');const nm=first();last.querySelector('h2').textContent=nm?`Tudo certo, ${nm}?`:'Tudo certo?'}
+ deps();window.scrollTo({top:0,behavior:SM});
+}
+const ok=k=>{
+ const sec=f.children[k];
+ sec.querySelectorAll('.err').forEach(q=>q.classList.remove('err'));
+ sec.querySelectorAll('[data-any]').forEach(g=>{const b=[...g.querySelectorAll('input')];b[0].setCustomValidity(b.some(x=>x.checked)?'':'x')});
+ const bad=[...sec.querySelectorAll('input,textarea')].filter(e=>!e.closest('.q[hidden]')&&!e.checkValidity());
+ if(!bad.length)return true;
+ bad.forEach(e=>{const q=e.closest('.q');if(q.classList.contains('err'))return;q.classList.add('err');
+  q.dataset.msg=e.type=='radio'||e.type=='checkbox'?(q.querySelectorAll('input').length==1?'Marque para continuar':'Escolha uma opção'):e.validity.valueMissing?'Preencha este campo':'Confira este valor'});
+ bad[0].closest('.q').scrollIntoView({block:'center',behavior:SM});
+ return false;
+};
+$('#go').onclick=()=>show(0);
+$('#back').onclick=()=>show(cur-1);
+$('#next').onclick=()=>{if(ok(cur))show(cur+1)};
+
+function save(){try{const d={};new FormData(f).forEach((v,k)=>{if(k!='ciente')(d[k]=d[k]||[]).push(v)});localStorage.setItem(KEY,JSON.stringify(d))}catch(e){}}
+try{Object.entries(JSON.parse(localStorage.getItem(KEY)||'{}')).forEach(([k,vs])=>f.querySelectorAll(`[name="${k}"]`).forEach(el=>{if(el.type=='radio'||el.type=='checkbox')el.checked=vs.includes(el.value);else el.value=vs[0]}))}catch(e){}
+const clrErr=e=>{const q=e.target.closest&&e.target.closest('.q');if(q)q.classList.remove('err')};
+f.addEventListener('change',e=>{clrErr(e);deps();save()});f.addEventListener('input',e=>{clrErr(e);save()});
+f.addEventListener('keydown',e=>{const t=e.target;if(e.key!=='Enter'||t.tagName!=='INPUT'||t.type=='radio'||t.type=='checkbox')return;e.preventDefault();
+ const fs=[...t.closest('section').querySelectorAll('input:not([type=radio]):not([type=checkbox]),textarea')].filter(x=>!x.closest('.q[hidden]')),i=fs.indexOf(t);
+ if(fs[i+1])fs[i+1].focus();else{t.blur();if(!$('#next').hidden)$('#next').click()}});
+deps();
+
+function ready(){
+ for(let k=0;k<N;k++){if(!ok(k)){show(k);ok(k);return null}}
+ return build();
+}
+$('#stp').innerHTML=['Toque em <b>Enviar pelo WhatsApp</b>. A mensagem já vai pronta.','Eu analiso as suas respostas com atenção.','Te respondo pelo WhatsApp com o seu treino personalizado.'].map(t=>`<li>${t}</li>`).join('');
+const say=t=>{$('#msg').textContent=t;$('#dmsg').textContent=t};
+function done(t){
+ const nm=first();$('#dh').textContent=nm?`Tudo pronto, ${nm}!`:'Tudo pronto!';$('#dmsg').textContent=t;
+ $('#hero').hidden=true;$('#app').hidden=true;$('#done').hidden=false;window.scrollTo({top:0,behavior:SM});
+}
+function doWa(){
+ const m=ready();if(!m)return;
+ const a=document.createElement('a');a.href='https://wa.me/'+WHATS+'?text='+encodeURIComponent(m);a.target='_blank';a.rel='noopener';document.body.appendChild(a);a.click();a.remove();
+ done('Falta só um passo: enviar a mensagem no WhatsApp. Se ele não abriu, toque em "Copiar respostas" e cole na conversa comigo.');
+}
+async function copyTxt(m){
+ try{await navigator.clipboard.writeText(m);return true}catch(e){}
+ try{const t=document.createElement('textarea');t.value=m;t.setAttribute('readonly','');t.style.cssText='position:fixed;top:0;left:0;opacity:0';document.body.appendChild(t);t.select();t.setSelectionRange(0,m.length);const r=document.execCommand('copy');t.remove();return r}catch(e){return false}
+}
+async function doCp(){
+ const m=ready();if(!m)return;
+ if(await copyTxt(m))done('Respostas copiadas! Agora é só colar na nossa conversa no WhatsApp.');
+ else say('Não consegui copiar automaticamente. Use o botão "Enviar pelo WhatsApp".');
+}
+$('#wa').onclick=$('#wa2').onclick=doWa;
+$('#cp').onclick=$('#cp2').onclick=doCp;
+$('#ed').onclick=()=>show(N-1);
+function clr(){if(!confirm('Apagar as respostas salvas neste aparelho? Você vai precisar preencher tudo de novo.'))return;try{localStorage.removeItem(KEY)}catch(e){}f.reset();deps();show(-1)}
+$('#clr').onclick=$('#clr2').onclick=clr;
+const PRIV=[
+ ['Quem é o responsável',`${esc(NOME)}, Profissional de Educação Física, Erechim/RS. Contato: ${wl}.`],
+ ['Quais dados eu coleto','Nome, sexo, idade, altura, peso, cidade, objetivos, histórico e rotina de treino, informações de saúde (sintomas, lesões, cirurgias, condições de saúde e medicamentos) e preferências de treino. Dados de saúde são dados pessoais sensíveis e recebem cuidado especial.'],
+ ['Para que uso','Somente para análise inicial, prescrição e acompanhamento do seu treinamento, conforme necessário.'],
+ ['Como os dados chegam até mim','Apenas quando você toca em "Enviar pelo WhatsApp" ou copia as respostas e cola na conversa. Este site não envia suas respostas para nenhum servidor: enquanto você preenche, elas ficam salvas temporariamente neste navegador, para você não perder o que já respondeu. Você pode apagá-las quando quiser pelo botão "Apagar respostas deste aparelho".'],
+ ['Compartilhamento','Não compartilho seus dados com terceiros sem a sua autorização, salvo obrigação legal. A conversa acontece pelo WhatsApp, que tem as próprias regras de privacidade.'],
+ ['Por quanto tempo eu guardo',esc(PRAZO)],
+ ['Seus direitos',`Você pode pedir acesso, correção ou exclusão dos seus dados, ou retirar a sua autorização, a qualquer momento. É só enviar uma mensagem para ${wl}.`],
+ ['O que você pode deixar em branco','Campos marcados como "opcional" podem ficar sem resposta. Os demais são necessários para montar o treino com segurança.'],
+ ['Menores de 18 anos','Se você tem menos de 18 anos, peça para um responsável acompanhar o preenchimento e a conversa comigo.'],
+ ['Sobre a triagem de saúde','Este questionário é uma triagem inicial. Ele não substitui uma avaliação médica e não é liberação para exercício.']];
+$('#polb').innerHTML=PRIV.map(([t,x])=>`<h3>${t}</h3><p>${x}</p>`).join('');
+const pol=$('#pol');
+document.querySelectorAll('[data-pol]').forEach(a=>a.onclick=()=>{pol.showModal?pol.showModal():pol.setAttribute('open','')});
+$('#polx').onclick=()=>pol.close?pol.close():pol.removeAttribute('open');
+
+</script>
+</body>
+</html>
