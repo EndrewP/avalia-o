@@ -44,6 +44,29 @@
 .action.sm{min-height:40px;padding:0 12px}
 body.has-rest .wrap{padding-bottom:310px}
 @media print{.rpanel,.rest-btn{display:none!important}.print-all-card .exercise.noload{grid-template-columns:34px 1fr}}
+/* ===== Calendário de treinos ===== */
+.cal{--g1:#137a3e;--g2:#4f9f6d;--gbg:rgba(19,122,62,.15)}
+@media(prefers-color-scheme:dark){:root:not([data-theme="light"]) .cal{--g1:#4ade80;--g2:#86d4a2;--gbg:rgba(74,222,128,.18)}}
+:root[data-theme="dark"] .cal{--g1:#4ade80;--g2:#86d4a2;--gbg:rgba(74,222,128,.18)}
+.cal-head{display:flex;align-items:center;justify-content:space-between;gap:8px}
+.cal-head h2{font-size:19px;margin:0}
+.cal-nav{min-width:44px;min-height:44px;border:1px solid var(--line);border-radius:12px;background:var(--card);color:var(--ink);font-size:22px;line-height:1;cursor:pointer}
+.cal-nav:disabled{opacity:.35;cursor:default}
+.cal-grid{display:grid;grid-template-columns:repeat(7,1fr);gap:4px;margin-top:12px;text-align:center}
+.cal-w{font-size:12px;color:var(--mute);padding:2px 0}
+.cal-d{height:44px;border:2px solid transparent;border-radius:50%;background:transparent;color:var(--ink);font:inherit;font-size:15px;padding:0;cursor:pointer}
+.cal-d.full,.cal-mini.full{color:var(--g1);font-weight:800;background:var(--gbg)}
+.cal-d.part,.cal-mini.part{color:var(--g2);font-weight:700;border-style:dashed;border-color:var(--g2)}
+.cal-d.today{box-shadow:0 0 0 2px var(--accent)}
+.cal-d.sel{outline:2px solid var(--ink);outline-offset:2px}
+.cal-leg{display:flex;flex-wrap:wrap;gap:6px 16px;margin:14px 0 8px;font-size:13px;color:var(--mute)}
+.cal-leg span{display:inline-flex;align-items:center;gap:6px}
+.cal-mini{display:inline-grid;place-items:center;width:26px;height:26px;border-radius:50%;font-size:12px;border:2px solid transparent}
+.cal{position:relative}
+.cal .cal-head{margin-top:18px}
+.cal-x{position:absolute;top:4px;right:4px;width:32px;height:32px;border:0;border-radius:50%;background:transparent;color:var(--mute);font-size:16px;line-height:1;cursor:pointer}
+.cal-x:hover,.cal-x:focus-visible{background:var(--chip);color:var(--ink)}
+@media print{.cal,#calBtn{display:none!important}}
 </style>
 </head>
 <body>
@@ -58,10 +81,23 @@ body.has-rest .wrap{padding-bottom:310px}
   <div class="toolbar" aria-label="Ações da ficha">
     <button class="primary" id="printBtn" type="button">Salvar / imprimir PDF (ficha completa)</button>
     <button id="restOpen" type="button">⏱ Timer de descanso</button>
+    <button id="calBtn" type="button" aria-expanded="false" aria-controls="cal">📅 Calendário</button>
     <button id="resetAllBtn" type="button">Zerar marcações de hoje</button>
     <button id="themeBtn" type="button">Alternar tema</button>
   </div>
  
+    <section class="card cal" id="cal" hidden aria-label="Calendário de treinos">
+    <button class="cal-x" id="calX" type="button" aria-label="Fechar calendário">✕</button>
+    <div class="cal-head">
+      <button class="cal-nav" id="calPrev" type="button" aria-label="Mês anterior">‹</button>
+      <h2 id="calTitle"></h2>
+      <button class="cal-nav" id="calNext" type="button" aria-label="Próximo mês">›</button>
+    </div>
+    <div class="cal-grid" id="calGrid"></div>
+    <div class="cal-leg"><span><b class="cal-mini full" aria-hidden="true">12</b>Treino completo</span><span><b class="cal-mini part" aria-hidden="true">12</b>Treino parcial</span></div>
+    <div class="muted" id="calInfo" role="status" aria-live="polite"></div>
+  </section>
+
   <nav class="day-tabs" id="dayTabs" aria-label="Dias de treino"></nav>
   <main id="dayContent"></main>
   <div id="printAll" aria-hidden="true"></div>
@@ -166,12 +202,9 @@ const PLAN={
     {id:"dom",nome:"Domingo",descanso:true,cor:"#66737d",titulo:"Descanso",foco:"Recuperação"}
   ],
   orientacoes:[
-    ["Técnica em primeiro lugar", "Foque na técnica em todos os exercícios, com movimento controlado e amplitude correta. Uma execução bem feita vale mais do que uma carga alta."],
     ["Hidratação", "Beba bastante água ao longo do dia e também durante o treino."],
     ["Dor ou lesão", "Cansaço muscular é normal, mas dor aguda, dor nas articulações, tontura ou mal-estar não são. Se sentir algo assim, pare o exercício e me avise. Em caso de qualquer lesão, me avise antes de continuar o treino."],
-    ["Aquecimento", "Antes de começar, faça de 5 a 10 minutos de aquecimento leve, com cardio leve e mobilidade das articulações."],
     ["Orientação inicial de carga", "Nas primeiras semanas, priorize cargas leves a moderadas, com foco no aprendizado dos movimentos, controle da execução e adaptação."],
-    ["Progressão", "Realize as séries na faixa de repetições indicada. Quando conseguir chegar ao topo da faixa com boa técnica, aumente a carga aos poucos. Não aumente a carga apenas para atingir determinado peso."],
     ["Descanso", "Respeite o tempo de descanso indicado em cada exercício. Toque em “⏱ Descanso” no exercício para iniciar o cronômetro: ele avisa com um som curto quando o tempo acabar. No botão “⏱ Timer de descanso” você também pode digitar o tempo que quiser."],
     ["Opção de cardio", "Caso sobre tempo ou você esteja sem disposição para algum exercício específico, substitua por atividade cardiovascular na esteira ou bicicleta."]
   ]
@@ -339,6 +372,72 @@ $('#restSecs').addEventListener('keydown',e=>{if(e.key==='Enter')restStart($('#r
 $('#soundBtn').onclick=()=>{R.sound=!R.sound;try{localStorage.setItem('ficha-treino-som',R.sound?'1':'0')}catch(e){}audioUnlock();if(R.sound)beep();restPaint()};
 
 init();
+/* ===== Calendário de treinos (marca os dias em que a pessoa treinou) ===== */
+(function(){
+  const MIN=3; /* mínimo de exercícios marcados para o dia contar como treinado */
+  const pad=n=>String(n).padStart(2,'0');
+  const cap=t=>t.charAt(0).toUpperCase()+t.slice(1);
+  let cur=new Date(new Date().getFullYear(),new Date().getMonth(),1),sel='';
+  function dados(){
+    const por={};
+    Object.keys(state.marks).forEach(k=>{const p=k.split(':');if(p.length<3||!/^\d{4}-\d\d-\d\d$/.test(p[0]))return;const o=por[p[0]]=por[p[0]]||{};o[p[1]]=(o[p[1]]||0)+1});
+    const out={};
+    Object.keys(por).forEach(dt=>{
+      let best=null;
+      Object.keys(por[dt]).forEach(id=>{
+        const d=PLAN.dias.find(x=>x.id===id);if(!d||d.descanso)return;
+        const total=(d.grupos||[]).reduce((a,g)=>a+(g.ex||[]).length,0);if(!total)return;
+        const done=Math.min(por[dt][id],total),r=done/total;
+        if(!best||r>best.r||(r===best.r&&done>best.done))best={r,done,total,titulo:d.titulo};
+      });
+      if(best&&best.done>=Math.min(MIN,best.total))out[dt]=Object.assign(best,{full:best.done>=best.total});
+    });
+    return out;
+  }
+  function resumo(dd,n,c){
+    const el=$('#calInfo'),mes=`${cur.getFullYear()}-${pad(cur.getMonth()+1)}`;
+    if(sel&&sel.slice(0,7)===mes){
+      const [y,m,d]=sel.split('-').map(Number),i=dd[sel];
+      const txt=cap(new Date(y,m-1,d).toLocaleDateString('pt-BR',{weekday:'long',day:'2-digit',month:'2-digit'}));
+      el.textContent=txt+': '+(i?`${i.titulo} — ${i.done} de ${i.total} exercícios`+(i.full?' (completo)':''):`sem treino registrado (mínimo de ${MIN} exercícios marcados).`);
+      return;
+    }
+    el.textContent=n?`${n} ${n===1?'dia treinado':'dias treinados'} neste mês · ${c} ${c===1?'completo':'completos'}`:'Nenhum treino registrado neste mês ainda.';
+  }
+  function desenhar(){
+    const y=cur.getFullYear(),m=cur.getMonth(),dd=dados();
+    const primeiro=new Date(y,m,1).getDay(),dias=new Date(y,m+1,0).getDate();
+    const nomeMes=new Intl.DateTimeFormat('pt-BR',{month:'long'}).format(cur);
+    $('#calTitle').textContent=cap(nomeMes)+' de '+y;
+    let h=['D','S','T','Q','Q','S','S'].map(x=>`<span class="cal-w" aria-hidden="true">${x}</span>`).join('');
+    for(let i=0;i<primeiro;i++)h+='<span></span>';
+    let n=0,c=0;
+    for(let d=1;d<=dias;d++){
+      const key=`${y}-${pad(m+1)}-${pad(d)}`,i=dd[key];
+      if(i){n++;if(i.full)c++}
+      const st=i?(i.full?'treino completo':'treino parcial'):'sem treino registrado';
+      h+=`<button type="button" class="cal-d${i?(i.full?' full':' part'):''}${key===todayKey?' today':''}${key===sel?' sel':''}" data-cal="${key}" aria-label="${d} de ${nomeMes}: ${st}"${key===todayKey?' aria-current="date"':''}>${d}</button>`;
+    }
+    $('#calGrid').innerHTML=h;
+    const hoje=new Date();
+    $('#calNext').disabled=cur>=new Date(hoje.getFullYear(),hoje.getMonth(),1);
+    resumo(dd,n,c);
+  }
+  $('#calBtn').onclick=()=>{
+    const p=$('#cal');p.hidden=!p.hidden;$('#calBtn').setAttribute('aria-expanded',String(!p.hidden));
+    if(!p.hidden){const t=new Date();cur=new Date(t.getFullYear(),t.getMonth(),1);sel='';desenhar()}
+  };
+  $('#calX').onclick=()=>{$('#cal').hidden=true;$('#calBtn').setAttribute('aria-expanded','false');$('#calBtn').focus({preventScroll:true})};
+  $('#calPrev').onclick=()=>{cur=new Date(cur.getFullYear(),cur.getMonth()-1,1);sel='';desenhar()};
+  $('#calNext').onclick=()=>{cur=new Date(cur.getFullYear(),cur.getMonth()+1,1);sel='';desenhar()};
+  $('#calGrid').addEventListener('click',e=>{
+    const b=e.target.closest('[data-cal]');if(!b)return;
+    sel=sel===b.dataset.cal?'':b.dataset.cal;desenhar();
+    const f=$('#calGrid .sel');if(f)f.focus({preventScroll:true});
+  });
+  /* atualiza sozinho quando a pessoa marca/desmarca exercícios ou zera o dia */
+  document.addEventListener('click',e=>{if(!$('#cal').hidden&&!e.target.closest('#cal,#calBtn'))setTimeout(desenhar,0)});
+})();
 /* ===== Aplicativo no celular: abre sem internet e pode ser instalado na tela inicial ===== */
 (function(){
   if(!/^https?:$/.test(location.protocol))return; /* prévias, arquivo local etc.: não se aplica */
