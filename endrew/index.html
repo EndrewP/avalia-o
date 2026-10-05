@@ -1,4 +1,3 @@
-
 <!doctype html>
 <html lang="pt-BR">
 <head>
@@ -18,7 +17,7 @@
 *{box-sizing:border-box}html{scroll-behavior:smooth}body{margin:0;background:var(--bg);color:var(--ink);font:16px/1.45 Inter,system-ui,-apple-system,Segoe UI,sans-serif}.wrap{max-width:680px;margin:auto;padding:16px 16px 44px}
 .header{background:var(--hdr,#14264a);transition:background .3s;color:#fff;border-radius:24px;padding:22px;margin-top:6px}.eyebrow{font-size:13px;color:#c4d2ec;text-transform:uppercase;letter-spacing:.08em;font-weight:700}.header h1{font-size:clamp(32px,8vw,46px);line-height:1;margin:12px 0 8px;letter-spacing:-.03em}.header p{margin:0;color:#dbe4f4}.meta{display:flex;flex-wrap:wrap;gap:8px;margin-top:18px}.meta span{background:#ffffff1f;border-radius:999px;padding:6px 11px;font-size:13px}.toolbar{display:flex;flex-wrap:wrap;gap:8px;margin:14px 0}.toolbar button,.action{min-height:44px;border:1px solid var(--line);border-radius:12px;background:var(--card);color:var(--ink);padding:0 13px;font-family:inherit;font-weight:600;font-size:14px;cursor:pointer}.toolbar .primary{background:var(--accent);border-color:var(--accent);color:var(--accent-ink)}
 .day-tabs{display:flex;gap:8px;overflow-x:auto;padding:2px 0 8px;scrollbar-width:thin}.day-tab{flex:0 0 auto;min-width:76px;min-height:58px;border:0;border-radius:14px;background:var(--chip);color:var(--ink);font-family:inherit;font-weight:700;font-size:15px;cursor:pointer;padding:6px 10px}.day-tab small{display:block;font-size:11px;font-weight:500;color:var(--mute);margin-top:2px}.day-tab.active{background:var(--day-color,var(--accent));color:#fff}.day-tab.active small{color:#fff}.day-tab.rest{opacity:.75}
-.card{background:var(--card);border:1px solid var(--line);border-radius:18px;padding:18px;margin-top:12px}.card h2{font-size:28px;line-height:1.1;margin:0}.muted{color:var(--mute);font-size:14px}.progress{height:7px;background:var(--chip);border-radius:8px;overflow:hidden;margin:15px 0 5px}.progress i{display:block;height:100%;background:var(--accent);transition:width .2s}.group-title{font-size:20px;margin:22px 0 4px;padding-left:10px;border-left:4px solid var(--day-color,var(--accent))}.exercise{display:grid;grid-template-columns:44px 1fr 82px;gap:10px;align-items:center;border-top:1px solid var(--line);padding:13px 0}.group-title+.exercise{border-top:0}.check{width:42px;height:42px;border:2px solid var(--mute);border-radius:12px;background:transparent;color:#fff;font-size:22px;cursor:pointer}.check[aria-pressed="true"]{background:var(--day-color,var(--accent));border-color:var(--day-color,var(--accent))}.check[aria-pressed="true"]:after{content:"✓"}.exercise.done .name{text-decoration:line-through;opacity:.55}.name{font-weight:700}.details{color:var(--mute);font-size:13px;margin-top:2px}.video{display:inline-block;color:var(--accent);font-size:13px;font-weight:700;text-decoration:none;margin-top:6px}.load{width:100%;height:44px;border:1px solid var(--line);border-radius:10px;background:var(--bg);color:var(--ink);text-align:center;font:inherit}.reset{border:0;background:transparent;color:var(--mute);text-decoration:underline;padding:11px 0;cursor:pointer;font-family:inherit;font-size:14px}.rest-box{background:var(--soft);border-radius:14px;padding:15px;margin-top:16px}.rest-box strong{display:block;font-size:18px;margin-bottom:4px}.notes p{margin:10px 0}.notes strong{display:block}.footer{margin:22px 0 0;color:var(--mute);font-size:13px;text-align:center}.footer:empty{display:none}.toast{position:fixed;left:50%;bottom:18px;transform:translate(-50%,120px);background:var(--ink);color:var(--bg);padding:11px 15px;border-radius:999px;font-size:14px;transition:transform .2s;z-index:10}.toast.show{transform:translate(-50%,0)}button:focus-visible,input:focus-visible{outline:3px solid var(--accent);outline-offset:2px}
+.card{background:var(--card);border:1px solid var(--line);border-radius:18px;padding:18px;margin-top:12px}.card h2{font-size:28px;line-height:1.1;margin:0}.muted{color:var(--mute);font-size:14px}.progress{height:7px;background:var(--chip);border-radius:8px;overflow:hidden;margin:15px 0 5px}.progress i{display:block;height:100%;background:var(--accent);transition:width .2s}.group-title{font-size:18px;margin:22px 0 4px;padding-left:10px;border-left:4px solid var(--day-color,var(--accent))}.exercise{display:grid;grid-template-columns:44px 1fr 82px;gap:10px;align-items:center;border-top:1px solid var(--line);padding:13px 0}.group-title+.exercise{border-top:0}.check{width:42px;height:42px;border:2px solid var(--mute);border-radius:12px;background:transparent;color:#fff;font-size:22px;cursor:pointer}.check[aria-pressed="true"]{background:var(--day-color,var(--accent));border-color:var(--day-color,var(--accent))}.check[aria-pressed="true"]:after{content:"✓"}.exercise.done .name{text-decoration:line-through;opacity:.55}.name{font-weight:700}.details{color:var(--mute);font-size:13px;margin-top:2px}.video{display:inline-block;color:var(--accent);font-size:13px;font-weight:700;text-decoration:none;margin-top:6px}.load{width:100%;height:44px;border:1px solid var(--line);border-radius:10px;background:var(--bg);color:var(--ink);text-align:center;font:inherit}.reset{border:0;background:transparent;color:var(--mute);text-decoration:underline;padding:11px 0;cursor:pointer;font-family:inherit;font-size:14px}.rest-box{background:var(--soft);border-radius:14px;padding:15px;margin-top:16px}.rest-box strong{display:block;font-size:18px;margin-bottom:4px}.notes p{margin:10px 0}.notes strong{display:block}.footer{margin:22px 0 0;color:var(--mute);font-size:13px;text-align:center}.footer:empty{display:none}.toast{position:fixed;left:50%;bottom:18px;transform:translate(-50%,120px);background:var(--ink);color:var(--bg);padding:11px 15px;border-radius:999px;font-size:14px;transition:transform .2s;z-index:10}.toast.show{transform:translate(-50%,0)}button:focus-visible,input:focus-visible{outline:3px solid var(--accent);outline-offset:2px}
 @media(max-width:450px){.wrap{padding:12px 12px 34px}.header{padding:19px}.exercise{grid-template-columns:42px 1fr 70px;gap:8px}.name{font-size:15px}.load{font-size:14px}}
 @media print{body{background:#fff;color:#111}.wrap{max-width:none;padding:0}.header{color:#111;background:#fff;border:2px solid #14264a;border-radius:0}.header p,.eyebrow,.meta span,.muted,.details,.footer{color:#333}.meta span{border:1px solid #aaa;background:#fff}.toolbar,.day-tabs,.video,.reset,.toast{display:none!important}.card{border:1px solid #999;break-inside:avoid}.exercise{break-inside:avoid}.load,.print-load{border:1px solid #777}.rest-box{background:#eee;color:#111}.name{text-decoration:none!important;opacity:1!important}.print-day::before{content:"Ficha de treino · ";font-weight:700}body.print-all #dayContent{display:none!important}body.print-all #printAll{display:block!important}#printAll{display:none}.print-all-card{break-inside:avoid;margin-top:12px}.print-check{display:inline-grid;place-items:center;width:30px;height:30px;border:2px solid #777;border-radius:8px;font-size:18px}.print-check.done{background:#ddd}.print-load{display:block;width:100%;height:44px;padding:10px 4px;text-align:center}.print-all-card .exercise{grid-template-columns:34px 1fr 82px}}
 .last{font-size:13px;color:var(--mute);margin-top:3px}.last b{color:var(--ink)}
@@ -28,6 +27,46 @@
 @media print{.celebrate,.last{display:none!important}}
 .install{display:grid;gap:8px;border-color:var(--accent)}.install strong{font-size:16px}.install .muted{font-size:14px}.install-actions{display:flex;flex-wrap:wrap;gap:8px;align-items:center}.install .action{background:var(--accent);border-color:var(--accent);color:var(--accent-ink);padding:0 18px}.install .reset{padding:11px 6px}
 @media print{.install{display:none!important}}
+[hidden]{display:none!important}
+.links{display:flex;flex-wrap:wrap;align-items:center;gap:0 16px}
+.links .video,.rest-btn{margin-top:6px;padding:4px 0}
+.rest-btn{border:0;background:none;color:var(--accent);font-family:inherit;font-size:13px;font-weight:700;cursor:pointer}
+.exercise.noload{grid-template-columns:44px 1fr}
+.rpanel{position:fixed;left:0;right:0;bottom:0;z-index:20;background:var(--card);border-top:1px solid var(--line);box-shadow:0 -10px 28px #0003;padding:12px 16px calc(12px + env(safe-area-inset-bottom,0px))}
+.rest-in{max-width:680px;margin:auto;display:grid;gap:10px}
+.rest-top{display:flex;align-items:center;gap:12px}
+.rest-time{font-size:42px;font-weight:800;line-height:1;font-variant-numeric:tabular-nums}
+.rest-msg{flex:1;font-size:14px;color:var(--mute)}
+.rpanel.fin .rest-time{color:var(--accent)}
+.rest-row{display:flex;flex-wrap:wrap;gap:8px;align-items:center;margin-top:0}
+.rest-row+.rest-row{margin-top:8px}
+.rest-row input{width:110px;height:44px;border:1px solid var(--line);border-radius:10px;background:var(--bg);color:var(--ink);text-align:center;font:inherit}
+.action.sm{min-height:40px;padding:0 12px}
+body.has-rest .wrap{padding-bottom:310px}
+@media print{.rpanel,.rest-btn{display:none!important}.print-all-card .exercise.noload{grid-template-columns:34px 1fr}}
+/* ===== Calendário de treinos ===== */
+.cal{--g1:#137a3e;--g2:#4f9f6d;--gbg:rgba(19,122,62,.15)}
+@media(prefers-color-scheme:dark){:root:not([data-theme="light"]) .cal{--g1:#4ade80;--g2:#86d4a2;--gbg:rgba(74,222,128,.18)}}
+:root[data-theme="dark"] .cal{--g1:#4ade80;--g2:#86d4a2;--gbg:rgba(74,222,128,.18)}
+.cal-head{display:flex;align-items:center;justify-content:space-between;gap:8px}
+.cal-head h2{font-size:19px;margin:0}
+.cal-nav{min-width:44px;min-height:44px;border:1px solid var(--line);border-radius:12px;background:var(--card);color:var(--ink);font-size:22px;line-height:1;cursor:pointer}
+.cal-nav:disabled{opacity:.35;cursor:default}
+.cal-grid{display:grid;grid-template-columns:repeat(7,1fr);gap:4px;margin-top:12px;text-align:center}
+.cal-w{font-size:12px;color:var(--mute);padding:2px 0}
+.cal-d{height:44px;border:2px solid transparent;border-radius:50%;background:transparent;color:var(--ink);font:inherit;font-size:15px;padding:0;cursor:pointer}
+.cal-d.full,.cal-mini.full{color:var(--g1);font-weight:800;background:var(--gbg)}
+.cal-d.part,.cal-mini.part{color:var(--g2);font-weight:700;border-style:dashed;border-color:var(--g2)}
+.cal-d.today{box-shadow:0 0 0 2px var(--accent)}
+.cal-d.sel{outline:2px solid var(--ink);outline-offset:2px}
+.cal-leg{display:flex;flex-wrap:wrap;gap:6px 16px;margin:14px 0 8px;font-size:13px;color:var(--mute)}
+.cal-leg span{display:inline-flex;align-items:center;gap:6px}
+.cal-mini{display:inline-grid;place-items:center;width:26px;height:26px;border-radius:50%;font-size:12px;border:2px solid transparent}
+.cal{position:relative}
+.cal .cal-head{margin-top:18px}
+.cal-x{position:absolute;top:4px;right:4px;width:32px;height:32px;border:0;border-radius:50%;background:transparent;color:var(--mute);font-size:16px;line-height:1;cursor:pointer}
+.cal-x:hover,.cal-x:focus-visible{background:var(--chip);color:var(--ink)}
+@media print{.cal,#calBtn{display:none!important}}
 </style>
 </head>
 <body>
@@ -41,10 +80,24 @@
  
   <div class="toolbar" aria-label="Ações da ficha">
     <button class="primary" id="printBtn" type="button">Salvar / imprimir PDF (ficha completa)</button>
+    <button id="restOpen" type="button">⏱ Timer de descanso</button>
+    <button id="calBtn" type="button" aria-expanded="false" aria-controls="cal">📅 Calendário</button>
     <button id="resetAllBtn" type="button">Zerar marcações de hoje</button>
     <button id="themeBtn" type="button">Alternar tema</button>
   </div>
  
+    <section class="card cal" id="cal" hidden aria-label="Calendário de treinos">
+    <button class="cal-x" id="calX" type="button" aria-label="Fechar calendário">✕</button>
+    <div class="cal-head">
+      <button class="cal-nav" id="calPrev" type="button" aria-label="Mês anterior">‹</button>
+      <h2 id="calTitle"></h2>
+      <button class="cal-nav" id="calNext" type="button" aria-label="Próximo mês">›</button>
+    </div>
+    <div class="cal-grid" id="calGrid"></div>
+    <div class="cal-leg"><span><b class="cal-mini full" aria-hidden="true">12</b>Treino completo</span><span><b class="cal-mini part" aria-hidden="true">12</b>Treino parcial</span></div>
+    <div class="muted" id="calInfo" role="status" aria-live="polite"></div>
+  </section>
+
   <nav class="day-tabs" id="dayTabs" aria-label="Dias de treino"></nav>
   <main id="dayContent"></main>
   <div id="printAll" aria-hidden="true"></div>
@@ -56,204 +109,119 @@
   <div style="text-align:center"><button class="reset" id="wipeBtn" type="button">Apagar histórico de cargas deste aparelho</button></div>
   <p class="footer" id="footer"></p>
 </div>
+<div class="rpanel" id="rest" hidden role="region" aria-label="Timer de descanso"><div class="rest-in">
+  <div class="rest-top"><div class="rest-time" id="restTime">00:00</div><div class="rest-msg" id="restMsg" role="status" aria-live="polite"></div><button class="action sm" id="restClose" type="button" aria-label="Fechar timer">✕</button></div>
+  <div class="rest-row" id="restCtrl" hidden><button class="action sm" id="restToggle" type="button">Pausar</button><button class="action sm" id="restMinus" type="button">−15 s</button><button class="action sm" id="restPlus" type="button">+15 s</button></div>
+  <div id="restSet">
+    <div class="rest-row"><button class="action sm" data-rest="30" type="button">30 s</button><button class="action sm" data-rest="45" type="button">45 s</button><button class="action sm" data-rest="60" type="button">60 s</button><button class="action sm" data-rest="90" type="button">90 s</button><button class="action sm" data-rest="120" type="button">2 min</button><button class="action sm" data-rest="180" type="button">3 min</button></div>
+    <div class="rest-row"><input id="restSecs" type="number" inputmode="numeric" min="5" max="900" placeholder="segundos" aria-label="Tempo de descanso em segundos"><button class="action sm" id="restGo" type="button">Iniciar</button><button class="action sm" id="soundBtn" type="button" aria-pressed="true">🔔 Som ligado</button></div>
+  </div>
+</div></div>
 <div class="toast" id="toast" role="status" aria-live="polite"></div>
  
 <script>
 /* =============================================================
-   PLAN: Configuração de Endrew P. (PPL + UPPER/LOWER)
+   MODELO: edite somente o objeto PLAN abaixo para cada aluno.
    ============================================================= */
 const PLAN={
-  codigo:"endrew-p-pl-ul-2026",
+  codigo:"endrew-6rj64",
   nomePublico:"ENDREW P.",
-  treinador:"ENDREW P.",
-  subtitulo:"Divisão PPL + UPPER / LOWER Avançada",
-  objetivo:"Força, Hipertrofia e Performance",
+  treinador:"ENDREW.P",
+  subtitulo:"Plano de treino personalizado",
+  objetivo:"Força e hipertrofia",
   frequencia:"5 sessões por semana",
   ciclo:"Ciclo de 3 meses",
   inicio:"05/10/2026",
   revisao:"05/01/2027",
   contato:"",
   dias:[
-    {
-      id:"seg",
-      nome:"Segunda",
-      curto:"Push",
-      cor:"#2456C8",
-      titulo:"Dia 1 — Push (Peito e Tríceps)",
-      foco:"Desenvolvimento da musculatura de empurrar com foco em alta carga e técnica",
-      grupos:[
-        {
-          nome:"Peito",
-          ex:[
-            ["Crucifixo na polia","1 preparatória + 3 válidas","Preparatória: livre • Válidas: 7–10","120–210 s","https://www.youtube.com/results?search_query=crucifixo+na+polia+execucao"],
-            ["Supino reto","1 preparatória + 3 válidas","Preparatória: livre • Válidas: 5–8","120–210 s","https://www.youtube.com/results?search_query=supino+reto+execucao"],
-            ["Supino inclinado","3 válidas","6–8","120–210 s","https://www.youtube.com/results?search_query=supino+inclinado+execucao"]
-          ]
-        },
-        {
-          nome:"Tríceps",
-          ex:[
-            ["Tríceps na polia com corda","1 preparatória + 3 válidas","Preparatória: livre • Válidas: 6–9","120–210 s","https://www.youtube.com/results?search_query=triceps+polia+corda+execucao"],
-            ["Tríceps francês na polia","3 válidas","6–9","120–210 s","https://www.youtube.com/results?search_query=triceps+frances+polia+execucao"],
-            ["Tríceps testa","1 preparatória + 2 válidas","Preparatória: livre • Válidas: 6–9","120–210 s","https://www.youtube.com/results?search_query=triceps+testa+execucao"]
-          ]
-        }
-      ]
-    },
-    {
-      id:"ter",
-      nome:"Terça",
-      curto:"Pull",
-      cor:"#137A3E",
-      titulo:"Dia 2 — Pull (Costas e Bíceps)",
-      foco:"Desenvolvimento completo de costas e bíceps, com adendo opcional de face pull",
-      grupos:[
-        {
-          nome:"Costas",
-          ex:[
-            ["Puxada alta na polia","1 preparatória + 3 válidas","Preparatória: livre • Válidas: 6–8","120–210 s","https://www.youtube.com/results?search_query=puxada+alta+na+polia+execucao"],
-            ["Remada baixa na polia","3 válidas","6–8","120–210 s","https://www.youtube.com/results?search_query=remada+baixa+na+polia+execucao"],
-            ["Remada curvada com barra","1 preparatória + 3 válidas","Preparatória: livre • Válidas: 6–8","120–210 s","https://www.youtube.com/results?search_query=remada+curvada+com+barra+execucao"],
-            ["Pullover na polia","3 válidas","8–10","120–210 s","https://www.youtube.com/results?search_query=pullover+na+polia+execucao"]
-          ]
-        },
-        {
-          nome:"Bíceps e Ombros (Adendo)",
-          ex:[
-            ["Rosca alternada com halteres","1 preparatória + 3 válidas","Preparatória: livre • Válidas: 6–8","120–210 s","https://www.youtube.com/results?search_query=rosca+alternada+com+halteres+execucao"],
-            ["Rosca inclinada com halteres","3 válidas","7–10","120–210 s","https://www.youtube.com/results?search_query=rosca+inclinada+com+halteres+execucao"],
-            ["Rosca martelo com halteres","3 válidas","8–10","120–210 s","https://www.youtube.com/results?search_query=rosca+martelo+com+halteres+execucao"],
-            ["Face pull (opcional)","2–3 válidas","10–15","60–120 s","https://www.youtube.com/results?search_query=face+pull+execucao"]
-          ]
-        }
-      ]
-    },
-    {
-      id:"qua",
-      nome:"Quarta",
-      curto:"Legs",
-      cor:"#C2410C",
-      titulo:"Dia 3 — Legs (Ênfase em Quadríceps)",
-      foco:"Desenvolvimento de quadríceps, posteriores, glúteos e panturrilhas",
-      grupos:[
-        {
-          nome:"Quadríceps",
-          ex:[
-            ["Agachamento hack/smith","1 preparatória + 3 válidas","Preparatória: livre • Válidas: 6–9","120–210 s","https://www.youtube.com/results?search_query=agachamento+hack+smith+execucao"],
-            ["Leg press 45°","3 válidas","6–9","120–210 s","https://www.youtube.com/results?search_query=leg+press+45+execucao"],
-            ["Cadeira extensora","3 válidas","8–12","120–210 s","https://www.youtube.com/results?search_query=cadeira+extensora+execucao"]
-          ]
-        },
-        {
-          nome:"Posteriores e Glúteos",
-          ex:[
-            ["Mesa flexora","1 preparatória + 3 válidas","Preparatória: livre • Válidas: 6–9","120–210 s","https://www.youtube.com/results?search_query=mesa+flexora+execucao"],
-            ["Elevação pélvica","3 válidas","6–9","120–210 s","https://www.youtube.com/results?search_query=elevacao+pelvica+execucao"]
-          ]
-        },
-        {
-          nome:"Panturrilhas",
-          ex:[
-            ["Elevação de panturrilhas","3 válidas","6–12","60–120 s","https://www.youtube.com/results?search_query=elevacao+de+panturrilhas+execucao"]
-          ]
-        }
-      ]
-    },
-    {
-      id:"qui",
-      nome:"Quinta",
-      descanso:true,
-      cor:"#66737d",
-      titulo:"Dia 4 — Descanso",
-      foco:"Recuperação muscular e descanso estratégico"
-    },
-    {
-      id:"sex",
-      nome:"Sexta",
-      curto:"Upper",
-      cor:"#7A3FC9",
-      titulo:"Dia 5 — Upper (Membros Superiores)",
-      foco:"Treino completo de membros superiores (peito, costas, ombros, bíceps e tríceps)",
-      grupos:[
-        {
-          nome:"Peito",
-          ex:[
-            ["Supino inclinado com halteres","3 válidas","6–8","120–210 s","https://www.youtube.com/results?search_query=supino+inclinado+com+halteres+execucao"]
-          ]
-        },
-        {
-          nome:"Costas",
-          ex:[
-            ["Remada articulada/máquina","3 válidas","6–8","120–210 s","https://www.youtube.com/results?search_query=remada+articulada+maquina+execucao"],
-            ["Puxada neutra","2 válidas","6–10","120–210 s","https://www.youtube.com/results?search_query=puxada+neutra+execucao"]
-          ]
-        },
-        {
-          nome:"Ombros",
-          ex:[
-            ["Desenvolvimento na máquina ou com halteres","2–3 válidas","6–9","120–210 s","https://www.youtube.com/results?search_query=desenvolvimento+maquina+halteres+execucao"],
-            ["Elevação lateral","2–3 válidas","8–12","60–120 s","https://www.youtube.com/results?search_query=elevacao+lateral+execucao"]
-          ]
-        },
-        {
-          nome:"Bíceps e Tríceps",
-          ex:[
-            ["Rosca direta","2–3 válidas","6–9","120–210 s","https://www.youtube.com/results?search_query=rosca+direta+execucao"],
-            ["Tríceps na polia","2–3 válidas","6–9","120–210 s","https://www.youtube.com/results?search_query=triceps+na+polia+execucao"]
-          ]
-        }
-      ]
-    },
-    {
-      id:"sab",
-      nome:"Sábado",
-      curto:"Lower",
-      cor:"#D97706",
-      titulo:"Dia 6 — Lower (Ênfase em Posteriores e Glúteos)",
-      foco:"Treino de inferiores com foco em posteriores, glúteos, quadríceps, adutores e panturrilhas",
-      grupos:[
-        {
-          nome:"Posteriores",
-          ex:[
-            ["Levantamento terra","1 preparatória + 3 válidas","Preparatória: livre • Válidas: 5–8","120–210 s","https://www.youtube.com/results?search_query=levantamento+terra+execucao"],
-            ["Mesa flexora","3 válidas","8–10","120–210 s","https://www.youtube.com/results?search_query=mesa+flexora+execucao"]
-          ]
-        },
-        {
-          nome:"Glúteos",
-          ex:[
-            ["Elevação pélvica","3 válidas","6–9","120–210 s","https://www.youtube.com/results?search_query=elevacao+pelvica+execucao"]
-          ]
-        },
-        {
-          nome:"Quadríceps e Adutores",
-          ex:[
-            ["Agachamento hack/smith","3 válidas","6–9","120–210 s","https://www.youtube.com/results?search_query=agachamento+hack+smith+execucao"],
-            ["Cadeira adutora","3 válidas","8–12","60–120 s","https://www.youtube.com/results?search_query=cadeira+adutora+execucao"]
-          ]
-        },
-        {
-          nome:"Panturrilhas",
-          ex:[
-            ["Elevação de panturrilhas","3 válidas","8–12","60–120 s","https://www.youtube.com/results?search_query=elevacao+de+panturrilhas+execucao"]
-          ]
-        }
-      ]
-    },
-    {
-      id:"dom",
-      nome:"Domingo",
-      descanso:true,
-      cor:"#66737d",
-      titulo:"Dia 7 — Descanso",
-      foco:"Recuperação muscular e descanso estratégico"
-    }
+    {id:"seg",nome:"Segunda",curto:"Push",cor:"#C62828",titulo:"Push: peito e tríceps",foco:"Peitoral e tríceps, com foco em técnica e alta carga",grupos:[
+      {nome:"Peitoral",ex:[
+        ["Crucifixo na polia","1 preparatória + 3 efetivas","7–10","2–3,5 min","https://www.youtube.com/results?search_query=crucifixo+polia+execucao"],
+        ["Supino reto","1 preparatória + 3 efetivas","5–8","2–3,5 min","https://www.youtube.com/results?search_query=supino+reto+execucao"],
+        ["Supino inclinado","3 efetivas","6–8","2–3,5 min","https://www.youtube.com/results?search_query=supino+inclinado+execucao"]
+      ]},
+      {nome:"Tríceps",ex:[
+        ["Tríceps na polia com corda","1 preparatória + 3 efetivas","6–9","2–3,5 min","https://www.youtube.com/results?search_query=triceps+polia+corda+execucao"],
+        ["Tríceps francês na polia","3 efetivas","6–9","2–3,5 min","https://www.youtube.com/results?search_query=triceps+frances+polia+execucao"],
+        ["Tríceps testa","1 preparatória + 2 efetivas","6–9","2–3,5 min","https://www.youtube.com/results?search_query=triceps+testa+execucao"]
+      ]}
+    ]},
+    {id:"ter",nome:"Terça",curto:"Pull",cor:"#2456C8",titulo:"Pull: costas e bíceps",foco:"Costas e bíceps, com face pull opcional para os ombros",grupos:[
+      {nome:"Costas",ex:[
+        ["Puxada alta na polia","1 preparatória + 3 efetivas","6–8","2–3,5 min","https://www.youtube.com/results?search_query=puxada+alta+polia+execucao"],
+        ["Remada baixa na polia","3 efetivas","6–8","2–3,5 min","https://www.youtube.com/results?search_query=remada+baixa+polia+execucao"],
+        ["Remada curvada com barra","1 preparatória + 3 efetivas","6–8","2–3,5 min","https://www.youtube.com/results?search_query=remada+curvada+barra+execucao"],
+        ["Pullover na polia","3 efetivas","8–10","2–3,5 min","https://www.youtube.com/results?search_query=pullover+polia+execucao"]
+      ]},
+      {nome:"Bíceps",ex:[
+        ["Rosca alternada com halteres","1 preparatória + 3 efetivas","6–8","2–3,5 min","https://www.youtube.com/results?search_query=rosca+alternada+halteres+execucao"],
+        ["Rosca inclinada com halteres","3 efetivas","7–10","2–3,5 min","https://www.youtube.com/results?search_query=rosca+inclinada+halteres+execucao"],
+        ["Rosca martelo com halteres","3 efetivas","8–10","2–3,5 min","https://www.youtube.com/results?search_query=rosca+martelo+halteres+execucao"]
+      ]},
+      {nome:"Ombros (adendo, se houver tempo)",ex:[
+        ["Face pull (opcional)","2–3 efetivas","10–15","2–3,5 min","https://www.youtube.com/results?search_query=face+pull+execucao"]
+      ]}
+    ]},
+    {id:"qua",nome:"Quarta",curto:"Legs",cor:"#137A3E",titulo:"Legs: ênfase em quadríceps",foco:"Ênfase em quadríceps, com posteriores, glúteos e panturrilhas. A cadeira adutora fica no Lower de sábado.",grupos:[
+      {nome:"Quadríceps",ex:[
+        ["Agachamento hack ou Smith","1 preparatória + 3 efetivas","6–9","2–3,5 min","https://www.youtube.com/results?search_query=agachamento+hack+smith+execucao"],
+        ["Leg press 45°","3 efetivas","6–9","2–3,5 min","https://www.youtube.com/results?search_query=leg+press+45+execucao"],
+        ["Cadeira extensora","3 efetivas","8–12","2–3,5 min","https://www.youtube.com/results?search_query=cadeira+extensora+execucao"]
+      ]},
+      {nome:"Posteriores e glúteos",ex:[
+        ["Mesa flexora","1 preparatória + 3 efetivas","6–9","2–3,5 min","https://www.youtube.com/results?search_query=mesa+flexora+execucao"],
+        ["Elevação pélvica","3 efetivas","6–9","2–3,5 min","https://www.youtube.com/results?search_query=elevacao+pelvica+execucao"]
+      ]},
+      {nome:"Panturrilhas",ex:[
+        ["Elevação de panturrilhas","3 efetivas","6–12","2–3,5 min","https://www.youtube.com/results?search_query=elevacao+de+panturrilha+execucao"]
+      ]}
+    ]},
+    {id:"qui",nome:"Quinta",descanso:true,cor:"#66737d",titulo:"Descanso",foco:"Recuperação"},
+    {id:"sex",nome:"Sexta",curto:"Upper",cor:"#C2410C",titulo:"Upper: membros superiores",foco:"Peito, costas, ombros e braços",grupos:[
+      {nome:"Peito",ex:[
+        ["Supino inclinado com halteres","3 efetivas","6–8","2–3,5 min","https://www.youtube.com/results?search_query=supino+inclinado+halteres+execucao"]
+      ]},
+      {nome:"Costas",ex:[
+        ["Remada articulada ou na máquina","3 efetivas","6–8","2–3,5 min","https://www.youtube.com/results?search_query=remada+articulada+maquina+execucao"],
+        ["Puxada neutra","2 efetivas","6–10","2–3,5 min","https://www.youtube.com/results?search_query=puxada+neutra+execucao"]
+      ]},
+      {nome:"Ombros",ex:[
+        ["Desenvolvimento na máquina ou com halteres","2–3 efetivas","6–9","2–3,5 min","https://www.youtube.com/results?search_query=desenvolvimento+ombros+maquina+halteres+execucao"],
+        ["Elevação lateral","2–3 efetivas","8–12","2–3,5 min","https://www.youtube.com/results?search_query=elevacao+lateral+execucao"]
+      ]},
+      {nome:"Bíceps",ex:[
+        ["Rosca direta","2–3 efetivas","6–9","2–3,5 min","https://www.youtube.com/results?search_query=rosca+direta+execucao"]
+      ]},
+      {nome:"Tríceps",ex:[
+        ["Tríceps na polia","2–3 efetivas","6–9","2–3,5 min","https://www.youtube.com/results?search_query=triceps+polia+execucao"]
+      ]}
+    ]},
+    {id:"sab",nome:"Sábado",curto:"Lower",cor:"#A16207",titulo:"Lower: ênfase em posteriores e glúteos",foco:"Ênfase em posteriores e glúteos, com quadríceps, adutores e panturrilhas",grupos:[
+      {nome:"Posteriores",ex:[
+        ["Levantamento terra","1 preparatória + 3 efetivas","5–8","2–3,5 min","https://www.youtube.com/results?search_query=levantamento+terra+execucao"],
+        ["Mesa flexora","3 efetivas","8–10","2–3,5 min","https://www.youtube.com/results?search_query=mesa+flexora+execucao"]
+      ]},
+      {nome:"Glúteos",ex:[
+        ["Elevação pélvica","3 efetivas","6–9","2–3,5 min","https://www.youtube.com/results?search_query=elevacao+pelvica+execucao"]
+      ]},
+      {nome:"Quadríceps",ex:[
+        ["Agachamento hack ou Smith","3 efetivas","6–9","2–3,5 min","https://www.youtube.com/results?search_query=agachamento+hack+smith+execucao"]
+      ]},
+      {nome:"Adutores",ex:[
+        ["Cadeira adutora","3 efetivas","8–12","2–3,5 min","https://www.youtube.com/results?search_query=cadeira+adutora+execucao"]
+      ]},
+      {nome:"Panturrilhas",ex:[
+        ["Elevação de panturrilhas","3 efetivas","8–12","2–3,5 min","https://www.youtube.com/results?search_query=elevacao+de+panturrilha+execucao"]
+      ]}
+    ]},
+    {id:"dom",nome:"Domingo",descanso:true,cor:"#66737d",titulo:"Descanso",foco:"Recuperação"}
   ],
   orientacoes:[
-    ["Foco em técnica e alta carga","Priorize a execução perfeita e controlada dos movimentos combinada com cargas desafiadoras nas séries efetivas."],
-    ["Tempo de descanso", "Respeite o intervalo adequado entre as séries (que pode ser maior, entre 2 a 3 minutos e meio / 120–210 segundos) para garantir recuperação completa devido ao trabalho com alta carga."],
-    ["Respeito a dores e mal jeito","Atente-se a qualquer sinal de dores atípicas ou mau jeito articular/muscular. Nesses casos, evite aumentos de carga ou mantenha cargas leves para prevenir lesões."],
-    ["Hidratação e nutrição","Mantenha alta ingestão de água ao longo do dia e garanta um consumo adequado de proteína para otimizar sua recuperação e desempenho."]
+    ["Técnica com alta carga","Foque na técnica mesmo com alta carga. Controle o movimento em todas as repetições e só aumente o peso quando a execução estiver firme."],
+    ["Descanso","Respeite o tempo de descanso de 2 a 3,5 minutos. Se a carga estiver muito alta, pode descansar mais. Toque em “⏱ Descanso” no exercício para iniciar o cronômetro."],
+    ["Dores e mau jeito","Respeite dores e mau jeito. Nesses casos, evite aumentar a carga para não se lesionar."],
+    ["Água e proteína","Beba bastante água ao longo do dia e consuma uma boa quantidade de proteína."]
   ]
 };
 /* ===================== FIM DA ÁREA DE EDIÇÃO ===================== */
@@ -261,10 +229,13 @@ const PLAN={
 const $=s=>document.querySelector(s);
 const shortVideo=u=>/youtube\.com\/results/.test(u)&&!/[?&]sp=/.test(u)?u+'&sp=EgIYAQ%253D%253D':u;
 const esc=v=>String(v??'').replace(/[&<>"']/g,c=>({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[c]));
+/* Cada exercício tem um id estável (nome sem acentos). Se você RENOMEAR um exercício mas quiser manter o histórico
+   de cargas, coloque o id antigo como 6º item do exercício: ["Nome novo","3","7–10","60 s","link","id-antigo"] */
 const slug=t=>String(t).normalize('NFD').replace(/[\u0300-\u036f]/g,'').toLowerCase().replace(/[^a-z0-9]+/g,'-').replace(/^-+|-+$/g,'');
 const IDS={};
 PLAN.dias.forEach(d=>{const seen={};(d.grupos||[]).forEach((g,gi)=>(g.ex||[]).forEach((e,ei)=>{let id=e[5]||slug(e[0]);seen[id]=(seen[id]||0)+1;if(seen[id]>1)id+='-'+seen[id];IDS[d.id+':'+gi+':'+ei]=id}))});
 const xid=(d,gi,ei)=>IDS[d.id+':'+gi+':'+ei];
+const isOpt=e=>/\(opcional\)/i.test(e[0]);   /* exercício opcional: não conta como obrigatório */
 const today=()=>{const d=new Date(),p=n=>String(n).padStart(2,'0');return d.getFullYear()+'-'+p(d.getMonth()+1)+'-'+p(d.getDate())};
 const storageKey='ficha-treino-v1:'+PLAN.codigo;
 const todayKey=today();
@@ -285,17 +256,26 @@ function markKey(d,gi,ei){return `${todayKey}:${d.id}:${xid(d,gi,ei)}`}
 function chips(){
   $('#dayTabs').innerHTML=PLAN.dias.map(d=>`<button class="day-tab ${d.id===current?'active':''} ${d.descanso?'rest':''}" style="--day-color:${esc(d.cor)}" data-day="${esc(d.id)}" type="button">${esc(d.nome.slice(0,3))}<small>${esc(d.id===['dom','seg','ter','qua','qui','sex','sab'][new Date().getDay()]?'hoje':d.descanso?'folga':d.curto||'treino')}</small></button>`).join('');
 }
+/* Tipo do exercício: 'carga' (padrão, tem campo kg), 'tempo' (prancha etc.), 'cardio' (esteira etc.) ou 'corpo' (peso do corpo).
+   Pode ser definido no 7º item do exercício; se não for, é deduzido: "bloco" = cardio; minutos/segundos = tempo. */
+function kindOf(e){const k=String(e[6]||'').toLowerCase();if(k)return k;if(/bloco/i.test(e[1]))return'cardio';if(/\d\s*(min|seg|s)\b/i.test(e[2]))return'tempo';return'carga'}
+function restSecs(r){const t=String(r||''),m=t.match(/\d+(?:[.,]\d+)?/);if(!m)return 0;const n=parseFloat(m[0].replace(',','.'));return Math.round(/min/i.test(t)?n*60:n)}
+function fmtSec(s){return s<120?s+' s':Math.floor(s/60)+' min'+(s%60?' '+s%60+' s':'')}
+function restBtn(e){const s=restSecs(e[3]);return s>=5?`<button class="rest-btn" type="button" data-rest="${s}">⏱ Descanso ${fmtSec(s)}</button>`:''}
 function detail(e){
+  const raw=String(e[3]||'').trim(),has=raw&&!/^[—–-]+$/.test(raw),des=has?' · descanso '+esc(raw):'';
+  if(kindOf(e)==='cardio')return esc(e[2])+des;
   const s=String(e[1]).split('+'),r=String(e[2]).split('•');
-  if(s.length>1&&s.length===r.length)return s.map((x,i)=>esc(x.trim())+' · '+esc(r[i].replace(/^[^:]*:\s*/,'').trim())+' reps').join('<br>')+'<br>descanso '+esc(e[3]);
-  return esc(e[1])+' × '+esc(e[2])+' repetições · descanso '+esc(e[3]);
+  if(s.length>1&&s.length===r.length)return s.map((x,i)=>esc(x.trim())+' · '+esc(r[i].replace(/^[^:]*:\s*/,'').trim())+' reps').join('<br>')+(has?'<br>descanso '+esc(raw):'');
+  const reps=/^[\d\s–\-.,]+$/.test(String(e[2]))?esc(e[2])+' repetições':esc(e[2]);
+  return esc(e[1])+' × '+reps+des;
 }
 function renderDay(){
   const d=PLAN.dias.find(x=>x.id===current);if(!d)return;
   $('#dayContent').style.setProperty('--day-color',d.cor);
   if(d.descanso){$('#dayContent').innerHTML=`<section class="card print-day"><div class="muted">${esc(d.nome)}</div><h2>${esc(d.titulo)}</h2><div class="rest-box"><strong>Dia de descanso</strong><span>${esc(d.foco||'Priorize sua recuperação.')}</span></div></section>`;return}
   let total=0,done=0,html='';
-  (d.grupos||[]).forEach((g,gi)=>{if(g.nome)html+=`<h3 class="group-title">${esc(g.nome)}</h3>`;(g.ex||[]).forEach((e,ei)=>{const k=markKey(d,gi,ei),isDone=!!state.marks[k];total++;if(isDone)done++;const url=shortVideo(e[4]||('https://www.youtube.com/results?search_query='+encodeURIComponent(e[0]+' execução')));html+=`<div class="exercise ${isDone?'done':''}"><button class="check" type="button" data-check="${esc(k)}" aria-pressed="${isDone}" aria-label="Marcar ${esc(e[0])} como concluído"></button><div><div class="name">${esc(e[0])}</div><div class="details">${detail(e)}</div>${lastLoadHtml(d,gi,ei)}<a class="video" href="${esc(url)}" target="_blank" rel="noopener">Ver demonstração</a></div><input class="load" type="text" inputmode="decimal" placeholder="kg" value="${esc(state.loads[k]||'')}" data-load="${esc(k)}" aria-label="Carga usada em ${esc(e[0])}"></div>`})});
+  (d.grupos||[]).forEach((g,gi)=>{if(g.nome)html+=`<h3 class="group-title">${esc(g.nome)}</h3>`;(g.ex||[]).forEach((e,ei)=>{const k=markKey(d,gi,ei),isDone=!!state.marks[k],nl=kindOf(e)!=='carga';if(!isOpt(e)){total++;if(isDone)done++}const url=shortVideo(e[4]||('https://www.youtube.com/results?search_query='+encodeURIComponent(e[0]+' execução')));html+=`<div class="exercise ${isDone?'done':''}${nl?' noload':''}"><button class="check" type="button" data-check="${esc(k)}" aria-pressed="${isDone}" aria-label="Marcar ${esc(e[0])} como concluído"></button><div><div class="name">${esc(e[0])}</div><div class="details">${detail(e)}</div>${nl?'':lastLoadHtml(d,gi,ei)}<div class="links"><a class="video" href="${esc(url)}" target="_blank" rel="noopener">Ver demonstração</a>${restBtn(e)}</div></div>${nl?'':`<input class="load" type="text" inputmode="decimal" placeholder="kg" value="${esc(state.loads[k]||'')}" data-load="${esc(k)}" aria-label="Carga usada em ${esc(e[0])}">`}</div>`})});
   $('#dayContent').innerHTML=`<section class="card print-day" style="--day-color:${esc(d.cor)}"><div class="muted">${esc(d.nome)}</div><h2>${esc(d.titulo)}</h2><div class="muted">${esc(d.foco||'')}</div><div class="progress"><i style="width:${total?done/total*100:0}%"></i></div><div class="muted">${done} de ${total} exercícios concluídos hoje</div>${html}<button class="reset" type="button" data-reset="${esc(d.id)}">Zerar marcações deste dia</button></section>`;
 }
 function renderPrintAll(){
@@ -303,7 +283,7 @@ function renderPrintAll(){
   PLAN.dias.forEach(d=>{
     if(d.descanso){out+=`<section class="card print-all-card" style="--day-color:${esc(d.cor)}"><div class="muted">${esc(d.nome)}</div><h2>${esc(d.titulo)}</h2><div class="rest-box"><strong>Dia de descanso</strong><span>${esc(d.foco||'Priorize sua recuperação.')}</span></div></section>`;return}
     let body='';
-    (d.grupos||[]).forEach((g,gi)=>{if(g.nome)body+=`<h3 class="group-title">${esc(g.nome)}</h3>`;(g.ex||[]).forEach((e,ei)=>{const k=markKey(d,gi,ei),done=!!state.marks[k];body+=`<div class="exercise ${done?'done':''}"><span class="print-check ${done?'done':''}">${done?'✓':''}</span><div><div class="name">${esc(e[0])}</div><div class="details">${detail(e)}</div></div><span class="print-load">${esc(state.loads[k]||'')}</span></div>`})});
+    (d.grupos||[]).forEach((g,gi)=>{if(g.nome)body+=`<h3 class="group-title">${esc(g.nome)}</h3>`;(g.ex||[]).forEach((e,ei)=>{const k=markKey(d,gi,ei),done=!!state.marks[k],nl=kindOf(e)!=='carga';body+=`<div class="exercise ${done?'done':''}${nl?' noload':''}"><span class="print-check ${done?'done':''}">${done?'✓':''}</span><div><div class="name">${esc(e[0])}</div><div class="details">${detail(e)}</div></div>${nl?'':`<span class="print-load">${esc(state.loads[k]||'')}</span>`}</div>`})});
     out+=`<section class="card print-all-card" style="--day-color:${esc(d.cor)}"><div class="muted">${esc(d.nome)}</div><h2>${esc(d.titulo)}</h2><div class="muted">${esc(d.foco||'')}</div>${body}</section>`;
   });
   $('#printAll').innerHTML=out;
@@ -312,7 +292,7 @@ function lastLoad(ek){const h=state.hist[ek]||{};const ds=Object.keys(h).filter(
 function lastLoadHtml(d,gi,ei){const l=lastLoad(`${d.id}:${xid(d,gi,ei)}`);if(!l)return'';const v=/[a-z]/i.test(l.v)?l.v:l.v+' kg',dt=l.d.slice(8,10)+'/'+l.d.slice(5,7);return `<div class="last">Última carga: <b>${esc(v)}</b> · ${dt}</div>`}
 function checkCelebrate(){
   const d=PLAN.dias.find(x=>x.id===current);if(!d||d.descanso)return;
-  let total=0,done=0;(d.grupos||[]).forEach((g,gi)=>(g.ex||[]).forEach((e,ei)=>{total++;if(state.marks[markKey(d,gi,ei)])done++}));
+  let total=0,done=0;(d.grupos||[]).forEach((g,gi)=>(g.ex||[]).forEach((e,ei)=>{if(isOpt(e))return;total++;if(state.marks[markKey(d,gi,ei)])done++}));
   const ck=todayKey+':'+d.id;
   if(total&&done===total&&!state.cele[ck]){state.cele[ck]=1;save();celebrate(d.cor)}
 }
@@ -364,10 +344,120 @@ $('#wipeBtn').onclick=()=>{if(confirm('Apagar TODO o histórico de cargas salvo 
 const themeKey='ficha-treino-tema';
 try{const t=localStorage.getItem(themeKey);if(t==='dark'||t==='light')document.documentElement.dataset.theme=t}catch(e){}
 $('#themeBtn').onclick=()=>{const root=document.documentElement;const atual=root.dataset.theme||((window.matchMedia&&matchMedia('(prefers-color-scheme: dark)').matches)?'dark':'light');const novo=atual==='dark'?'light':'dark';root.dataset.theme=novo;try{localStorage.setItem(themeKey,novo)}catch(e){}};
+/* ===== Timer de descanso (com aviso sonoro curto) ===== */
+const R={end:0,left:0,last:60,run:false,tid:0,ctx:null,lock:null,sound:true,started:false,fin:false};
+try{R.sound=localStorage.getItem('ficha-treino-som')!=='0'}catch(e){}
+const mmss=s=>String(Math.floor(s/60)).padStart(2,'0')+':'+String(s%60).padStart(2,'0');
+function audioUnlock(){try{const A=window.AudioContext||window.webkitAudioContext;if(!A)return;R.ctx=R.ctx||new A();if(R.ctx.state==='suspended')R.ctx.resume()}catch(e){}}
+function beep(){
+  if(!R.sound)return;
+  try{if(R.ctx){const c=R.ctx,t=c.currentTime;[0,.25].forEach(o=>{const osc=c.createOscillator(),g=c.createGain();osc.type='sine';osc.frequency.value=880;g.gain.setValueAtTime(.0001,t+o);g.gain.exponentialRampToValueAtTime(.35,t+o+.02);g.gain.exponentialRampToValueAtTime(.0001,t+o+.18);osc.connect(g);g.connect(c.destination);osc.start(t+o);osc.stop(t+o+.2)})}}catch(e){}
+  try{if(navigator.vibrate)navigator.vibrate([150,80,150])}catch(e){}
+}
+async function wake(on){try{if(on){if('wakeLock' in navigator&&!R.lock){R.lock=await navigator.wakeLock.request('screen');R.lock.addEventListener('release',()=>{R.lock=null})}}else if(R.lock){const l=R.lock;R.lock=null;await l.release()}}catch(e){}}
+function restPaint(){
+  $('#restTime').textContent=mmss(R.left);
+  $('#restToggle').textContent=R.run?'Pausar':(R.left>0?'Retomar':'Reiniciar');
+  $('#restCtrl').hidden=!R.started;$('#restSet').hidden=R.run;
+  $('#rest').classList.toggle('fin',R.fin);
+  $('#soundBtn').textContent=R.sound?'🔔 Som ligado':'🔕 Som desligado';$('#soundBtn').setAttribute('aria-pressed',String(R.sound));
+}
+function openRest(){$('#rest').hidden=false;document.body.classList.add('has-rest');restPaint()}
+function closeRest(){R.run=false;R.started=false;R.fin=false;R.left=0;clearInterval(R.tid);wake(false);$('#restMsg').textContent='';$('#rest').hidden=true;document.body.classList.remove('has-rest')}
+function restTick(){if(!R.run)return;R.left=Math.max(0,Math.ceil((R.end-Date.now())/1000));if(R.left<=0)restDone();else restPaint()}
+function restDone(){R.run=false;R.fin=true;clearInterval(R.tid);R.left=0;$('#restMsg').textContent='Descanso terminou! Hora da próxima série.';restPaint();beep();wake(false)}
+function restStart(sec){
+  sec=Math.round(Number(sec));openRest();
+  if(!(sec>=5&&sec<=900)){$('#restMsg').textContent='Digite um tempo de 5 a 900 segundos.';return}
+  audioUnlock();R.last=sec;R.left=sec;R.end=Date.now()+sec*1000;R.run=true;R.started=true;R.fin=false;
+  clearInterval(R.tid);R.tid=setInterval(restTick,250);$('#restMsg').textContent='Descansando...';restPaint();wake(true);
+}
+function restToggle(){
+  audioUnlock();
+  if(R.run){R.left=Math.max(1,Math.ceil((R.end-Date.now())/1000));R.run=false;clearInterval(R.tid);$('#restMsg').textContent='Pausado.';wake(false);restPaint()}
+  else if(R.left>0){R.end=Date.now()+R.left*1000;R.run=true;R.fin=false;R.tid=setInterval(restTick,250);$('#restMsg').textContent='Descansando...';wake(true);restPaint()}
+  else restStart(R.last);
+}
+function restAdj(d){if(R.run){R.end+=d*1000;if(R.end-Date.now()<1000)R.end=Date.now()+1000;restTick()}else{R.left=Math.max(0,Math.min(900,R.left+d));R.fin=false;restPaint()}}
+document.addEventListener('click',e=>{const b=e.target.closest('[data-rest]');if(b)restStart(b.dataset.rest)});
+document.addEventListener('visibilitychange',()=>{if(!document.hidden&&R.run){restTick();wake(true)}});
+$('#restOpen').onclick=openRest;$('#restClose').onclick=closeRest;$('#restToggle').onclick=restToggle;
+$('#restMinus').onclick=()=>restAdj(-15);$('#restPlus').onclick=()=>restAdj(15);
+$('#restGo').onclick=()=>restStart($('#restSecs').value);
+$('#restSecs').addEventListener('keydown',e=>{if(e.key==='Enter')restStart($('#restSecs').value)});
+$('#soundBtn').onclick=()=>{R.sound=!R.sound;try{localStorage.setItem('ficha-treino-som',R.sound?'1':'0')}catch(e){}audioUnlock();if(R.sound)beep();restPaint()};
+
 init();
+/* ===== Calendário de treinos (marca os dias em que a pessoa treinou) ===== */
+(function(){
+  const MIN=3; /* mínimo de exercícios marcados para o dia contar como treinado */
+  const pad=n=>String(n).padStart(2,'0');
+  const cap=t=>t.charAt(0).toUpperCase()+t.slice(1);
+  let cur=new Date(new Date().getFullYear(),new Date().getMonth(),1),sel='';
+  const OPT=new Set();PLAN.dias.forEach(d=>(d.grupos||[]).forEach((g,gi)=>(g.ex||[]).forEach((e,ei)=>{if(isOpt(e))OPT.add(d.id+':'+xid(d,gi,ei))})));
+  function dados(){
+    const por={};
+    Object.keys(state.marks).forEach(k=>{const p=k.split(':');if(p.length<3||!/^\d{4}-\d\d-\d\d$/.test(p[0])||OPT.has(p[1]+':'+p[2]))return;const o=por[p[0]]=por[p[0]]||{};o[p[1]]=(o[p[1]]||0)+1});
+    const out={};
+    Object.keys(por).forEach(dt=>{
+      let best=null;
+      Object.keys(por[dt]).forEach(id=>{
+        const d=PLAN.dias.find(x=>x.id===id);if(!d||d.descanso)return;
+        const total=(d.grupos||[]).reduce((a,g)=>a+(g.ex||[]).filter(e=>!isOpt(e)).length,0);if(!total)return;
+        const done=Math.min(por[dt][id],total),r=done/total;
+        if(!best||r>best.r||(r===best.r&&done>best.done))best={r,done,total,titulo:d.titulo};
+      });
+      if(best&&best.done>=Math.min(MIN,best.total))out[dt]=Object.assign(best,{full:best.done>=best.total});
+    });
+    return out;
+  }
+  function resumo(dd,n,c){
+    const el=$('#calInfo'),mes=`${cur.getFullYear()}-${pad(cur.getMonth()+1)}`;
+    if(sel&&sel.slice(0,7)===mes){
+      const [y,m,d]=sel.split('-').map(Number),i=dd[sel];
+      const txt=cap(new Date(y,m-1,d).toLocaleDateString('pt-BR',{weekday:'long',day:'2-digit',month:'2-digit'}));
+      el.textContent=txt+': '+(i?`${i.titulo} — ${i.done} de ${i.total} exercícios`+(i.full?' (completo)':''):`sem treino registrado (mínimo de ${MIN} exercícios marcados).`);
+      return;
+    }
+    el.textContent=n?`${n} ${n===1?'dia treinado':'dias treinados'} neste mês · ${c} ${c===1?'completo':'completos'}`:'Nenhum treino registrado neste mês ainda.';
+  }
+  function desenhar(){
+    const y=cur.getFullYear(),m=cur.getMonth(),dd=dados();
+    const primeiro=new Date(y,m,1).getDay(),dias=new Date(y,m+1,0).getDate();
+    const nomeMes=new Intl.DateTimeFormat('pt-BR',{month:'long'}).format(cur);
+    $('#calTitle').textContent=cap(nomeMes)+' de '+y;
+    let h=['D','S','T','Q','Q','S','S'].map(x=>`<span class="cal-w" aria-hidden="true">${x}</span>`).join('');
+    for(let i=0;i<primeiro;i++)h+='<span></span>';
+    let n=0,c=0;
+    for(let d=1;d<=dias;d++){
+      const key=`${y}-${pad(m+1)}-${pad(d)}`,i=dd[key];
+      if(i){n++;if(i.full)c++}
+      const st=i?(i.full?'treino completo':'treino parcial'):'sem treino registrado';
+      h+=`<button type="button" class="cal-d${i?(i.full?' full':' part'):''}${key===todayKey?' today':''}${key===sel?' sel':''}" data-cal="${key}" aria-label="${d} de ${nomeMes}: ${st}"${key===todayKey?' aria-current="date"':''}>${d}</button>`;
+    }
+    $('#calGrid').innerHTML=h;
+    const hoje=new Date();
+    $('#calNext').disabled=cur>=new Date(hoje.getFullYear(),hoje.getMonth(),1);
+    resumo(dd,n,c);
+  }
+  $('#calBtn').onclick=()=>{
+    const p=$('#cal');p.hidden=!p.hidden;$('#calBtn').setAttribute('aria-expanded',String(!p.hidden));
+    if(!p.hidden){const t=new Date();cur=new Date(t.getFullYear(),t.getMonth(),1);sel='';desenhar()}
+  };
+  $('#calX').onclick=()=>{$('#cal').hidden=true;$('#calBtn').setAttribute('aria-expanded','false');$('#calBtn').focus({preventScroll:true})};
+  $('#calPrev').onclick=()=>{cur=new Date(cur.getFullYear(),cur.getMonth()-1,1);sel='';desenhar()};
+  $('#calNext').onclick=()=>{cur=new Date(cur.getFullYear(),cur.getMonth()+1,1);sel='';desenhar()};
+  $('#calGrid').addEventListener('click',e=>{
+    const b=e.target.closest('[data-cal]');if(!b)return;
+    sel=sel===b.dataset.cal?'':b.dataset.cal;desenhar();
+    const f=$('#calGrid .sel');if(f)f.focus({preventScroll:true});
+  });
+  /* atualiza sozinho quando a pessoa marca/desmarca exercícios ou zera o dia */
+  document.addEventListener('click',e=>{if(!$('#cal').hidden&&!e.target.closest('#cal,#calBtn'))setTimeout(desenhar,0)});
+})();
 /* ===== Aplicativo no celular: abre sem internet e pode ser instalado na tela inicial ===== */
 (function(){
-  if(!/^https?:$/.test(location.protocol))return;
+  if(!/^https?:$/.test(location.protocol))return; /* prévias, arquivo local etc.: não se aplica */
   try{
   const CACHE='fichas-treino-v1';
   const base=new URL('./',location.href).href;
@@ -384,6 +474,7 @@ init();
       return c.toDataURL('image/png');
     }catch(e){return''}
   }
+  /* ícone e manifesto gerados aqui mesmo (nada de arquivos extras para subir) */
   try{
     const i192=iconPng(192),i512=iconPng(512),i180=iconPng(180);
     if(i192&&i512){
@@ -392,6 +483,7 @@ init();
       const a=document.createElement('link');a.rel='apple-touch-icon';a.href=i180;document.head.appendChild(a);
     }
   }catch(e){}
+  /* funcionar sem internet: o arquivo sw.js fica na raiz do repositório */
   if('serviceWorker' in navigator){
     window.addEventListener('load',()=>{
       Promise.resolve().then(()=>navigator.serviceWorker.register(new URL('../../sw.js',location.href).href))
@@ -400,6 +492,7 @@ init();
         .catch(()=>{});
     });
   }
+  /* aviso "Use como aplicativo" (botão no Android, passo a passo no iPhone) */
   const KEY='ficha-treino-instalar';
   let dismissed=false;try{dismissed=localStorage.getItem(KEY)==='1'}catch(e){}
   let deferred=null;
@@ -429,3 +522,4 @@ init();
 </script>
 </body>
 </html>
+ 
