@@ -17,7 +17,7 @@
 *{box-sizing:border-box}html{scroll-behavior:smooth}body{margin:0;background:var(--bg);color:var(--ink);font:16px/1.45 Inter,system-ui,-apple-system,Segoe UI,sans-serif}.wrap{max-width:680px;margin:auto;padding:16px 16px 44px}
 .header{background:var(--hdr,#14264a);transition:background .3s;color:#fff;border-radius:24px;padding:22px;margin-top:6px}.eyebrow{font-size:13px;color:#c4d2ec;text-transform:uppercase;letter-spacing:.08em;font-weight:700}.header h1{font-size:clamp(32px,8vw,46px);line-height:1;margin:12px 0 8px;letter-spacing:-.03em}.header p{margin:0;color:#dbe4f4}.meta{display:flex;flex-wrap:wrap;gap:8px;margin-top:18px}.meta span{background:#ffffff1f;border-radius:999px;padding:6px 11px;font-size:13px}.toolbar{display:flex;flex-wrap:wrap;gap:8px;margin:14px 0}.toolbar button,.action{min-height:44px;border:1px solid var(--line);border-radius:12px;background:var(--card);color:var(--ink);padding:0 13px;font-family:inherit;font-weight:600;font-size:14px;cursor:pointer}.toolbar .primary{background:var(--accent);border-color:var(--accent);color:var(--accent-ink)}
 .day-tabs{display:flex;gap:8px;overflow-x:auto;padding:2px 0 8px;scrollbar-width:thin}.day-tab{flex:0 0 auto;min-width:76px;min-height:58px;border:0;border-radius:14px;background:var(--chip);color:var(--ink);font-family:inherit;font-weight:700;font-size:15px;cursor:pointer;padding:6px 10px}.day-tab small{display:block;font-size:11px;font-weight:500;color:var(--mute);margin-top:2px}.day-tab.active{background:var(--day-color,var(--accent));color:#fff}.day-tab.active small{color:#fff}.day-tab.rest{opacity:.75}
-.card{background:var(--card);border:1px solid var(--line);border-radius:18px;padding:18px;margin-top:12px}.card h2{font-size:28px;line-height:1.1;margin:0}.muted{color:var(--mute);font-size:14px}.progress{height:7px;background:var(--chip);border-radius:8px;overflow:hidden;margin:15px 0 5px}.progress i{display:block;height:100%;background:var(--accent);transition:width .2s}.group-title{font-size:20px;margin:22px 0 4px;padding-left:10px;border-left:4px solid var(--day-color,var(--accent))}.exercise{display:grid;grid-template-columns:44px 1fr 82px;gap:10px;align-items:center;border-top:1px solid var(--line);padding:13px 0}.group-title+.exercise{border-top:0}.check{width:42px;height:42px;border:2px solid var(--mute);border-radius:12px;background:transparent;color:#fff;font-size:22px;cursor:pointer}.check[aria-pressed="true"]{background:var(--day-color,var(--accent));border-color:var(--day-color,var(--accent))}.check[aria-pressed="true"]:after{content:"✓"}.exercise.done .name{text-decoration:line-through;opacity:.55}.name{font-weight:700}.details{color:var(--mute);font-size:13px;margin-top:2px}.video{display:inline-block;color:var(--accent);font-size:13px;font-weight:700;text-decoration:none;margin-top:6px}.load{width:100%;height:44px;border:1px solid var(--line);border-radius:10px;background:var(--bg);color:var(--ink);text-align:center;font:inherit}.reset{border:0;background:transparent;color:var(--mute);text-decoration:underline;padding:11px 0;cursor:pointer;font-family:inherit;font-size:14px}.rest-box{background:var(--soft);border-radius:14px;padding:15px;margin-top:16px}.rest-box strong{display:block;font-size:18px;margin-bottom:4px}.notes p{margin:10px 0}.notes strong{display:block}.footer{margin:22px 0 0;color:var(--mute);font-size:13px;text-align:center}.footer:empty{display:none}.toast{position:fixed;left:50%;bottom:18px;transform:translate(-50%,120px);background:var(--ink);color:var(--bg);padding:11px 15px;border-radius:999px;font-size:14px;transition:transform .2s;z-index:10}.toast.show{transform:translate(-50%,0)}button:focus-visible,input:focus-visible{outline:3px solid var(--accent);outline-offset:2px}
+.card{background:var(--card);border:1px solid var(--line);border-radius:18px;padding:18px;margin-top:12px}.card h2{font-size:28px;line-height:1.1;margin:0}.muted{color:var(--mute);font-size:14px}.progress{height:7px;background:var(--chip);border-radius:8px;overflow:hidden;margin:15px 0 5px}.progress i{display:block;height:100%;background:var(--accent);transition:width .2s}.group-title{font-size:18px;margin:22px 0 4px;padding-left:10px;border-left:4px solid var(--day-color,var(--accent))}.exercise{display:grid;grid-template-columns:44px 1fr 82px;gap:10px;align-items:center;border-top:1px solid var(--line);padding:13px 0}.group-title+.exercise{border-top:0}.check{width:42px;height:42px;border:2px solid var(--mute);border-radius:12px;background:transparent;color:#fff;font-size:22px;cursor:pointer}.check[aria-pressed="true"]{background:var(--day-color,var(--accent));border-color:var(--day-color,var(--accent))}.check[aria-pressed="true"]:after{content:"✓"}.exercise.done .name{text-decoration:line-through;opacity:.55}.name{font-weight:700}.details{color:var(--mute);font-size:13px;margin-top:2px}.video{display:inline-block;color:var(--accent);font-size:13px;font-weight:700;text-decoration:none;margin-top:6px}.load{width:100%;height:44px;border:1px solid var(--line);border-radius:10px;background:var(--bg);color:var(--ink);text-align:center;font:inherit}.reset{border:0;background:transparent;color:var(--mute);text-decoration:underline;padding:11px 0;cursor:pointer;font-family:inherit;font-size:14px}.rest-box{background:var(--soft);border-radius:14px;padding:15px;margin-top:16px}.rest-box strong{display:block;font-size:18px;margin-bottom:4px}.notes p{margin:10px 0}.notes strong{display:block}.footer{margin:22px 0 0;color:var(--mute);font-size:13px;text-align:center}.footer:empty{display:none}.toast{position:fixed;left:50%;bottom:18px;transform:translate(-50%,120px);background:var(--ink);color:var(--bg);padding:11px 15px;border-radius:999px;font-size:14px;transition:transform .2s;z-index:10}.toast.show{transform:translate(-50%,0)}button:focus-visible,input:focus-visible{outline:3px solid var(--accent);outline-offset:2px}
 @media(max-width:450px){.wrap{padding:12px 12px 34px}.header{padding:19px}.exercise{grid-template-columns:42px 1fr 70px;gap:8px}.name{font-size:15px}.load{font-size:14px}}
 @media print{body{background:#fff;color:#111}.wrap{max-width:none;padding:0}.header{color:#111;background:#fff;border:2px solid #14264a;border-radius:0}.header p,.eyebrow,.meta span,.muted,.details,.footer{color:#333}.meta span{border:1px solid #aaa;background:#fff}.toolbar,.day-tabs,.video,.reset,.toast{display:none!important}.card{border:1px solid #999;break-inside:avoid}.exercise{break-inside:avoid}.load,.print-load{border:1px solid #777}.rest-box{background:#eee;color:#111}.name{text-decoration:none!important;opacity:1!important}.print-day::before{content:"Ficha de treino · ";font-weight:700}body.print-all #dayContent{display:none!important}body.print-all #printAll{display:block!important}#printAll{display:none}.print-all-card{break-inside:avoid;margin-top:12px}.print-check{display:inline-grid;place-items:center;width:30px;height:30px;border:2px solid #777;border-radius:8px;font-size:18px}.print-check.done{background:#ddd}.print-load{display:block;width:100%;height:44px;padding:10px 4px;text-align:center}.print-all-card .exercise{grid-template-columns:34px 1fr 82px}}
 .last{font-size:13px;color:var(--mute);margin-top:3px}.last b{color:var(--ink)}
@@ -74,47 +74,65 @@ const PLAN={
   contato:"",
   dias:[
     {id:"seg",nome:"Segunda",curto:"Costas",cor:"#2456C8",titulo:"Costas, bíceps e ombro",foco:"Largura, espessura e desenvolvimento completo da musculatura superior",grupos:[
-      {nome:"Costas, Bíceps e Ombro",ex:[
+      {nome:"Costas",ex:[
         ["Puxada alta (polia)","3 válidas","8–12","60–90 s","https://www.youtube.com/results?search_query=puxada+alta+polia+execucao"],
-        ["Remada baixa (polia)","3 válidas","8–12","60–90 s","https://www.youtube.com/results?search_query=remada+baixa+polia+execucao"],
-        ["Elevação lateral com halteres","3 válidas","8–12","60–90 s","https://www.youtube.com/results?search_query=elevacao+lateral+halteres+execucao"],
+        ["Remada baixa (polia)","3 válidas","8–12","60–90 s","https://www.youtube.com/results?search_query=remada+baixa+polia+execucao"]
+      ]},
+      {nome:"Ombro",ex:[
+        ["Elevação lateral com halteres","3 válidas","8–12","60–90 s","https://www.youtube.com/results?search_query=elevacao+lateral+halteres+execucao"]
+      ]},
+      {nome:"Bíceps",ex:[
         ["Rosca bíceps na máquina","3 válidas","8–12","60–90 s","https://www.youtube.com/results?search_query=rosca+biceps+maquina+execucao"],
         ["Rosca martelo com halteres","3 válidas","8–12","60–90 s","https://www.youtube.com/results?search_query=rosca+martelo+halteres+execucao"]
       ]}
     ]},
     {id:"ter",nome:"Terça",curto:"Quadríceps",cor:"#137A3E",titulo:"Quadríceps, adutora e panturrilha",foco:"Desenvolvimento de quadríceps, adutores e panturrilhas",grupos:[
-      {nome:"Inferiores",ex:[
+      {nome:"Quadríceps",ex:[
         ["Agachamento Goblet com halter","3 válidas","10–12","60–90 s","https://www.youtube.com/results?search_query=agachamento+goblet+halter+execucao"],
         ["Leg Press 45°","3 válidas","10–12","90–120 s","https://www.youtube.com/results?search_query=leg+press+45+execucao"],
-        ["Cadeira extensora","3 válidas","12","60–90 s","https://www.youtube.com/results?search_query=cadeira+extensora+execucao"],
-        ["Cadeira adutora","3 válidas","12–15","60–90 s","https://www.youtube.com/results?search_query=cadeira+adutora+execucao"],
+        ["Cadeira extensora","3 válidas","12","60–90 s","https://www.youtube.com/results?search_query=cadeira+extensora+execucao"]
+      ]},
+      {nome:"Adutores",ex:[
+        ["Cadeira adutora","3 válidas","12–15","60–90 s","https://www.youtube.com/results?search_query=cadeira+adutora+execucao"]
+      ]},
+      {nome:"Panturrilhas",ex:[
         ["Elevação de panturrilhas","3 válidas","15","45–60 s","https://www.youtube.com/results?search_query=elevacao+de+panturrilhas+execucao"]
       ]}
     ]},
     {id:"qua",nome:"Quarta",curto:"Peito",cor:"#C2410C",titulo:"Peito e tríceps",foco:"Desenvolvimento da musculatura do peitoral e tríceps",grupos:[
-      {nome:"Peito e Tríceps",ex:[
+      {nome:"Peito",ex:[
         ["Supino reto na máquina","3 válidas","8–12","60–90 s","https://www.youtube.com/results?search_query=supino+reto+maquina+execucao"],
         ["Supino inclinado na máquina","3 válidas","8–12","60–90 s","https://www.youtube.com/results?search_query=supino+inclinado+maquina+execucao"],
-        ["Peck Deck (Crucifixo máquina)","3 válidas","8–12","60–90 s","https://www.youtube.com/results?search_query=peck+deck+crucifixo+maquina+execucao"],
+        ["Peck Deck (Crucifixo máquina)","3 válidas","8–12","60–90 s","https://www.youtube.com/results?search_query=peck+deck+crucifixo+maquina+execucao"]
+      ]},
+      {nome:"Tríceps",ex:[
         ["Tríceps na polia com corda","3 válidas","8–12","60–90 s","https://www.youtube.com/results?search_query=triceps+polia+corda+execucao"],
         ["Tríceps francês na polia","3 válidas","8–12","60–90 s","https://www.youtube.com/results?search_query=triceps+frances+polia+execucao"]
       ]}
     ]},
     {id:"qui",nome:"Quinta",curto:"Glúteos",cor:"#7A3FC9",titulo:"Glúteo, posterior e abdutora",foco:"Desenvolvimento dos glúteos, posterior de coxa e abdutores",grupos:[
-      {nome:"Glúteos e Posteriores",ex:[
+      {nome:"Glúteos",ex:[
         ["Agachamento sumô","3 válidas","8–12","60–90 s","https://www.youtube.com/results?search_query=agachamento+sumo+execucao"],
-        ["Cadeira flexora","3 válidas","8–12","60–90 s","https://www.youtube.com/results?search_query=cadeira+flexora+execucao"],
         ["Afundo com halteres","3 válidas","8–12 por perna","90–120 s","https://www.youtube.com/results?search_query=afundo+com+halteres+execucao"],
-        ["Máquina de glúteo coice","3 válidas","10–12","60–90 s","https://www.youtube.com/results?search_query=maquina+gluteo+coice+execucao"],
+        ["Máquina de glúteo coice","3 válidas","10–12","60–90 s","https://www.youtube.com/results?search_query=maquina+gluteo+coice+execucao"]
+      ]},
+      {nome:"Posterior de Coxa",ex:[
+        ["Cadeira flexora","3 válidas","8–12","60–90 s","https://www.youtube.com/results?search_query=cadeira+flexora+execucao"]
+      ]},
+      {nome:"Abdutores",ex:[
         ["Cadeira abdutora","3 válidas","12–15","60–90 s","https://www.youtube.com/results?search_query=cadeira+abdutora+execucao"]
       ]}
     ]},
     {id:"sex",nome:"Sexta",curto:"Cardio",cor:"#0D9488",titulo:"Cardio e core",foco:"Condicionamento cardiovascular e fortalecimento do core",grupos:[
-      {nome:"Cardio e Core",ex:[
-        ["Esteira (Cardio inicial)","1 bloco","15–20 min","—","https://www.youtube.com/results?search_query=cardio+esteira+iniciante"],
+      {nome:"Aquecimento / Cardio",ex:[
+        ["Esteira (Cardio inicial)","1 bloco","15–20 min","—","https://www.youtube.com/results?search_query=cardio+esteira+iniciante"]
+      ]},
+      {nome:"Core",ex:[
         ["Prancha isométrica","3 séries","30–45 seg","45 s","https://www.youtube.com/results?search_query=prancha+isometrica+execucao"],
         ["Abdominal supra","3 séries","15–20 rep","45 s","https://www.youtube.com/results?search_query=abdominal+supra+execucao"],
-        ["Perdigueiro","3 séries","12 rep por lado","45 s","https://www.youtube.com/results?search_query=perdigueiro+exercicio+execucao"],
+        ["Perdigueiro","3 séries","12 rep por lado","45 s","https://www.youtube.com/results?search_query=perdigueiro+exercicio+execucao"]
+      ]},
+      {nome:"Finalização",ex:[
         ["Caminhada leve (Finalização)","1 bloco","15 min","—","https://www.youtube.com/results?search_query=caminhada+leve+esteira"]
       ]}
     ]},
