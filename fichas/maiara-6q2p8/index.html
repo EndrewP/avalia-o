@@ -335,8 +335,8 @@ const mmss=s=>String(Math.floor(s/60)).padStart(2,'0')+':'+String(s%60).padStart
 function audioUnlock(){try{const A=window.AudioContext||window.webkitAudioContext;if(!A)return;R.ctx=R.ctx||new A();if(R.ctx.state==='suspended')R.ctx.resume()}catch(e){}}
 function beep(){
   if(!R.sound)return;
-  try{if(R.ctx){const c=R.ctx,t=c.currentTime;[0,.25].forEach(o=>{const osc=c.createOscillator(),g=c.createGain();osc.type='sine';osc.frequency.value=880;g.gain.setValueAtTime(.0001,t+o);g.gain.exponentialRampToValueAtTime(.35,t+o+.02);g.gain.exponentialRampToValueAtTime(.0001,t+o+.18);osc.connect(g);g.connect(c.destination);osc.start(t+o);osc.stop(t+o+.2)})}}catch(e){}
-  try{if(navigator.vibrate)navigator.vibrate([150,80,150])}catch(e){}
+  try{if(R.ctx){const c=R.ctx,t=c.currentTime;for(let i=0;i<4;i++){const o=i*.4,osc=c.createOscillator(),g=c.createGain();osc.type='triangle';osc.frequency.value=i%2?1175:880;g.gain.setValueAtTime(.0001,t+o);g.gain.exponentialRampToValueAtTime(.8,t+o+.02);g.gain.setValueAtTime(.8,t+o+.2);g.gain.exponentialRampToValueAtTime(.0001,t+o+.3);osc.connect(g);g.connect(c.destination);osc.start(t+o);osc.stop(t+o+.32)}}}catch(e){}
+  try{if(navigator.vibrate)navigator.vibrate([300,120,300,120,300])}catch(e){}
 }
 async function wake(on){try{if(on){if('wakeLock' in navigator&&!R.lock){R.lock=await navigator.wakeLock.request('screen');R.lock.addEventListener('release',()=>{R.lock=null})}}else if(R.lock){const l=R.lock;R.lock=null;await l.release()}}catch(e){}}
 function restPaint(){
