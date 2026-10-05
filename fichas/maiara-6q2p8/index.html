@@ -27,6 +27,23 @@
 @media print{.celebrate,.last{display:none!important}}
 .install{display:grid;gap:8px;border-color:var(--accent)}.install strong{font-size:16px}.install .muted{font-size:14px}.install-actions{display:flex;flex-wrap:wrap;gap:8px;align-items:center}.install .action{background:var(--accent);border-color:var(--accent);color:var(--accent-ink);padding:0 18px}.install .reset{padding:11px 6px}
 @media print{.install{display:none!important}}
+[hidden]{display:none!important}
+.links{display:flex;flex-wrap:wrap;align-items:center;gap:0 16px}
+.links .video,.rest-btn{margin-top:6px;padding:4px 0}
+.rest-btn{border:0;background:none;color:var(--accent);font-family:inherit;font-size:13px;font-weight:700;cursor:pointer}
+.exercise.noload{grid-template-columns:44px 1fr}
+.rest{position:fixed;left:0;right:0;bottom:0;z-index:20;background:var(--card);border-top:1px solid var(--line);box-shadow:0 -10px 28px #0003;padding:12px 16px calc(12px + env(safe-area-inset-bottom,0px))}
+.rest-in{max-width:680px;margin:auto;display:grid;gap:10px}
+.rest-top{display:flex;align-items:center;gap:12px}
+.rest-time{font-size:42px;font-weight:800;line-height:1;font-variant-numeric:tabular-nums}
+.rest-msg{flex:1;font-size:14px;color:var(--mute)}
+.rest.fin .rest-time{color:var(--accent)}
+.rest-row{display:flex;flex-wrap:wrap;gap:8px;align-items:center;margin-top:0}
+.rest-row+.rest-row{margin-top:8px}
+.rest-row input{width:110px;height:44px;border:1px solid var(--line);border-radius:10px;background:var(--bg);color:var(--ink);text-align:center;font:inherit}
+.action.sm{min-height:40px;padding:0 12px}
+body.has-rest .wrap{padding-bottom:310px}
+@media print{.rest,.rest-btn{display:none!important}.print-all-card .exercise.noload{grid-template-columns:34px 1fr}}
 </style>
 </head>
 <body>
@@ -40,6 +57,7 @@
  
   <div class="toolbar" aria-label="Ações da ficha">
     <button class="primary" id="printBtn" type="button">Salvar / imprimir PDF (ficha completa)</button>
+    <button id="restOpen" type="button">⏱ Timer de descanso</button>
     <button id="resetAllBtn" type="button">Zerar marcações de hoje</button>
     <button id="themeBtn" type="button">Alternar tema</button>
   </div>
@@ -55,6 +73,14 @@
   <div style="text-align:center"><button class="reset" id="wipeBtn" type="button">Apagar histórico de cargas deste aparelho</button></div>
   <p class="footer" id="footer"></p>
 </div>
+<div class="rest" id="rest" hidden role="region" aria-label="Timer de descanso"><div class="rest-in">
+  <div class="rest-top"><div class="rest-time" id="restTime">00:00</div><div class="rest-msg" id="restMsg" role="status" aria-live="polite"></div><button class="action sm" id="restClose" type="button" aria-label="Fechar timer">✕</button></div>
+  <div class="rest-row" id="restCtrl" hidden><button class="action sm" id="restToggle" type="button">Pausar</button><button class="action sm" id="restMinus" type="button">−15 s</button><button class="action sm" id="restPlus" type="button">+15 s</button></div>
+  <div id="restSet">
+    <div class="rest-row"><button class="action sm" data-rest="30" type="button">30 s</button><button class="action sm" data-rest="45" type="button">45 s</button><button class="action sm" data-rest="60" type="button">60 s</button><button class="action sm" data-rest="90" type="button">90 s</button><button class="action sm" data-rest="120" type="button">2 min</button><button class="action sm" data-rest="180" type="button">3 min</button></div>
+    <div class="rest-row"><input id="restSecs" type="number" inputmode="numeric" min="5" max="900" placeholder="segundos" aria-label="Tempo de descanso em segundos"><button class="action sm" id="restGo" type="button">Iniciar</button><button class="action sm" id="soundBtn" type="button" aria-pressed="true">🔔 Som ligado</button></div>
+  </div>
+</div></div>
 <div class="toast" id="toast" role="status" aria-live="polite"></div>
  
 <script>
@@ -75,76 +101,79 @@ const PLAN={
   dias:[
     {id:"seg",nome:"Segunda",curto:"Costas",cor:"#2456C8",titulo:"Costas, bíceps e ombro",foco:"Largura, espessura e desenvolvimento completo da musculatura superior",grupos:[
       {nome:"Costas",ex:[
-        ["Puxada alta (polia)","3 válidas","8–12","60–90 s","https://www.youtube.com/results?search_query=puxada+alta+polia+execucao"],
-        ["Remada baixa (polia)","3 válidas","8–12","60–90 s","https://www.youtube.com/results?search_query=remada+baixa+polia+execucao"]
+        ["Puxada alta (polia)", "3 válidas", "8–12", "60–90 s", "https://www.youtube.com/results?search_query=puxada+alta+polia+execucao"],
+        ["Remada baixa (polia)", "3 válidas", "8–12", "60–90 s", "https://www.youtube.com/results?search_query=remada+baixa+polia+execucao"]
       ]},
       {nome:"Ombro",ex:[
-        ["Elevação lateral com halteres","3 válidas","8–12","60–90 s","https://www.youtube.com/results?search_query=elevacao+lateral+halteres+execucao"]
+        ["Elevação lateral com halteres", "3 válidas", "8–12", "60–90 s", "https://www.youtube.com/results?search_query=elevacao+lateral+halteres+execucao"]
       ]},
       {nome:"Bíceps",ex:[
-        ["Rosca bíceps na máquina","3 válidas","8–12","60–90 s","https://www.youtube.com/results?search_query=rosca+biceps+maquina+execucao"],
-        ["Rosca martelo com halteres","3 válidas","8–12","60–90 s","https://www.youtube.com/results?search_query=rosca+martelo+halteres+execucao"]
+        ["Rosca bíceps na máquina", "3 válidas", "8–12", "60–90 s", "https://www.youtube.com/results?search_query=rosca+biceps+maquina+execucao"],
+        ["Rosca martelo com halteres", "3 válidas", "8–12", "60–90 s", "https://www.youtube.com/results?search_query=rosca+martelo+halteres+execucao"]
       ]}
     ]},
     {id:"ter",nome:"Terça",curto:"Quadríceps",cor:"#137A3E",titulo:"Quadríceps, adutora e panturrilha",foco:"Desenvolvimento de quadríceps, adutores e panturrilhas",grupos:[
       {nome:"Quadríceps",ex:[
-        ["Agachamento Goblet com halter","3 válidas","10–12","60–90 s","https://www.youtube.com/results?search_query=agachamento+goblet+halter+execucao"],
-        ["Leg Press 45°","3 válidas","10–12","90–120 s","https://www.youtube.com/results?search_query=leg+press+45+execucao"],
-        ["Cadeira extensora","3 válidas","12","60–90 s","https://www.youtube.com/results?search_query=cadeira+extensora+execucao"]
+        ["Agachamento Goblet com halter", "3 válidas", "10–12", "60–90 s", "https://www.youtube.com/results?search_query=agachamento+goblet+halter+execucao"],
+        ["Leg Press 45°", "3 válidas", "10–12", "90–120 s", "https://www.youtube.com/results?search_query=leg+press+45+execucao"],
+        ["Cadeira extensora", "3 válidas", "12", "60–90 s", "https://www.youtube.com/results?search_query=cadeira+extensora+execucao"]
       ]},
       {nome:"Adutores",ex:[
-        ["Cadeira adutora","3 válidas","12–15","60–90 s","https://www.youtube.com/results?search_query=cadeira+adutora+execucao"]
+        ["Cadeira adutora", "3 válidas", "12–15", "60–90 s", "https://www.youtube.com/results?search_query=cadeira+adutora+execucao"]
       ]},
       {nome:"Panturrilhas",ex:[
-        ["Elevação de panturrilhas","3 válidas","15","45–60 s","https://www.youtube.com/results?search_query=elevacao+de+panturrilhas+execucao"]
+        ["Elevação de panturrilhas", "3 válidas", "15", "45–60 s", "https://www.youtube.com/results?search_query=elevacao+de+panturrilhas+execucao"]
       ]}
     ]},
     {id:"qua",nome:"Quarta",curto:"Peito",cor:"#C2410C",titulo:"Peito e tríceps",foco:"Desenvolvimento da musculatura do peitoral e tríceps",grupos:[
       {nome:"Peito",ex:[
-        ["Supino reto na máquina","3 válidas","8–12","60–90 s","https://www.youtube.com/results?search_query=supino+reto+maquina+execucao"],
-        ["Supino inclinado na máquina","3 válidas","8–12","60–90 s","https://www.youtube.com/results?search_query=supino+inclinado+maquina+execucao"],
-        ["Peck Deck (Crucifixo máquina)","3 válidas","8–12","60–90 s","https://www.youtube.com/results?search_query=peck+deck+crucifixo+maquina+execucao"]
+        ["Supino reto na máquina", "3 válidas", "8–12", "60–90 s", "https://www.youtube.com/results?search_query=supino+reto+maquina+execucao"],
+        ["Supino inclinado na máquina", "3 válidas", "8–12", "60–90 s", "https://www.youtube.com/results?search_query=supino+inclinado+maquina+execucao"],
+        ["Peck Deck (Crucifixo máquina)", "3 válidas", "8–12", "60–90 s", "https://www.youtube.com/results?search_query=peck+deck+crucifixo+maquina+execucao"]
       ]},
       {nome:"Tríceps",ex:[
-        ["Tríceps na polia com corda","3 válidas","8–12","60–90 s","https://www.youtube.com/results?search_query=triceps+polia+corda+execucao"],
-        ["Tríceps francês na polia","3 válidas","8–12","60–90 s","https://www.youtube.com/results?search_query=triceps+frances+polia+execucao"]
+        ["Tríceps na polia com corda", "3 válidas", "8–12", "60–90 s", "https://www.youtube.com/results?search_query=triceps+polia+corda+execucao"],
+        ["Tríceps francês na polia", "3 válidas", "8–12", "60–90 s", "https://www.youtube.com/results?search_query=triceps+frances+polia+execucao"]
       ]}
     ]},
     {id:"qui",nome:"Quinta",curto:"Glúteos",cor:"#7A3FC9",titulo:"Glúteo, posterior e abdutora",foco:"Desenvolvimento dos glúteos, posterior de coxa e abdutores",grupos:[
       {nome:"Glúteos",ex:[
-        ["Agachamento sumô","3 válidas","8–12","60–90 s","https://www.youtube.com/results?search_query=agachamento+sumo+execucao"],
-        ["Afundo com halteres","3 válidas","8–12 por perna","90–120 s","https://www.youtube.com/results?search_query=afundo+com+halteres+execucao"],
-        ["Máquina de glúteo coice","3 válidas","10–12","60–90 s","https://www.youtube.com/results?search_query=maquina+gluteo+coice+execucao"]
+        ["Agachamento sumô", "3 válidas", "8–12", "60–90 s", "https://www.youtube.com/results?search_query=agachamento+sumo+execucao"],
+        ["Afundo com halteres", "3 válidas", "8–12 reps por perna", "90–120 s", "https://www.youtube.com/results?search_query=afundo+com+halteres+execucao"],
+        ["Máquina de glúteo coice", "3 válidas", "10–12", "60–90 s", "https://www.youtube.com/results?search_query=maquina+gluteo+coice+execucao"]
       ]},
       {nome:"Posterior de Coxa",ex:[
-        ["Cadeira flexora","3 válidas","8–12","60–90 s","https://www.youtube.com/results?search_query=cadeira+flexora+execucao"]
+        ["Cadeira flexora", "3 válidas", "8–12", "60–90 s", "https://www.youtube.com/results?search_query=cadeira+flexora+execucao"]
       ]},
       {nome:"Abdutores",ex:[
-        ["Cadeira abdutora","3 válidas","12–15","60–90 s","https://www.youtube.com/results?search_query=cadeira+abdutora+execucao"]
+        ["Cadeira abdutora", "3 válidas", "12–15", "60–90 s", "https://www.youtube.com/results?search_query=cadeira+abdutora+execucao"]
       ]}
     ]},
     {id:"sex",nome:"Sexta",curto:"Cardio",cor:"#0D9488",titulo:"Cardio e core",foco:"Condicionamento cardiovascular e fortalecimento do core",grupos:[
       {nome:"Aquecimento / Cardio",ex:[
-        ["Esteira (Cardio inicial)","1 bloco","15–20 min","—","https://www.youtube.com/results?search_query=cardio+esteira+iniciante"]
+        ["Esteira (Cardio inicial)", "1 bloco", "15–20 min", "—", "https://www.youtube.com/results?search_query=cardio+esteira+iniciante"]
       ]},
       {nome:"Core",ex:[
-        ["Prancha isométrica","3 séries","30–45 seg","45 s","https://www.youtube.com/results?search_query=prancha+isometrica+execucao"],
-        ["Abdominal supra","3 séries","15–20 rep","45 s","https://www.youtube.com/results?search_query=abdominal+supra+execucao"],
-        ["Perdigueiro","3 séries","12 rep por lado","45 s","https://www.youtube.com/results?search_query=perdigueiro+exercicio+execucao"]
+        ["Prancha isométrica", "3 séries", "30–45 seg", "45 s", "https://www.youtube.com/results?search_query=prancha+isometrica+execucao"],
+        ["Abdominal supra", "3 séries", "15–20", "45 s", "https://www.youtube.com/results?search_query=abdominal+supra+execucao", "", "corpo"],
+        ["Perdigueiro", "3 séries", "12 reps por lado", "45 s", "https://www.youtube.com/results?search_query=perdigueiro+exercicio+execucao", "", "corpo"]
       ]},
       {nome:"Finalização",ex:[
-        ["Caminhada leve (Finalização)","1 bloco","15 min","—","https://www.youtube.com/results?search_query=caminhada+leve+esteira"]
+        ["Caminhada leve (Finalização)", "1 bloco", "15 min", "—", "https://www.youtube.com/results?search_query=caminhada+leve+esteira"]
       ]}
     ]},
     {id:"sab",nome:"Sábado",descanso:true,cor:"#66737d",titulo:"Descanso",foco:"Recuperação"},
     {id:"dom",nome:"Domingo",descanso:true,cor:"#66737d",titulo:"Descanso",foco:"Recuperação"}
   ],
   orientacoes:[
-    ["Séries preparatórias","Quando indicado, faça 1 série com carga nula ou leve, até 15 repetições, sem gerar fadiga significativa. Depois, realize as séries válidas."],
-    ["Séries válidas","Realize as séries na faixa indicada, com foco na execução correta, controle do movimento e progressão gradual da carga."],
-    ["Orientação inicial de carga","Nas primeiras semanas, priorize cargas leves a moderadas, com foco no aprendizado dos movimentos, controle da execução e adaptação."],
-    ["Técnica e progressão","A carga deve permitir boa técnica durante toda a série. Não aumente a carga apenas para atingir determinado peso."],
-    ["Opção de cardio","Caso sobre tempo ou você esteja sem disposição para algum exercício específico, substitua por atividade cardiovascular na esteira ou bicicleta."]
+    ["Técnica em primeiro lugar", "Foque na técnica em todos os exercícios, com movimento controlado e amplitude correta. Uma execução bem feita vale mais do que uma carga alta."],
+    ["Hidratação", "Beba bastante água ao longo do dia e também durante o treino."],
+    ["Dor ou lesão", "Cansaço muscular é normal, mas dor aguda, dor nas articulações, tontura ou mal-estar não são. Se sentir algo assim, pare o exercício e me avise. Em caso de qualquer lesão, me avise antes de continuar o treino."],
+    ["Aquecimento", "Antes de começar, faça de 5 a 10 minutos de aquecimento leve, com cardio leve e mobilidade das articulações."],
+    ["Orientação inicial de carga", "Nas primeiras semanas, priorize cargas leves a moderadas, com foco no aprendizado dos movimentos, controle da execução e adaptação."],
+    ["Progressão", "Realize as séries na faixa de repetições indicada. Quando conseguir chegar ao topo da faixa com boa técnica, aumente a carga aos poucos. Não aumente a carga apenas para atingir determinado peso."],
+    ["Descanso", "Respeite o tempo de descanso indicado em cada exercício. Toque em “⏱ Descanso” no exercício para iniciar o cronômetro: ele avisa com um som curto quando o tempo acabar. No botão “⏱ Timer de descanso” você também pode digitar o tempo que quiser."],
+    ["Opção de cardio", "Caso sobre tempo ou você esteja sem disposição para algum exercício específico, substitua por atividade cardiovascular na esteira ou bicicleta."]
   ]
 };
 /* ===================== FIM DA ÁREA DE EDIÇÃO ===================== */
@@ -152,6 +181,8 @@ const PLAN={
 const $=s=>document.querySelector(s);
 const shortVideo=u=>/youtube\.com\/results/.test(u)&&!/[?&]sp=/.test(u)?u+'&sp=EgIYAQ%253D%253D':u;
 const esc=v=>String(v??'').replace(/[&<>"']/g,c=>({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[c]));
+/* Cada exercício tem um id estável (nome sem acentos). Se você RENOMEAR um exercício mas quiser manter o histórico
+   de cargas, coloque o id antigo como 6º item do exercício: ["Nome novo","3","7–10","60 s","link","id-antigo"] */
 const slug=t=>String(t).normalize('NFD').replace(/[\u0300-\u036f]/g,'').toLowerCase().replace(/[^a-z0-9]+/g,'-').replace(/^-+|-+$/g,'');
 const IDS={};
 PLAN.dias.forEach(d=>{const seen={};(d.grupos||[]).forEach((g,gi)=>(g.ex||[]).forEach((e,ei)=>{let id=e[5]||slug(e[0]);seen[id]=(seen[id]||0)+1;if(seen[id]>1)id+='-'+seen[id];IDS[d.id+':'+gi+':'+ei]=id}))});
@@ -176,17 +207,26 @@ function markKey(d,gi,ei){return `${todayKey}:${d.id}:${xid(d,gi,ei)}`}
 function chips(){
   $('#dayTabs').innerHTML=PLAN.dias.map(d=>`<button class="day-tab ${d.id===current?'active':''} ${d.descanso?'rest':''}" style="--day-color:${esc(d.cor)}" data-day="${esc(d.id)}" type="button">${esc(d.nome.slice(0,3))}<small>${esc(d.id===['dom','seg','ter','qua','qui','sex','sab'][new Date().getDay()]?'hoje':d.descanso?'folga':d.curto||'treino')}</small></button>`).join('');
 }
+/* Tipo do exercício: 'carga' (padrão, tem campo kg), 'tempo' (prancha etc.), 'cardio' (esteira etc.) ou 'corpo' (peso do corpo).
+   Pode ser definido no 7º item do exercício; se não for, é deduzido: "bloco" = cardio; minutos/segundos = tempo. */
+function kindOf(e){const k=String(e[6]||'').toLowerCase();if(k)return k;if(/bloco/i.test(e[1]))return'cardio';if(/\d\s*(min|seg|s)\b/i.test(e[2]))return'tempo';return'carga'}
+function restSecs(r){const t=String(r||''),m=t.match(/\d+(?:[.,]\d+)?/);if(!m)return 0;const n=parseFloat(m[0].replace(',','.'));return Math.round(/min/i.test(t)?n*60:n)}
+function fmtSec(s){return s<120?s+' s':Math.floor(s/60)+' min'+(s%60?' '+s%60+' s':'')}
+function restBtn(e){const s=restSecs(e[3]);return s>=5?`<button class="rest-btn" type="button" data-rest="${s}">⏱ Descanso ${fmtSec(s)}</button>`:''}
 function detail(e){
+  const raw=String(e[3]||'').trim(),has=raw&&!/^[—–-]+$/.test(raw),des=has?' · descanso '+esc(raw):'';
+  if(kindOf(e)==='cardio')return esc(e[2])+des;
   const s=String(e[1]).split('+'),r=String(e[2]).split('•');
-  if(s.length>1&&s.length===r.length)return s.map((x,i)=>esc(x.trim())+' · '+esc(r[i].replace(/^[^:]*:\s*/,'').trim())+' reps').join('<br>')+'<br>descanso '+esc(e[3]);
-  return esc(e[1])+' × '+esc(e[2])+' repetições · descanso '+esc(e[3]);
+  if(s.length>1&&s.length===r.length)return s.map((x,i)=>esc(x.trim())+' · '+esc(r[i].replace(/^[^:]*:\s*/,'').trim())+' reps').join('<br>')+(has?'<br>descanso '+esc(raw):'');
+  const reps=/^[\d\s–\-.,]+$/.test(String(e[2]))?esc(e[2])+' repetições':esc(e[2]);
+  return esc(e[1])+' × '+reps+des;
 }
 function renderDay(){
   const d=PLAN.dias.find(x=>x.id===current);if(!d)return;
   $('#dayContent').style.setProperty('--day-color',d.cor);
   if(d.descanso){$('#dayContent').innerHTML=`<section class="card print-day"><div class="muted">${esc(d.nome)}</div><h2>${esc(d.titulo)}</h2><div class="rest-box"><strong>Dia de descanso</strong><span>${esc(d.foco||'Priorize sua recuperação.')}</span></div></section>`;return}
   let total=0,done=0,html='';
-  (d.grupos||[]).forEach((g,gi)=>{if(g.nome)html+=`<h3 class="group-title">${esc(g.nome)}</h3>`;(g.ex||[]).forEach((e,ei)=>{const k=markKey(d,gi,ei),isDone=!!state.marks[k];total++;if(isDone)done++;const url=shortVideo(e[4]||('https://www.youtube.com/results?search_query='+encodeURIComponent(e[0]+' execução')));html+=`<div class="exercise ${isDone?'done':''}"><button class="check" type="button" data-check="${esc(k)}" aria-pressed="${isDone}" aria-label="Marcar ${esc(e[0])} como concluído"></button><div><div class="name">${esc(e[0])}</div><div class="details">${detail(e)}</div>${lastLoadHtml(d,gi,ei)}<a class="video" href="${esc(url)}" target="_blank" rel="noopener">Ver demonstração</a></div><input class="load" type="text" inputmode="decimal" placeholder="kg" value="${esc(state.loads[k]||'')}" data-load="${esc(k)}" aria-label="Carga usada em ${esc(e[0])}"></div>`})});
+  (d.grupos||[]).forEach((g,gi)=>{if(g.nome)html+=`<h3 class="group-title">${esc(g.nome)}</h3>`;(g.ex||[]).forEach((e,ei)=>{const k=markKey(d,gi,ei),isDone=!!state.marks[k],nl=kindOf(e)!=='carga';total++;if(isDone)done++;const url=shortVideo(e[4]||('https://www.youtube.com/results?search_query='+encodeURIComponent(e[0]+' execução')));html+=`<div class="exercise ${isDone?'done':''}${nl?' noload':''}"><button class="check" type="button" data-check="${esc(k)}" aria-pressed="${isDone}" aria-label="Marcar ${esc(e[0])} como concluído"></button><div><div class="name">${esc(e[0])}</div><div class="details">${detail(e)}</div>${nl?'':lastLoadHtml(d,gi,ei)}<div class="links"><a class="video" href="${esc(url)}" target="_blank" rel="noopener">Ver demonstração</a>${restBtn(e)}</div></div>${nl?'':`<input class="load" type="text" inputmode="decimal" placeholder="kg" value="${esc(state.loads[k]||'')}" data-load="${esc(k)}" aria-label="Carga usada em ${esc(e[0])}">`}</div>`})});
   $('#dayContent').innerHTML=`<section class="card print-day" style="--day-color:${esc(d.cor)}"><div class="muted">${esc(d.nome)}</div><h2>${esc(d.titulo)}</h2><div class="muted">${esc(d.foco||'')}</div><div class="progress"><i style="width:${total?done/total*100:0}%"></i></div><div class="muted">${done} de ${total} exercícios concluídos hoje</div>${html}<button class="reset" type="button" data-reset="${esc(d.id)}">Zerar marcações deste dia</button></section>`;
 }
 function renderPrintAll(){
@@ -194,7 +234,7 @@ function renderPrintAll(){
   PLAN.dias.forEach(d=>{
     if(d.descanso){out+=`<section class="card print-all-card" style="--day-color:${esc(d.cor)}"><div class="muted">${esc(d.nome)}</div><h2>${esc(d.titulo)}</h2><div class="rest-box"><strong>Dia de descanso</strong><span>${esc(d.foco||'Priorize sua recuperação.')}</span></div></section>`;return}
     let body='';
-    (d.grupos||[]).forEach((g,gi)=>{if(g.nome)body+=`<h3 class="group-title">${esc(g.nome)}</h3>`;(g.ex||[]).forEach((e,ei)=>{const k=markKey(d,gi,ei),done=!!state.marks[k];body+=`<div class="exercise ${done?'done':''}"><span class="print-check ${done?'done':''}">${done?'✓':''}</span><div><div class="name">${esc(e[0])}</div><div class="details">${detail(e)}</div></div><span class="print-load">${esc(state.loads[k]||'')}</span></div>`})});
+    (d.grupos||[]).forEach((g,gi)=>{if(g.nome)body+=`<h3 class="group-title">${esc(g.nome)}</h3>`;(g.ex||[]).forEach((e,ei)=>{const k=markKey(d,gi,ei),done=!!state.marks[k],nl=kindOf(e)!=='carga';body+=`<div class="exercise ${done?'done':''}${nl?' noload':''}"><span class="print-check ${done?'done':''}">${done?'✓':''}</span><div><div class="name">${esc(e[0])}</div><div class="details">${detail(e)}</div></div>${nl?'':`<span class="print-load">${esc(state.loads[k]||'')}</span>`}</div>`})});
     out+=`<section class="card print-all-card" style="--day-color:${esc(d.cor)}"><div class="muted">${esc(d.nome)}</div><h2>${esc(d.titulo)}</h2><div class="muted">${esc(d.foco||'')}</div>${body}</section>`;
   });
   $('#printAll').innerHTML=out;
@@ -255,9 +295,53 @@ $('#wipeBtn').onclick=()=>{if(confirm('Apagar TODO o histórico de cargas salvo 
 const themeKey='ficha-treino-tema';
 try{const t=localStorage.getItem(themeKey);if(t==='dark'||t==='light')document.documentElement.dataset.theme=t}catch(e){}
 $('#themeBtn').onclick=()=>{const root=document.documentElement;const atual=root.dataset.theme||((window.matchMedia&&matchMedia('(prefers-color-scheme: dark)').matches)?'dark':'light');const novo=atual==='dark'?'light':'dark';root.dataset.theme=novo;try{localStorage.setItem(themeKey,novo)}catch(e){}};
+/* ===== Timer de descanso (com aviso sonoro curto) ===== */
+const R={end:0,left:0,last:60,run:false,tid:0,ctx:null,lock:null,sound:true,started:false,fin:false};
+try{R.sound=localStorage.getItem('ficha-treino-som')!=='0'}catch(e){}
+const mmss=s=>String(Math.floor(s/60)).padStart(2,'0')+':'+String(s%60).padStart(2,'0');
+function audioUnlock(){try{const A=window.AudioContext||window.webkitAudioContext;if(!A)return;R.ctx=R.ctx||new A();if(R.ctx.state==='suspended')R.ctx.resume()}catch(e){}}
+function beep(){
+  if(!R.sound)return;
+  try{if(R.ctx){const c=R.ctx,t=c.currentTime;[0,.25].forEach(o=>{const osc=c.createOscillator(),g=c.createGain();osc.type='sine';osc.frequency.value=880;g.gain.setValueAtTime(.0001,t+o);g.gain.exponentialRampToValueAtTime(.35,t+o+.02);g.gain.exponentialRampToValueAtTime(.0001,t+o+.18);osc.connect(g);g.connect(c.destination);osc.start(t+o);osc.stop(t+o+.2)})}}catch(e){}
+  try{if(navigator.vibrate)navigator.vibrate([150,80,150])}catch(e){}
+}
+async function wake(on){try{if(on){if('wakeLock' in navigator&&!R.lock){R.lock=await navigator.wakeLock.request('screen');R.lock.addEventListener('release',()=>{R.lock=null})}}else if(R.lock){const l=R.lock;R.lock=null;await l.release()}}catch(e){}}
+function restPaint(){
+  $('#restTime').textContent=mmss(R.left);
+  $('#restToggle').textContent=R.run?'Pausar':(R.left>0?'Retomar':'Reiniciar');
+  $('#restCtrl').hidden=!R.started;$('#restSet').hidden=R.run;
+  $('#rest').classList.toggle('fin',R.fin);
+  $('#soundBtn').textContent=R.sound?'🔔 Som ligado':'🔕 Som desligado';$('#soundBtn').setAttribute('aria-pressed',String(R.sound));
+}
+function openRest(){$('#rest').hidden=false;document.body.classList.add('has-rest');restPaint()}
+function closeRest(){R.run=false;R.started=false;R.fin=false;R.left=0;clearInterval(R.tid);wake(false);$('#restMsg').textContent='';$('#rest').hidden=true;document.body.classList.remove('has-rest')}
+function restTick(){if(!R.run)return;R.left=Math.max(0,Math.ceil((R.end-Date.now())/1000));if(R.left<=0)restDone();else restPaint()}
+function restDone(){R.run=false;R.fin=true;clearInterval(R.tid);R.left=0;$('#restMsg').textContent='Descanso terminou! Hora da próxima série.';restPaint();beep();wake(false)}
+function restStart(sec){
+  sec=Math.round(Number(sec));openRest();
+  if(!(sec>=5&&sec<=900)){$('#restMsg').textContent='Digite um tempo de 5 a 900 segundos.';return}
+  audioUnlock();R.last=sec;R.left=sec;R.end=Date.now()+sec*1000;R.run=true;R.started=true;R.fin=false;
+  clearInterval(R.tid);R.tid=setInterval(restTick,250);$('#restMsg').textContent='Descansando...';restPaint();wake(true);
+}
+function restToggle(){
+  audioUnlock();
+  if(R.run){R.left=Math.max(1,Math.ceil((R.end-Date.now())/1000));R.run=false;clearInterval(R.tid);$('#restMsg').textContent='Pausado.';wake(false);restPaint()}
+  else if(R.left>0){R.end=Date.now()+R.left*1000;R.run=true;R.fin=false;R.tid=setInterval(restTick,250);$('#restMsg').textContent='Descansando...';wake(true);restPaint()}
+  else restStart(R.last);
+}
+function restAdj(d){if(R.run){R.end+=d*1000;if(R.end-Date.now()<1000)R.end=Date.now()+1000;restTick()}else{R.left=Math.max(0,Math.min(900,R.left+d));R.fin=false;restPaint()}}
+document.addEventListener('click',e=>{const b=e.target.closest('[data-rest]');if(b)restStart(b.dataset.rest)});
+document.addEventListener('visibilitychange',()=>{if(!document.hidden&&R.run){restTick();wake(true)}});
+$('#restOpen').onclick=openRest;$('#restClose').onclick=closeRest;$('#restToggle').onclick=restToggle;
+$('#restMinus').onclick=()=>restAdj(-15);$('#restPlus').onclick=()=>restAdj(15);
+$('#restGo').onclick=()=>restStart($('#restSecs').value);
+$('#restSecs').addEventListener('keydown',e=>{if(e.key==='Enter')restStart($('#restSecs').value)});
+$('#soundBtn').onclick=()=>{R.sound=!R.sound;try{localStorage.setItem('ficha-treino-som',R.sound?'1':'0')}catch(e){}audioUnlock();if(R.sound)beep();restPaint()};
+
 init();
+/* ===== Aplicativo no celular: abre sem internet e pode ser instalado na tela inicial ===== */
 (function(){
-  if(!/^https?:$/.test(location.protocol))return;
+  if(!/^https?:$/.test(location.protocol))return; /* prévias, arquivo local etc.: não se aplica */
   try{
   const CACHE='fichas-treino-v1';
   const base=new URL('./',location.href).href;
@@ -274,6 +358,7 @@ init();
       return c.toDataURL('image/png');
     }catch(e){return''}
   }
+  /* ícone e manifesto gerados aqui mesmo (nada de arquivos extras para subir) */
   try{
     const i192=iconPng(192),i512=iconPng(512),i180=iconPng(180);
     if(i192&&i512){
@@ -282,6 +367,7 @@ init();
       const a=document.createElement('link');a.rel='apple-touch-icon';a.href=i180;document.head.appendChild(a);
     }
   }catch(e){}
+  /* funcionar sem internet: o arquivo sw.js fica na raiz do repositório */
   if('serviceWorker' in navigator){
     window.addEventListener('load',()=>{
       Promise.resolve().then(()=>navigator.serviceWorker.register(new URL('../../sw.js',location.href).href))
@@ -290,6 +376,7 @@ init();
         .catch(()=>{});
     });
   }
+  /* aviso "Use como aplicativo" (botão no Android, passo a passo no iPhone) */
   const KEY='ficha-treino-instalar';
   let dismissed=false;try{dismissed=localStorage.getItem(KEY)==='1'}catch(e){}
   let deferred=null;
@@ -319,3 +406,4 @@ init();
 </script>
 </body>
 </html>
+ 
