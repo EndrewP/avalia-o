@@ -60,9 +60,6 @@
 <script>
 /* =============================================================
    MODELO: edite somente o objeto PLAN abaixo para cada aluno.
-   1) Troque codigo por um código único e difícil de adivinhar.
-   2) Use apenas o primeiro nome + inicial do sobrenome em nomePublico.
-   3) Duplique este arquivo para cada aluno e publique em uma pasta própria.
    ============================================================= */
 const PLAN={
   codigo:"maiara-6q2p8",
@@ -137,8 +134,6 @@ const PLAN={
 const $=s=>document.querySelector(s);
 const shortVideo=u=>/youtube\.com\/results/.test(u)&&!/[?&]sp=/.test(u)?u+'&sp=EgIYAQ%253D%253D':u;
 const esc=v=>String(v??'').replace(/[&<>"']/g,c=>({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[c]));
-/* Cada exercício tem um id estável (nome sem acentos). Se você RENOMEAR um exercício mas quiser manter o histórico
-   de cargas, coloque o id antigo como 6º item do exercício: ["Nome novo","3","7–10","60 s","link","id-antigo"] */
 const slug=t=>String(t).normalize('NFD').replace(/[\u0300-\u036f]/g,'').toLowerCase().replace(/[^a-z0-9]+/g,'-').replace(/^-+|-+$/g,'');
 const IDS={};
 PLAN.dias.forEach(d=>{const seen={};(d.grupos||[]).forEach((g,gi)=>(g.ex||[]).forEach((e,ei)=>{let id=e[5]||slug(e[0]);seen[id]=(seen[id]||0)+1;if(seen[id]>1)id+='-'+seen[id];IDS[d.id+':'+gi+':'+ei]=id}))});
@@ -243,9 +238,8 @@ const themeKey='ficha-treino-tema';
 try{const t=localStorage.getItem(themeKey);if(t==='dark'||t==='light')document.documentElement.dataset.theme=t}catch(e){}
 $('#themeBtn').onclick=()=>{const root=document.documentElement;const atual=root.dataset.theme||((window.matchMedia&&matchMedia('(prefers-color-scheme: dark)').matches)?'dark':'light');const novo=atual==='dark'?'light':'dark';root.dataset.theme=novo;try{localStorage.setItem(themeKey,novo)}catch(e){}};
 init();
-/* ===== Aplicativo no celular: abre sem internet e pode ser instalado na tela inicial ===== */
 (function(){
-  if(!/^https?:$/.test(location.protocol))return; /* prévias, arquivo local etc.: não se aplica */
+  if(!/^https?:$/.test(location.protocol))return;
   try{
   const CACHE='fichas-treino-v1';
   const base=new URL('./',location.href).href;
@@ -262,7 +256,6 @@ init();
       return c.toDataURL('image/png');
     }catch(e){return''}
   }
-  /* ícone e manifesto gerados aqui mesmo (nada de arquivos extras para subir) */
   try{
     const i192=iconPng(192),i512=iconPng(512),i180=iconPng(180);
     if(i192&&i512){
@@ -271,7 +264,6 @@ init();
       const a=document.createElement('link');a.rel='apple-touch-icon';a.href=i180;document.head.appendChild(a);
     }
   }catch(e){}
-  /* funcionar sem internet: o arquivo sw.js fica na raiz do repositório */
   if('serviceWorker' in navigator){
     window.addEventListener('load',()=>{
       Promise.resolve().then(()=>navigator.serviceWorker.register(new URL('../../sw.js',location.href).href))
@@ -280,7 +272,6 @@ init();
         .catch(()=>{});
     });
   }
-  /* aviso "Use como aplicativo" (botão no Android, passo a passo no iPhone) */
   const KEY='ficha-treino-instalar';
   let dismissed=false;try{dismissed=localStorage.getItem(KEY)==='1'}catch(e){}
   let deferred=null;
@@ -310,4 +301,3 @@ init();
 </script>
 </body>
 </html>
- 
