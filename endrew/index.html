@@ -51,8 +51,7 @@ body.has-rest .wrap{padding-bottom:calc(var(--barh) + var(--safe-b) + 250px)}
 .day-tab.rest{min-width:58px}
 .day-tab.rest .dt-n{color:var(--mute);font-weight:600}
 .day-tab.feito .dt-s{color:var(--ok)}
-.day-tab.pend{border:2px solid var(--pend)}
-.day-tab.pend .dt-s{color:var(--pend)}
+.day-tab.pend .dt-s{color:var(--mute);font-weight:600}
 .day-tab.hoje .dt-s{color:var(--accent)}
 .day-tab.active{background:var(--day-color,var(--accent));border-color:transparent}
 .day-tab.active .dt-d,.day-tab.active .dt-n,.day-tab.active .dt-s{color:#fff}
@@ -99,8 +98,8 @@ body.has-rest .wrap{padding-bottom:calc(var(--barh) + var(--safe-b) + 250px)}
 .aviso span{font-size:14px;color:var(--mute)}
 .aviso>.action{justify-self:start;margin-top:2px}
 .aviso.troca{border-left:5px solid var(--day-color,var(--accent))}
-.aviso.pend{background:var(--pbg);border-color:var(--pline)}
-.aviso.pend span{color:var(--ink)}
+.aviso.pend{border-left:5px solid var(--accent)}
+.aviso-x{border:0;background:none;color:var(--mute);font-size:14px;text-decoration:underline;padding:8px 2px;cursor:pointer;justify-self:start}
 .aviso-btns{display:flex;flex-wrap:wrap;gap:8px;margin-top:2px}
 .aviso-btns .action{border-left:5px solid var(--day-color,var(--accent))}
 .action{min-height:44px;border:1px solid var(--line);border-radius:12px;background:var(--card);color:var(--ink);padding:0 14px;font-weight:700;font-size:14.5px;cursor:pointer}
@@ -152,7 +151,7 @@ body.has-sheet{overflow:hidden}
 .cal-d.part,.cal-mini.part{color:var(--g2);font-weight:700;border-style:dashed;border-color:var(--g2)}
 .cal-d.today{box-shadow:0 0 0 2px var(--accent)}
 .cal-d.sel{outline:2px solid var(--ink);outline-offset:2px}
-.cal-d.swap:after,.cal-mini.swap:after{content:"↔";position:absolute;top:-3px;right:-1px;display:grid;place-items:center;width:17px;height:17px;border-radius:50%;font-size:11px;font-weight:800;line-height:1;color:var(--card);background:var(--pend);box-shadow:0 0 0 2px var(--card)}
+.cal-d.swap:after,.cal-mini.swap:after{content:"↔";position:absolute;top:-3px;right:-1px;display:grid;place-items:center;width:17px;height:17px;border-radius:50%;font-size:11px;font-weight:800;line-height:1;color:var(--accent-ink);background:var(--accent);box-shadow:0 0 0 2px var(--card)}
 .cal-mini.swap:after{width:14px;height:14px;font-size:9px;top:-5px;right:-5px}
 .cal-leg{display:flex;flex-wrap:wrap;gap:8px 16px;margin:14px 0 8px;font-size:13px;color:var(--mute)}
 .cal-leg span{display:inline-flex;align-items:center;gap:6px}
@@ -507,8 +506,8 @@ function chips(){
   const st=semana();
   $('#dayTabs').innerHTML=PLAN.dias.map(d=>{
     const s=st[d.id]||{},hoje=d.id===todayId;
-    const sub=s.feito?(hoje?'✓ hoje':'✓ feito'):s.pendente?'pendente':hoje?'hoje':'';
-    const lbl=d.nome+(d.descanso?', folga':': '+(d.titulo||''))+(hoje?', hoje':'')+(s.feito?', feito nesta semana':s.pendente?', pendente nesta semana':'');
+    const sub=s.feito?(hoje?'✓ hoje':'✓ feito'):s.pendente?'a repor':hoje?'hoje':'';
+    const lbl=d.nome+(d.descanso?', folga':': '+(d.titulo||''))+(hoje?', hoje':'')+(s.feito?', feito nesta semana':s.pendente?', dá para repor nesta semana':'');
     return `<button class="day-tab${d.id===current?' active':''}${d.descanso?' rest':''}${hoje?' hoje':''}${s.feito?' feito':''}${s.pendente?' pend':''}" style="--day-color:${esc(d.cor)}" data-day="${esc(d.id)}" type="button" aria-label="${esc(lbl)}"${d.id===current?' aria-current="true"':''}><span class="dt-d">${esc(d.nome.slice(0,3))}</span><span class="dt-n">${esc(d.descanso?'Folga':d.curto||'Treino')}</span><span class="dt-s">${esc(sub)}</span></button>`;
   }).join('');
   /* deixa o dia aberto visível na faixa de abas (no celular ela rola para o lado) */
@@ -520,12 +519,17 @@ function aviso(d){
   let h='';
   if(!d.descanso&&d.id!==todayId){
     const txt=s.feito&&s.feito!==todayKey?`Você já fez este treino ${na(diaPorId(WD[kdate(s.feito).getDay()])?.nome||'')} (${dm(s.feito)}). Se fizer de novo, conta como treino de hoje.`
-      :s.pendente?`Este treino ficou pendente ${na(d.nome)}. Fazendo hoje, ele conta na semana como treino feito fora do dia.`
+      :s.pendente?`Boa! Repondo hoje o treino ${d.nome.toLowerCase()==='sábado'||d.nome.toLowerCase()==='domingo'?'do':'da'} ${d.nome.toLowerCase()}, ele conta na semana.`
       :`Hoje é ${(hj?.nome||'').toLowerCase()}. O que você marcar aqui fica registrado como treino de hoje, feito fora do dia.`;
     h+=`<div class="aviso troca"><strong>↔ Treino de ${esc(d.nome.toLowerCase())} · ${esc(d.curto||d.titulo)}</strong><span>${esc(txt)}</span>${hj?`<button class="action sm" type="button" data-day="${esc(todayId)}">${hj.descanso?'Voltar para hoje':'Voltar para o treino de hoje'}</button>`:''}</div>`;
   }
   const pend=Object.keys(st).filter(id=>st[id].pendente).sort((a,b)=>st[a].pendente<st[b].pendente?-1:1);
-  if(pend.length&&d.id===todayId)h+=`<div class="aviso pend"><strong>Ficou para trás nesta semana</strong><span>Faltou algum dia? Toque no treino para fazer hoje.</span><div class="aviso-btns">${pend.map(id=>{const p=diaPorId(id);return `<button class="action sm" type="button" data-day="${esc(id)}" style="--day-color:${esc(p.cor)}">${esc(p.nome.slice(0,3))} · ${esc(p.curto||p.titulo)}</button>`}).join('')}</div></div>`;
+  /* convite para repor treino (some com "Agora não" e só volta no dia seguinte) */
+  let fora=false;try{fora=localStorage.getItem('ficha-treino-repor:'+PLAN.codigo)===todayKey}catch(e){}
+  if(pend.length&&d.id===todayId&&!fora){
+    const feitos=Object.keys(st).filter(id=>st[id].feito).length,total=PLAN.dias.filter(x=>!x.descanso&&totalEx(x)).length;
+    h+=`<div class="aviso pend"><strong>${feitos?`${feitos} de ${total} treinos feitos na semana 💪`:'Bora começar a semana? 💪'}</strong><span>Quer repor ${pend.length>1?'um treino que ficou para trás':'o treino que ficou para trás'}? É só tocar nele.</span><div class="aviso-btns">${pend.map(id=>{const p=diaPorId(id);return `<button class="action sm" type="button" data-day="${esc(id)}" style="--day-color:${esc(p.cor)}">${esc(p.nome.slice(0,3))} · ${esc(p.curto||p.titulo)}</button>`}).join('')}</div><button class="aviso-x" type="button" data-repor-nao>Agora não</button></div>`;
+  }
   return h;
 }
 /* Tipo do exercício: 'carga' (padrão, tem campo kg), 'tempo' (prancha etc.), 'cardio' (esteira etc.) ou 'corpo' (peso do corpo).
@@ -649,7 +653,7 @@ function closeSheet(quiet){
   sheetOpen=sheetBtn=null;
 }
 $('#sheetBg').onclick=()=>closeSheet();
-document.addEventListener('click',e=>{if(e.target.closest('[data-close]'))closeSheet()});
+document.addEventListener('click',e=>{if(e.target.closest('[data-close]'))closeSheet();if(e.target.closest('[data-repor-nao]')){try{localStorage.setItem('ficha-treino-repor:'+PLAN.codigo,todayKey)}catch(x){}renderDay()}});
 document.addEventListener('keydown',e=>{if(e.key==='Escape'&&sheetOpen)closeSheet()});
 $('#menuBtn').onclick=()=>{if(sheetOpen&&sheetOpen.id==='menu')closeSheet();else{themeLbl();openSheet('menu',$('#menuBtn'))}};
 $('#printBtn').onclick=()=>{closeSheet(true);renderPrintAll();document.body.classList.add('print-all');setTimeout(()=>window.print(),50)};
@@ -821,7 +825,7 @@ init();
 /* ===== Aviso de atualização: quando o app ou o treino da pessoa mudam =====
    Percebe sozinho o que mudou (não precisa marcar nada). Para escrever um recado ao aluno,
    use PLAN.novidade. NOVIDADES_APP descreve a última melhoria do app (vale para todas as fichas). */
-const NOVIDADES_APP='Visual novo com tema escuro, abas dos dias presas no topo, botões embaixo, aviso de treino pendente e GIFs mostrando a execução dos exercícios.';
+const NOVIDADES_APP='Visual novo com tema escuro, abas dos dias presas no topo, botões embaixo, convite para repor treino que ficou para trás e GIFs mostrando a execução dos exercícios.';
 (function(){
   try{
     const hash=s=>{let h=5381;for(let i=0;i<s.length;i++)h=((h*33)^s.charCodeAt(i))>>>0;return h.toString(36)};
