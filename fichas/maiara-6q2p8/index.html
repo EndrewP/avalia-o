@@ -65,6 +65,9 @@ body.has-rest .wrap{padding-bottom:calc(var(--barh) + var(--safe-b) + 250px)}
 .prog-txt b{font-size:18px;color:var(--ink)}
 .progress{height:9px;background:var(--chip);border-radius:9px;overflow:hidden;margin-top:6px}
 .progress i{display:block;height:100%;background:var(--day-color,var(--accent));border-radius:9px;transition:width .25s}
+.ok-v{display:inline-grid;place-items:center;width:18px;height:18px;border-radius:50%;background:#22c55e;vertical-align:-3px;margin-left:2px}.ok-v:after{content:"✓";color:#fff;font-size:12px;font-weight:800;line-height:1}
+.semana-ok{margin:10px 0 0;font-size:14.5px;font-weight:600;color:#9fdcb6}
+.progress{overflow:visible}.progress i.cheia{background:linear-gradient(90deg,var(--day-color,var(--accent)),#22c55e);box-shadow:0 0 12px #22c55e88}
 .tip{display:flex;gap:10px;align-items:flex-start;margin:14px 0 0;padding:10px 12px;border-radius:12px;background:var(--chip);font-size:14px;color:var(--ink)}
 .tip i{font-style:normal;flex:none;display:grid;place-items:center;width:22px;height:22px;border-radius:7px;border:2px solid var(--mute);font-size:13px}
 .group-title{font-size:19px;letter-spacing:.04em;text-transform:uppercase;margin:24px 0 2px;padding-left:10px;border-left:4px solid var(--day-color,var(--accent))}
@@ -80,6 +83,15 @@ body.has-rest .wrap{padding-bottom:calc(var(--barh) + var(--safe-b) + 250px)}
 .tags span{background:var(--chip);border-radius:8px;padding:2px 8px;font-size:13px;color:var(--ink)}
 .details{color:var(--mute);font-size:13px;margin-top:2px}
 .last{font-size:13px;color:var(--mute);margin-top:6px}.last b{color:var(--ink)}
+.last.evo{display:inline-flex;align-items:center;gap:4px;border:0;background:none;padding:2px 0;font:inherit;font-size:13px;cursor:pointer;text-align:left}
+.evo-ico{font-size:12px;opacity:.8}
+.pr{font-size:11.5px;font-weight:700;color:#fb923c;white-space:nowrap}
+.evo-svg{display:block;width:100%;height:auto;margin-top:12px}
+.evo-grade{stroke:var(--line);stroke-width:1;stroke-dasharray:3 4}
+.evo-eixo{fill:var(--mute);font-size:11px;font-family:inherit}
+.evo-pt{fill:var(--card);stroke:#3b82f6;stroke-width:2}
+.evo-max{fill:#22c55e;stroke:var(--card);stroke-width:2}
+.evo-resumo{display:flex;flex-wrap:wrap;gap:6px 16px;margin-top:10px;font-size:14px;color:var(--mute)}.evo-resumo b{color:var(--ink)}
 .links{grid-column:2/-1;display:flex;flex-wrap:wrap;align-items:center;gap:6px 8px;margin-top:-2px}
 .video,.rest-btn{display:inline-flex;align-items:center;gap:5px;min-height:36px;padding:0 10px;border-radius:999px;border:1px solid var(--line);background:var(--card);color:var(--accent);font-size:13px;font-weight:700;text-decoration:none;cursor:pointer;white-space:nowrap}
 .load-box{display:grid;gap:3px;justify-items:center}
@@ -143,6 +155,11 @@ body.has-sheet{overflow:hidden}
 .cal-head h3{font-size:21px;margin:0}
 .cal-nav{min-width:44px;min-height:44px;border:1px solid var(--line);border-radius:12px;background:var(--card);color:var(--ink);font-size:22px;line-height:1;cursor:pointer}
 .cal-nav:disabled{opacity:.35;cursor:default}
+.cal-meta{margin-top:12px}
+.cal-meta-txt{font-size:14.5px;color:var(--mute)}.cal-meta-txt b{font-size:18px;color:var(--ink)}
+.cal-barra{height:9px;border-radius:9px;background:var(--chip);margin-top:6px}
+.cal-barra i{display:block;height:100%;border-radius:9px;background:linear-gradient(90deg,#2456C8,#22c55e);transition:width .3s}
+.cal-barra i.cheia{box-shadow:0 0 12px #22c55e88}
 .cal-grid{display:grid;grid-template-columns:repeat(7,1fr);gap:4px;margin-top:10px;text-align:center}
 .cal-w{font-size:12px;color:var(--mute);padding:2px 0}
 .cal-d,.cal-mini{position:relative}
@@ -175,6 +192,14 @@ body.has-sheet{overflow:hidden}
 @media(prefers-reduced-motion:reduce){.celebrate-card,.sheet{animation:none}}
 .novo{display:grid;gap:8px;border:2px solid var(--accent)}.novo strong{font-size:17px}.novo p{margin:0;font-size:14.5px;color:var(--mute)}.novo p b{color:var(--ink)}.novo .novo-msg{padding:10px 12px;border-radius:12px;background:var(--chip);color:var(--ink)}.novo .ok{justify-self:start;background:var(--accent);border-color:var(--accent);color:var(--accent-ink);padding:0 22px}
 @media print{.novo{display:none!important}}
+.action.share{display:block;width:100%;margin-top:12px;background:var(--day-color,var(--accent));border-color:transparent;color:#fff}
+/* no card do dia e no calendário o convite para postar é discreto; só a comemoração destaca */
+.day .action.share,.cal .action.share{display:inline-flex;width:auto;min-height:38px;padding:0 14px;margin-top:12px;background:transparent;border:1px solid var(--line);color:var(--accent);font-size:14px}
+.celebrate-card .cele-autor{margin:-10px 0 14px;font-size:13.5px;color:var(--mute);font-style:italic}
+.celebrate-card .cele-extra{margin:-4px 0 14px;font-size:14.5px;font-weight:600;color:var(--ink)}
+.celebrate-card.especial{border:2px solid #f5c84299;box-shadow:0 18px 60px #0008,0 0 40px #f5c84233}
+.celebrate-card .action+.action{margin-top:8px;background:transparent;border-color:var(--line);color:var(--ink)}
+@media print{.action.share{display:none!important}}
 .install{display:grid;gap:8px;border:2px solid var(--accent)}.install strong{font-size:16px}.install .muted{font-size:14px}.install-actions{display:flex;flex-wrap:wrap;gap:8px;align-items:center}.install .action{background:var(--accent);border-color:var(--accent);color:var(--accent-ink);padding:0 18px}.install .reset{display:inline;margin:0;padding:11px 6px}
 @media(max-width:360px){.exercise{grid-template-columns:42px 1fr 64px;gap:8px}.check{width:42px;height:42px}.name{font-size:16px}}
 /* ===== Impressão / PDF ===== */
@@ -225,9 +250,20 @@ body.has-sheet{overflow:hidden}
     <h3 id="calTitle"></h3>
     <button class="cal-nav" id="calNext" type="button" aria-label="Próximo mês">›</button>
   </div>
+  <div class="cal-meta" id="calMeta" hidden></div>
   <div class="cal-grid" id="calGrid"></div>
   <div class="cal-leg"><span><b class="cal-mini full" aria-hidden="true">12</b>Treino completo</span><span><b class="cal-mini part" aria-hidden="true">12</b>Treino parcial</span><span><b class="cal-mini swap" aria-hidden="true">12</b>Fora do dia</span></div>
   <div class="muted" id="calInfo" role="status" aria-live="polite"></div>
+  <button class="action share" id="mesBtn" type="button" data-share-mes hidden>📸 Compartilhar resumo do mês</button>
+</section>
+<section class="sheet" id="evoSheet" hidden role="dialog" aria-modal="true" aria-label="Evolução da carga">
+  <div class="sheet-head"><h2 id="evoTitulo">Evolução</h2><button class="sheet-x" type="button" data-close aria-label="Fechar">✕</button></div>
+  <div id="evoCorpo"></div>
+</section>
+<section class="sheet" id="shareSheet" hidden role="dialog" aria-modal="true" aria-label="Compartilhar treino">
+  <div class="sheet-head"><h2>Compartilhar treino</h2><button class="sheet-x" type="button" data-close aria-label="Fechar">✕</button></div>
+  <button class="menu-item" type="button" data-formato="story"><svg viewBox="0 0 24 24" aria-hidden="true"><rect x="6" y="2.5" width="12" height="19" rx="3"/><path d="M9 15h6M9 11.5h6"/></svg><span><b>Story pronto</b><small>A imagem completa, pronta para o story</small></span></button>
+  <button class="menu-item" type="button" data-formato="adesivo"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M20 12.5V7a3 3 0 0 0-3-3H7a3 3 0 0 0-3 3v10a3 3 0 0 0 3 3h5.5z"/><path d="M12.5 20c0-4 3.5-7.5 7.5-7.5"/></svg><span><b>Adesivo para a sua foto</b><small>Só o card, com fundo transparente. No Instagram, cole por cima da sua foto como figurinha.</small></span></button>
 </section>
 <section class="sheet" id="menu" hidden role="dialog" aria-modal="true" aria-label="Mais opções">
   <div class="sheet-head"><h2>Mais opções</h2><button class="sheet-x" type="button" data-close aria-label="Fechar">✕</button></div>
@@ -265,7 +301,7 @@ body.has-sheet{overflow:hidden}
 const PLAN={
   codigo:"maiara-6q2p8",
   nomePublico:"MAIARA A. T.",
-  treinador:"Endrew P.",
+  treinador:"Endrew.P",
   subtitulo:"Plano de treino personalizado",
   objetivo:"Força, hipertrofia e perda de peso",
   frequencia:"5 sessões por semana (Seg a Sex)",
@@ -558,11 +594,11 @@ function renderDay(){
       const k=markKey(d,gi,ei),isDone=!!state.marks[k],nl=kindOf(e)!=='carga';
       if(!isOpt(e)){total++;if(isDone)done++}
       const lk=linkEx(e);
-      html+=`<div class="exercise${isDone?' done':''}${nl?' noload':''}"><button class="check" type="button" data-check="${esc(k)}" aria-pressed="${isDone}" aria-label="Marcar ${esc(e[0])} como feito"></button><div><div class="name">${esc(e[0])}</div><div class="tags">${tags(e)}</div>${nl?'':lastLoadHtml(d,gi,ei)}</div>${nl?'':`<label class="load-box"><span>carga</span><input class="load" type="text" inputmode="decimal" placeholder="kg" value="${esc(state.loads[k]||'')}" data-load="${esc(k)}" aria-label="Carga usada em ${esc(e[0])}, em kg"></label>`}<div class="links">${restBtn(e)}<a class="video" href="${esc(lk.url)}" target="_blank" rel="noopener">${lk.gif?'▶ Ver execução':'▶ Vídeo'}</a></div></div>`;
+      html+=`<div class="exercise${isDone?' done':''}${nl?' noload':''}"><button class="check" type="button" data-check="${esc(k)}" aria-pressed="${isDone}" aria-label="Marcar ${esc(e[0])} como feito"></button><div><div class="name">${esc(e[0])}</div><div class="tags">${tags(e)}</div>${nl?'':lastLoadHtml(d,gi,ei)}</div>${nl?'':`<label class="load-box"><span>carga</span><input class="load" type="text" inputmode="decimal" placeholder="kg" value="${esc(state.loads[k]||'')}" data-load="${esc(k)}" aria-label="Carga usada em ${esc(e[0])}, em kg"><span class="pr" data-pr="${esc(k)}"${ehRecorde(k.split(':').slice(1).join(':'),state.loads[k])?'':' hidden'}>🔥 recorde</span></label>`}<div class="links">${restBtn(e)}<a class="video" href="${esc(lk.url)}" target="_blank" rel="noopener">${lk.gif?'▶ Ver execução':'▶ Vídeo'}</a></div></div>`;
     });
   });
   const pct=total?done/total*100:0,fim=total&&done>=total;
-  box.innerHTML=`<section class="card day print-day">${eyebrow}<h2>${esc(d.titulo)}</h2>${d.foco?`<p class="foco">${esc(d.foco)}</p>`:''}${aviso(d)}<div class="prog"><div class="prog-txt"><b>${done}</b> de ${total} exercícios feitos${fim?' · treino completo 🎉':''}</div><div class="progress" role="progressbar" aria-valuemin="0" aria-valuemax="${total}" aria-valuenow="${done}" aria-label="Exercícios feitos"><i style="width:${pct}%"></i></div></div>${done?'':'<p class="tip"><i aria-hidden="true">✓</i><span>Toque no quadrado quando terminar cada exercício e anote a carga que usou.</span></p>'}${html}<button class="reset" type="button" data-reset="${esc(d.id)}">Zerar marcações deste dia</button></section>`;
+  box.innerHTML=`<section class="card day print-day">${eyebrow}<h2>${esc(d.titulo)}</h2>${d.foco?`<p class="foco">${esc(d.foco)}</p>`:''}${aviso(d)}<div class="prog"><div class="prog-txt"><b>${done}</b> de ${total} exercícios feitos${fim?' · treino completo <span class="ok-v" aria-hidden="true"></span>':''}</div><div class="progress" role="progressbar" aria-valuemin="0" aria-valuemax="${total}" aria-valuenow="${done}" aria-label="Exercícios feitos"><i class="${fim?'cheia':''}" style="width:${pct}%"></i></div>${fim&&semanaCompleta().ok?`<p class="semana-ok">Semana completa · ${semanaCompleta().f} de ${semanaCompleta().n} <span class="ok-v" aria-hidden="true"></span></p>`:''}</div>${fim?'<button class="action share" type="button" data-share>📸 Compartilhar no story</button>':''}${done?'':'<p class="tip"><i aria-hidden="true">✓</i><span>Toque no quadrado quando terminar cada exercício e anote a carga que usou.</span></p>'}${html}<button class="reset" type="button" data-reset="${esc(d.id)}">Zerar marcações deste dia</button></section>`;
 }
 function renderPrintAll(){
   let out='';
@@ -574,23 +610,57 @@ function renderPrintAll(){
   });
   $('#printAll').innerHTML=out;
 }
+/* carga em número (aceita "40", "40,5", "40 kg"); outros textos não contam para recorde nem gráfico */
+const kgNum=v=>{const m=String(v||'').trim().match(/^(\d+(?:[.,]\d+)?)\s*(kg)?$/i);return m?parseFloat(m[1].replace(',','.')):null};
+/* melhor carga registrada antes de hoje */
+function melhorAntes(ek){const h=state.hist[ek]||{};let b=null;Object.keys(h).forEach(d=>{if(d<todayKey){const n=kgNum(h[d]);if(n!==null&&(b===null||n>b))b=n}});return b}
+/* recorde = a carga de hoje passou a melhor de antes (a primeira anotação não conta) */
+function ehRecorde(ek,v){const n=kgNum(v),b=melhorAntes(ek);return n!==null&&b!==null&&n>b}
+function serieEx(ek){const h=state.hist[ek]||{};return Object.keys(h).sort().map(d=>[d,kgNum(h[d])]).filter(x=>x[1]!==null)}
+function nomeEx(ek){const [dia,id]=ek.split(':'),d=diaPorId(dia);let n='';(d&&d.grupos||[]).forEach((g,gi)=>(g.ex||[]).forEach((e,ei)=>{if(xid(d,gi,ei)===id)n=e[0]}));return n}
 function lastLoad(ek){const h=state.hist[ek]||{};const ds=Object.keys(h).filter(x=>x<todayKey).sort();return ds.length?{d:ds[ds.length-1],v:h[ds[ds.length-1]]}:null}
-function lastLoadHtml(d,gi,ei){const l=lastLoad(`${d.id}:${xid(d,gi,ei)}`);if(!l)return'';const v=/[a-z]/i.test(l.v)?l.v:l.v+' kg',dt=l.d.slice(8,10)+'/'+l.d.slice(5,7);return `<div class="last">Última vez: <b>${esc(v)}</b> · ${dt}</div>`}
+function lastLoadHtml(d,gi,ei){const ek=`${d.id}:${xid(d,gi,ei)}`,l=lastLoad(ek);if(!l)return'';const v=/[a-z]/i.test(l.v)?l.v:l.v+' kg',dt=l.d.slice(8,10)+'/'+l.d.slice(5,7);
+  /* com 2 registros ou mais, a linha abre o gráfico de evolução */
+  return serieEx(ek).length>=2?`<button class="last evo" type="button" data-evo="${esc(ek)}" aria-label="Ver evolução da carga">Última vez: <b>${esc(v)}</b> · ${dt} <span class="evo-ico" aria-hidden="true">📈</span></button>`:`<div class="last">Última vez: <b>${esc(v)}</b> · ${dt}</div>`}
+/* frases do mês completo: curtas, sorteadas, sem repetir a do mês anterior */
+const FRASES_MES=[
+  ['Você fez todos os treinos do mês. Poucos chegam até aqui: se orgulhe disso!'],
+  ['Constância vence motivação. E você provou isso o mês inteiro.'],
+  ['Cada treino que você não pulou está construindo quem você quer ser.'],
+  ['Você não esperou ter vontade: você foi. É assim que o resultado chega.'],
+  ['Disciplina não é sorte, é escolha. E você escolheu todos os dias.'],
+  ['O seu eu do mês que vem vai agradecer por este mês.'],
+  ['Você transformou plano em hábito. Agora é manter o ritmo!'],
+  ['Nem todo mundo viu os seus treinos, mas o resultado vai mostrar.'],
+  ['Mês fechado com chave de ouro. Foco total no próximo!'],
+  ['Você cumpriu o que prometeu a si mesmo. Isso vale muito.'],
+  ['A disciplina é a ponte entre metas e realizações.','Jim Rohn'],
+  ['O sucesso é a soma de pequenos esforços repetidos dia após dia.','Robert Collier']];
+function fraseDoMes(){let i;do{i=Math.floor(Math.random()*FRASES_MES.length)}while(FRASES_MES.length>1&&i===state.ultFrase);state.ultFrase=i;return FRASES_MES[i]}
 function checkCelebrate(){
   const d=PLAN.dias.find(x=>x.id===current);if(!d||d.descanso)return;
   let total=0,done=0;(d.grupos||[]).forEach((g,gi)=>(g.ex||[]).forEach((e,ei)=>{if(isOpt(e))return;total++;if(state.marks[markKey(d,gi,ei)])done++}));
   const ck=todayKey+':'+d.id;
-  if(total&&done===total&&!state.cele[ck]){state.cele[ck]=1;save();celebrate(d.cor)}
+  if(total&&done===total){preparaStory();if(!state.cele[ck]){state.cele[ck]=1;
+    /* 80% dos treinos planejados do mês: comemoração especial, uma vez por mês */
+    const h=new Date(),r=dadosMes(h.getFullYear(),h.getMonth()),km='mes80:'+todayKey.slice(0,7),k100='mes100:'+todayKey.slice(0,7);
+    if(r.plano>=4&&r.mesCheio&&!state.cele[k100]){state.cele[k100]=state.cele[km]=1;const [frase,autor]=fraseDoMes();save();
+      calMes={y:r.y,m:r.m};preparaMes();   /* o resumo do mês já fica pronto, com a barra cheia */
+      celebrate(d.cor,{especial:true,emoji:'💯',titulo:'Mês completo!',texto:frase,autor:autor?'— '+autor:'',extra:`${r.n} de ${r.plano} treinos de ${MESES[r.m]}. Mostre essa conquista no seu story 📸`,shareMes:true,som:'mes100',foguetes:26,tempo:16000})}
+    else if(r.plano>=4&&r.n/r.plano>=.8&&!state.cele[km]){state.cele[km]=1;save();
+      celebrate(d.cor,{especial:true,emoji:'🏆',titulo:'80% do mês!',texto:`Você já fez ${r.n} de ${r.plano} treinos de ${MESES[r.m]}. Falta pouco para fechar o mês!`,foguetes:18,tempo:12000})}
+    else{save();celebrate(d.cor)}}}
 }
-function celebrate(cor){
+function celebrate(cor,op={}){
   const old=$('#celebrate');if(old)old.remove();
   const box=document.createElement('div');box.id='celebrate';box.className='celebrate';box.setAttribute('role','status');box.style.setProperty('--day-color',cor||'#2456c8');
-  box.innerHTML='<canvas aria-hidden="true"></canvas><div class="celebrate-card"><div class="celebrate-emoji">🎉</div><h2>Parabéns!</h2><p>Você concluiu mais um dia de treino!</p><button class="action" type="button">Continuar</button></div>';
+  box.innerHTML=`<canvas aria-hidden="true"></canvas><div class="celebrate-card${op.especial?' especial':''}"><div class="celebrate-emoji">${op.emoji||'🎉'}</div><h2>${esc(op.titulo||'Parabéns!')}</h2><p>${esc(op.texto||'Você concluiu mais um dia de treino!')}</p>${op.autor?`<p class="cele-autor">${esc(op.autor)}</p>`:''}${op.extra?`<p class="cele-extra">${esc(op.extra)}</p>`:''}<button class="action share" type="button" ${op.shareMes?'data-share-mes':'data-share'}>📸 ${op.shareMes?'Compartilhar resumo do mês':'Compartilhar no story'}</button><button class="action" type="button">Continuar</button></div>`;
+  somConquista(op.som||(op.especial?'mes':'dia'));
   document.body.appendChild(box);
   const cv=box.querySelector('canvas'),reduce=window.matchMedia&&matchMedia('(prefers-reduced-motion: reduce)').matches;
   let ctx=null;try{ctx=!reduce&&cv.getContext?cv.getContext('2d'):null}catch(e){}
   let raf=0,over=false,fit=null;
-  const auto=setTimeout(close,9000);
+  const NF=op.foguetes||9,auto=setTimeout(close,op.tempo||9000);
   function onKey(e){if(e.key==='Escape')close()}
   function close(){if(over)return;over=true;cancelAnimationFrame(raf);clearTimeout(auto);document.removeEventListener('keydown',onKey);if(fit)window.removeEventListener('resize',fit);box.classList.add('out');setTimeout(()=>box.remove(),260)}
   box.addEventListener('click',close);document.addEventListener('keydown',onKey);
@@ -604,12 +674,12 @@ function celebrate(cor){
   const frame=now=>{
     if(over)return;if(!t0)t0=last=now;
     const dt=Math.min((now-last)/16.67,2.5);last=now;
-    if(launched<9&&now-t0>=next){rockets.push({x:W*(.12+Math.random()*.76),y:H+10,vy:-H*.012*(.9+Math.random()*.25),ty:H*(.14+Math.random()*.3)});launched++;next+=260+Math.random()*320}
+    if(launched<NF&&now-t0>=next){rockets.push({x:W*(.12+Math.random()*.76),y:H+10,vy:-H*.012*(.9+Math.random()*.25),ty:H*(.14+Math.random()*.3)});launched++;next+=260+Math.random()*320}
     ctx.globalCompositeOperation='destination-out';ctx.globalAlpha=1;ctx.fillStyle='rgba(0,0,0,.26)';ctx.fillRect(0,0,W,H);
     ctx.globalCompositeOperation='lighter';
     for(let i=rockets.length-1;i>=0;i--){const r=rockets[i];r.y+=r.vy*dt;ctx.globalAlpha=1;ctx.fillStyle='#fff';ctx.fillRect(r.x-1.5,r.y,3,9);if(r.y<=r.ty){burst(r.x,r.y);rockets.splice(i,1)}}
     for(let i=parts.length-1;i>=0;i--){const p=parts[i];p.x+=p.vx*dt;p.y+=p.vy*dt;p.vy+=.045*dt;p.vx*=.992;p.life-=p.decay*dt;if(p.life<=0){parts.splice(i,1);continue}ctx.globalAlpha=p.life;ctx.fillStyle=p.c;ctx.beginPath();ctx.arc(p.x,p.y,2.2,0,6.2832);ctx.fill()}
-    if(launched>=9&&!rockets.length&&!parts.length){ctx.clearRect(0,0,W,H);return}
+    if(launched>=NF&&!rockets.length&&!parts.length){ctx.clearRect(0,0,W,H);return}
     raf=requestAnimationFrame(frame);
   };
   raf=requestAnimationFrame(frame);
@@ -624,7 +694,8 @@ function init(){
   $('#notes').innerHTML=(PLAN.orientacoes||[]).map(x=>`<p><strong>${esc(x[0])}</strong><span class="muted">${esc(x[1])}</span></p>`).join('');$('#footer').textContent=PLAN.contato||'';render();
 }
 document.addEventListener('click',e=>{const day=e.target.closest('[data-day]');if(day){current=day.dataset.day;render();const y=$('#tabsWrap').offsetTop;if(window.scrollY>y)window.scrollTo({top:y,behavior:'smooth'});return}const check=e.target.closest('[data-check]');if(check){const k=check.dataset.check;state.marks[k]?delete state.marks[k]:state.marks[k]=1;save();chips();renderDay();{const nb=[...document.querySelectorAll('[data-check]')].find(b=>b.dataset.check===k);if(nb)nb.focus({preventScroll:true})}checkCelebrate();return}const reset=e.target.closest('[data-reset]');if(reset){Object.keys(state.marks).filter(k=>k.startsWith(`${todayKey}:${reset.dataset.reset}:`)).forEach(k=>delete state.marks[k]);delete state.cele[todayKey+':'+reset.dataset.reset];save();chips();renderDay();toast('Marcações do dia zeradas');return}});
-document.addEventListener('input',e=>{const input=e.target.closest('[data-load]');if(input){const k=input.dataset.load,v=input.value.trim(),p=k.split(':'),ek=p.slice(1).join(':');state.loads[k]=input.value;state.hist[ek]=state.hist[ek]||{};if(v)state.hist[ek][p[0]]=v;else delete state.hist[ek][p[0]];save()}});
+document.addEventListener('input',e=>{const input=e.target.closest('[data-load]');if(input){const k=input.dataset.load,v=input.value.trim(),p=k.split(':'),ek=p.slice(1).join(':');state.loads[k]=input.value;state.hist[ek]=state.hist[ek]||{};if(v)state.hist[ek][p[0]]=v;else delete state.hist[ek][p[0]];save();
+  const pr=document.querySelector(`[data-pr="${CSS.escape(k)}"]`);if(pr)pr.hidden=!ehRecorde(ek,v)}});
 /* ===== Janelas que sobem de baixo: calendário e "Mais" ===== */
 let sheetOpen=null,sheetBtn=null;
 function openSheet(id,btn){
@@ -659,6 +730,25 @@ const R={end:0,left:0,last:60,run:false,tid:0,ctx:null,lock:null,sound:true,star
 try{R.sound=localStorage.getItem('ficha-treino-som')!=='0'}catch(e){}
 const mmss=s=>String(Math.floor(s/60)).padStart(2,'0')+':'+String(s%60).padStart(2,'0');
 function audioUnlock(){try{const A=window.AudioContext||window.webkitAudioContext;if(!A)return;R.ctx=R.ctx||new A();if(R.ctx.state==='suspended')R.ctx.resume()}catch(e){}}
+function somConquista(tipo){
+  try{if(!R.sound)return;audioUnlock();const c=R.ctx;if(!c)return;
+    const t0=c.currentTime+.03,mestre=c.createGain();mestre.gain.value=.55;mestre.connect(c.destination);
+    const nota=(f,ini,dur,vol,onda)=>{const o=c.createOscillator(),g=c.createGain();o.type=onda||'triangle';o.frequency.value=f;
+      g.gain.setValueAtTime(.0001,t0+ini);g.gain.exponentialRampToValueAtTime(vol,t0+ini+.02);g.gain.exponentialRampToValueAtTime(.0001,t0+ini+dur);
+      o.connect(g);g.connect(mestre);o.start(t0+ini);o.stop(t0+ini+dur+.05)};
+    const sino=(f,ini,dur,vol)=>{nota(f,ini,dur,vol,'triangle');nota(f*2,ini,dur*.7,vol*.3,'sine')};   /* timbre de sininho */
+    if(tipo==='mes100'){ /* mês completo: fanfarra em duas partes e um acorde final brilhante (~3,5 s) */
+      [523.25,659.25,783.99,1046.5].forEach((f,i)=>sino(f,i*.12,.5,.32));
+      [587.33,739.99,880,1174.66].forEach((f,i)=>sino(f,.55+i*.12,.5,.3));
+      [783.99,1046.5,1318.5,1568,2093].forEach(f=>sino(f,1.15,2.2,.13));
+      [2093,2637,3136,2637,3136,4186].forEach((f,i)=>nota(f,1.35+i*.15,.45,.06,'sine'))}
+    else if(tipo==='mes'){ /* conquista do mês: arpejo subindo, acorde que fica soando e brilhos no fim (~2,5 s) */
+      [523.25,659.25,783.99,1046.5].forEach((f,i)=>sino(f,i*.13,.55,.32));
+      [523.25,659.25,783.99,1046.5].forEach(f=>sino(f,.6,1.8,.16));
+      [1318.5,1568,2093,1568,2637,3136].forEach((f,i)=>nota(f,.8+i*.14,.4,.07,'sine'))}
+    else{ /* conquista do dia: arpejo curto e alegre (~0,9 s) */
+      [659.25,783.99,1046.5].forEach((f,i)=>sino(f,i*.09,.34,.3));sino(1318.5,.3,.65,.2)}
+    if(navigator.vibrate)navigator.vibrate(tipo==='mes100'?[80,40,80,40,80,40,200]:tipo==='mes'?[60,40,60,40,140]:[40,30,70])}catch(e){}}
 function beep(){
   if(!R.sound)return;
   try{if(R.ctx){const c=R.ctx,t=c.currentTime;for(let i=0;i<4;i++){const o=i*.4,osc=c.createOscillator(),g=c.createGain();osc.type='triangle';osc.frequency.value=i%2?1175:880;g.gain.setValueAtTime(.0001,t+o);g.gain.exponentialRampToValueAtTime(.8,t+o+.02);g.gain.setValueAtTime(.8,t+o+.2);g.gain.exponentialRampToValueAtTime(.0001,t+o+.3);osc.connect(g);g.connect(c.destination);osc.start(t+o);osc.stop(t+o+.32)}}}catch(e){}
@@ -717,6 +807,7 @@ init();
   }
   function desenhar(){
     const y=cur.getFullYear(),m=cur.getMonth(),dd=dados();
+    calMes={y,m};{const pre=`${y}-${String(m+1).padStart(2,'0')}-`;$('#mesBtn').hidden=!Object.keys(dd).some(k=>k.startsWith(pre))}
     const primeiro=new Date(y,m,1).getDay(),dias=new Date(y,m+1,0).getDate();
     const nomeMes=new Intl.DateTimeFormat('pt-BR',{month:'long'}).format(cur);
     $('#calTitle').textContent=cap(nomeMes)+' de '+y;
@@ -733,6 +824,9 @@ init();
     const hoje=new Date();
     $('#calNext').disabled=cur>=new Date(hoje.getFullYear(),hoje.getMonth(),1);
     resumo(dd,n,c);
+    /* meta do mês: no app a barra aparece sempre e vai enchendo a cada treino */
+    {const r=dadosMes(y,m),el=$('#calMeta');el.hidden=!r.plano;
+      if(r.plano){const pct=Math.min(100,Math.round(r.n/r.plano*100));el.innerHTML=`<div class="cal-meta-txt"><b>${r.n}</b> de ${r.plano} treinos no mês</div><div class="cal-barra"><i class="${r.mesCheio?'cheia':''}" style="width:${pct}%"></i></div>`}}
   }
   $('#calBtn').onclick=()=>{
     if(sheetOpen&&sheetOpen.id==='cal'){closeSheet();return}
@@ -810,10 +904,195 @@ init();
   if(ios)show('ios');else if(android)setTimeout(()=>{if(!deferred)show('android')},4000);
   }catch(e){}
 })();
+/* ===== Evolução da carga de um exercício (gráfico simples) ===== */
+function abreEvolucao(ek){
+  const s=serieEx(ek).slice(-12);if(s.length<2)return;
+  const W=320,H=170,pl=34,pr=14,pt=18,pb=26,vals=s.map(x=>x[1]),mn=Math.min(...vals),mx=Math.max(...vals),pad=(mx-mn)*.15||2,lo=Math.max(0,mn-pad),hi=mx+pad;
+  const X=i=>pl+(W-pl-pr)*(s.length===1?.5:i/(s.length-1)),Y=v=>pt+(H-pt-pb)*(1-(v-lo)/(hi-lo));
+  const pts=s.map((x,i)=>`${X(i).toFixed(1)},${Y(x[1]).toFixed(1)}`).join(' ');
+  const iMax=vals.lastIndexOf(mx),dm=d=>d.slice(8,10)+'/'+d.slice(5,7),fmt=v=>String(v).replace('.',',');
+  const svg=`<svg viewBox="0 0 ${W} ${H}" class="evo-svg" role="img" aria-label="Carga de ${fmt(vals[0])} kg até ${fmt(vals[vals.length-1])} kg">
+    <defs><linearGradient id="evoG" x1="0" x2="1"><stop offset="0" stop-color="#2456C8"/><stop offset="1" stop-color="#22c55e"/></linearGradient>
+    <linearGradient id="evoA" x1="0" y1="0" x2="0" y2="1"><stop offset="0" stop-color="#22c55e" stop-opacity=".22"/><stop offset="1" stop-color="#22c55e" stop-opacity="0"/></linearGradient></defs>
+    <line x1="${pl}" y1="${Y(hi).toFixed(1)}" x2="${W-pr}" y2="${Y(hi).toFixed(1)}" class="evo-grade"/><line x1="${pl}" y1="${Y(lo).toFixed(1)}" x2="${W-pr}" y2="${Y(lo).toFixed(1)}" class="evo-grade"/>
+    <text x="${pl-6}" y="${(Y(mx)+4).toFixed(1)}" text-anchor="end" class="evo-eixo">${fmt(mx)}</text><text x="${pl-6}" y="${(Y(mn)+4).toFixed(1)}" text-anchor="end" class="evo-eixo">${fmt(mn)}</text>
+    <polygon points="${X(0).toFixed(1)},${(H-pb).toFixed(1)} ${pts} ${X(s.length-1).toFixed(1)},${(H-pb).toFixed(1)}" fill="url(#evoA)"/>
+    <polyline points="${pts}" fill="none" stroke="url(#evoG)" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"/>
+    ${s.map((x,i)=>`<circle cx="${X(i).toFixed(1)}" cy="${Y(x[1]).toFixed(1)}" r="${i===iMax?5.5:3.5}" class="${i===iMax?'evo-max':'evo-pt'}"/>`).join('')}
+    <text x="${X(0).toFixed(1)}" y="${H-6}" text-anchor="start" class="evo-eixo">${dm(s[0][0])}</text><text x="${X(s.length-1).toFixed(1)}" y="${H-6}" text-anchor="end" class="evo-eixo">${dm(s[s.length-1][0])}</text></svg>`;
+  const ganho=vals[vals.length-1]-vals[0];
+  $('#evoTitulo').textContent=nomeEx(ek)||'Evolução';
+  $('#evoCorpo').innerHTML=svg+`<div class="evo-resumo"><span>Primeira: <b>${fmt(vals[0])} kg</b></span><span>Melhor: <b>${fmt(mx)} kg</b> 🔥</span>${ganho>0?`<span>Evolução: <b>+${fmt(Math.round(ganho*10)/10)} kg</b></span>`:''}</div>`;
+  openSheet('evoSheet')}
+document.addEventListener('click',e=>{const b=e.target.closest('[data-evo]');if(b){e.stopPropagation();abreEvolucao(b.dataset.evo)}},true);
+/* ===== Story do treino concluído: imagem 1080x1920 para Instagram/WhatsApp =====
+   Mostra o card do dia (treino programado + "X de X exercícios feitos"): nada de cargas nem lista de exercícios. */
+let storyCache={},modoShare='dia',calMes=null,mesCache={};
+/* ===== Resumo do mês: quantos treinos e o calendário marcado, sem nada do treino em si ===== */
+const MESES=['janeiro','fevereiro','março','abril','maio','junho','julho','agosto','setembro','outubro','novembro','dezembro'];
+function dadosMes(y,m){const pre=`${y}-${String(m+1).padStart(2,'0')}-`,dd=treinosPorData(),dias={};let n=0,c=0,plano=0;
+  for(let d=1,nd=new Date(y,m+1,0).getDate();d<=nd;d++){const dt=new Date(y,m,d),pd=PLAN.dias.find(x=>x.id===WD[dt.getDay()]);if(pd&&!pd.descanso&&totalEx(pd)&&dkey(dt)>=(inicioKey||''))plano++}
+  Object.keys(dd).forEach(k=>{if(k.startsWith(pre)){dias[+k.slice(8,10)]=dd[k];n++;if(dd[k].full)c++}});return{y,m,dias,n,c,plano:Math.max(plano,n),mesCheio:plano>0&&n>=plano}}
+async function desenhaMes(r,formato){
+  try{await Promise.all(['700 150px "Barlow Condensed"','700 30px Barlow','500 34px Barlow','600 26px Barlow'].map(f=>document.fonts.load(f)))}catch(e){}
+  const adesivo=formato==='adesivo',{CD,CB,VERDE,PAD}=SF,X=adesivo?40:SF.X,CW=adesivo?820:SF.CW,TW=CW-2*PAD,TX=X+PAD;
+  const prim=new Date(r.y,r.m,1).getDay(),nd=new Date(r.y,r.m+1,0).getDate(),linhas=Math.ceil((prim+nd)/7),cel=TW/7,rr=cel*.34;
+  const hoje=new Date(),eMesAtual=hoje.getFullYear()===r.y&&hoje.getMonth()===r.m;
+  const h=2*PAD+30+(adesivo?142:170)+(r.mesCheio?52:0)+36+30+linhas*cel+54+(adesivo?70:6);
+  const W=adesivo?CW+80:1080,H=adesivo?h+90:1920,cv=document.createElement('canvas');cv.width=W;cv.height=H;const c=cv.getContext('2d');
+  const AZ='#2456C8',card=(x,y,w,hh,ra)=>{c.beginPath();if(c.roundRect)c.roundRect(x,y,w,hh,ra);else c.rect(x,y,w,hh)};
+  const visto=(x,y,r0,esp)=>{c.strokeStyle='#ffffff';c.lineWidth=esp;c.lineCap='round';c.lineJoin='round';c.beginPath();c.moveTo(x-r0*.42,y+r0*.02);c.lineTo(x-r0*.12,y+r0*.32);c.lineTo(x+r0*.45,y-r0*.34);c.stroke()};
+  let g,Y;
+  if(adesivo)Y=36;
+  else{ // fundo azul da marca, com o mesmo granulado do story do dia
+    g=c.createLinearGradient(0,0,0,H);g.addColorStop(0,AZ);g.addColorStop(.38,AZ+'cc');g.addColorStop(.7,'#0f2236');g.addColorStop(1,'#0a1221');c.fillStyle=g;c.fillRect(0,0,W,H);
+    c.fillStyle='#00000026';c.fillRect(0,0,W,H);
+    const gr=document.createElement('canvas');gr.width=gr.height=160;const gc=gr.getContext('2d'),im=gc.createImageData(160,160);let sd=7;
+    for(let i=0;i<im.data.length;i+=4){sd=(sd*16807)%2147483647;const v=sd%255;im.data[i]=im.data[i+1]=im.data[i+2]=v;im.data[i+3]=14}
+    gc.putImageData(im,0,0);c.fillStyle=c.createPattern(gr,'repeat');c.fillRect(0,0,W,H);
+    Y=Math.round(H*.47-h/2);
+    g=c.createRadialGradient(W/2,Y+h/2,h*.2,W/2,Y+h/2,h*1.05);g.addColorStop(0,AZ+'59');g.addColorStop(1,AZ+'00');c.fillStyle=g;c.fillRect(0,Y-h*.5,W,h*2)}
+  // card
+  c.save();c.shadowColor=adesivo?'#00000059':'#00000080';c.shadowBlur=adesivo?30:60;c.shadowOffsetY=adesivo?8:20;card(X,Y,CW,h,44);c.fillStyle=adesivo?'#0e182b8c':'#121c2e';c.fill();c.restore();
+  c.save();card(X,Y,CW,h,44);c.clip();g=c.createLinearGradient(X,0,X+CW,0);g.addColorStop(0,AZ);g.addColorStop(1,VERDE);c.fillStyle=g;c.fillRect(X,Y,CW,12);c.restore();
+  card(X,Y,CW,h,44);c.strokeStyle=adesivo?'#ffffff55':'#ffffff1f';c.lineWidth=adesivo?3:2;c.stroke();
+  if(adesivo){c.shadowColor='#000000a6';c.shadowBlur=10;c.shadowOffsetY=2}
+  c.textAlign='left';c.textBaseline='alphabetic';
+  // título
+  let y=Y+PAD+30;c.font='700 30px '+CB;c.fillStyle='#a9c2f2';const wl=espacado(c,'RESUMO DO MÊS',TX,y,5);
+  c.font='500 28px '+CB;c.fillStyle='#8a99b2';c.fillText('· '+MESES[r.m]+' '+r.y,TX+wl+16,y);
+  // número em destaque
+  y+=30+(adesivo?112:140);c.font=`700 ${adesivo?130:160}px `+CD;c.fillStyle='#ffffff';const num=String(r.n);c.fillText(num,TX,y);
+  const wn=c.measureText(num).width;c.font='700 52px '+CD;c.fillStyle='#dbe4f2';c.fillText(`de ${r.plano} ${r.plano===1?'treino':'treinos'}`,TX+wn+18,y);
+  /* a barra só aparece cheia, como prêmio de quem fechou o mês; pela metade ela desanimaria */
+  if(r.mesCheio){y+=34;c.shadowColor='transparent';c.shadowBlur=0;c.shadowOffsetY=0;g=c.createLinearGradient(TX,0,TX+TW,0);g.addColorStop(0,AZ);g.addColorStop(1,VERDE);c.save();c.shadowColor=VERDE+'99';c.shadowBlur=20;card(TX,y,TW,18,9);c.fillStyle=g;c.fill();c.restore();y+=18}
+  // calendário do mês: dias treinados na cor de cada treino
+  y+=36;c.shadowColor='transparent';c.shadowBlur=0;c.shadowOffsetY=0;
+  c.textAlign='center';c.font='600 24px '+CB;c.fillStyle='#7f8da5';['D','S','T','Q','Q','S','S'].forEach((l,i)=>c.fillText(l,TX+cel*i+cel/2,y+20));
+  y+=30;
+  const ini=inicioKey||'',tem={falta:false,descanso:false};
+  for(let d=1;d<=nd;d++){const pos=prim+d-1,cx=TX+(pos%7)*cel+cel/2,cy=y+Math.floor(pos/7)*cel+cel/2,info=r.dias[d],fut=eMesAtual&&d>hoje.getDate();
+    const dt=new Date(r.y,r.m,d),k=dkey(dt),plano=PLAN.dias.find(x=>x.id===WD[dt.getDay()]),diaTreino=plano&&!plano.descanso&&totalEx(plano)&&k>=ini;
+    if(info){const cor=(diaPorId(info.id)||{}).cor,co=/^#[0-9a-f]{6}$/i.test(cor||'')?cor:AZ;c.beginPath();c.arc(cx,cy,rr,0,Math.PI*2);
+      c.fillStyle=co;c.fill();visto(cx,cy,rr*.95,Math.max(3,rr*.16))}
+    else if(diaTreino&&!fut){tem.falta=true;c.beginPath();c.arc(cx,cy,rr,0,Math.PI*2);c.setLineDash([6,6]);c.lineWidth=2.5;c.strokeStyle='#ffffff40';c.stroke();c.setLineDash([]);c.font=`500 ${Math.round(rr*.72)}px `+CB;c.fillStyle='#8a99b2';c.fillText(String(d),cx,cy+rr*.26)}
+    else if(!fut&&k>=ini){tem.descanso=true;c.beginPath();c.arc(cx,cy,rr,0,Math.PI*2);c.fillStyle='#ffffff12';c.fill();c.font=`500 ${Math.round(rr*.62)}px `+CB;c.fillStyle='#ffffff66';c.fillText(String(d),cx,cy+rr*.24)}  /* descanso */
+    else{c.font=`500 ${Math.round(rr*.62)}px `+CB;c.fillStyle='#ffffff2e';c.fillText(String(d),cx,cy+rr*.24)}}
+  // legenda discreta
+  {let lx=TX,ly=y+linhas*cel+34;const ir=11;c.textAlign='left';c.font='500 24px '+CB;
+    const item=(desenho,txt)=>{desenho(lx+ir,ly-8);c.fillStyle='#8a99b2';c.fillText(txt,lx+ir*2+10,ly);lx+=ir*2+10+c.measureText(txt).width+30};
+    item((x,yy)=>{const cs=PLAN.dias.filter(d=>!d.descanso&&/^#[0-9a-f]{6}$/i.test(d.cor||'')).map(d=>d.cor);
+      if(cs.length>1&&c.createConicGradient){const cg=c.createConicGradient(0,x,yy);cs.forEach((co,i)=>{cg.addColorStop(i/cs.length,co);cg.addColorStop((i+1)/cs.length-.001,co)});c.fillStyle=cg}else c.fillStyle=cs[0]||AZ;
+      c.beginPath();c.arc(x,yy,ir+3,0,7);c.fill();visto(x,yy,ir+3,3)},'treinou');
+    if(tem.falta)item((x,yy)=>{c.beginPath();c.arc(x,yy,ir,0,7);c.setLineDash([4,4]);c.lineWidth=2;c.strokeStyle='#ffffff66';c.stroke();c.setLineDash([])},'não treinou');
+    if(tem.descanso)item((x,yy)=>{c.beginPath();c.arc(x,yy,ir,0,7);c.fillStyle='#ffffff26';c.fill()},'descanso')}
+  c.textAlign='left';
+  if(adesivo){c.shadowColor='#000000a6';c.shadowBlur=10;c.shadowOffsetY=2;c.font='500 26px '+CB;c.fillStyle='#ffffffb3';c.fillText('Treino por '+(PLAN.treinador||''),TX,Y+h-PAD+8)}
+  else{c.textAlign='center';c.font='500 28px '+CB;c.fillStyle='#ffffff99';c.fillText('Treino por '+(PLAN.treinador||''),W/2,1700)}
+  return new Promise(res=>cv.toBlob(res,adesivo?'image/png':'image/jpeg',.92))}
+function preparaMes(){if(!calMes)return;const r=dadosMes(calMes.y,calMes.m),ch=[r.y,r.m,r.n,r.plano].join('|');
+  ['story','adesivo'].forEach(f=>{const cx=mesCache[f];if(!cx||cx.chave!==ch){const novo={chave:ch,blob:null};novo.prom=desenhaMes(r,f).then(b=>{novo.blob=b;return b});mesCache[f]=novo}})}
+/* semana completa = todos os dias de treino da semana feitos */
+function semanaCompleta(){const st=semana(),dias=PLAN.dias.filter(x=>!x.descanso&&totalEx(x)),n=dias.length,f=dias.filter(x=>st[x.id]&&st[x.id].feito).length;return{ok:n>0&&f>=n,f,n}}
+function dadosStory(){
+  const d=PLAN.dias.find(x=>x.id===current);if(!d||d.descanso)return null;
+  let total=0,done=0;
+  (d.grupos||[]).forEach((g,gi)=>(g.ex||[]).forEach((e,ei)=>{if(isOpt(e))return;total++;if(state.marks[markKey(d,gi,ei)])done++}));
+  const sem=semanaCompleta();
+  return{d,total,done,sem,chave:[d.id,done,total,sem.f,sem.n].join('|')}}
+/* texto com espaçamento entre letras (funciona em qualquer navegador) */
+function espacado(c,txt,x,y,esp,alinha){const ls=[...txt],w=ls.reduce((a,ch)=>a+c.measureText(ch).width,0)+esp*(ls.length-1);let px=alinha==='center'?x-w/2:x;const al=c.textAlign;c.textAlign='left';ls.forEach(ch=>{c.fillText(ch,px,y);px+=c.measureText(ch).width+esp});c.textAlign=al;return w}
+function quebra(c,txt,larg){const ps=String(txt).split(/\s+/),ls=[];let l='';ps.forEach(p=>{const tl=l?l+' '+p:p;if(c.measureText(tl).width>larg&&l){ls.push(l);l=p}else l=tl});if(l)ls.push(l);return ls}
+/* mistura a cor com branco para dar leitura em cima do card escuro */
+const clareia=(h,k)=>'#'+[1,3,5].map(i=>Math.round(parseInt(h.slice(i,i+2),16)+(255-parseInt(h.slice(i,i+2),16))*k).toString(16).padStart(2,'0')).join('');
+const SF={CD:'"Barlow Condensed","Arial Narrow",sans-serif',CB:'Barlow,system-ui,sans-serif',VERDE:'#22c55e',X:60,CW:960,PAD:56};
+/* medidas do card (iguais nos dois formatos) */
+function medeCard(c,s,adesivo){const X=adesivo?40:SF.X,CW=adesivo?820:SF.CW,TW=CW-2*SF.PAD,ft=adesivo?74:88;
+  c.font=`700 ${ft}px `+SF.CD;const tit=quebra(c,s.d.titulo,TW).slice(0,adesivo?2:3);
+  c.font='500 34px '+SF.CB;const foco=!adesivo&&s.d.foco?quebra(c,s.d.foco,TW).slice(0,4):[];
+  const fim=s.done>=s.total,semana=fim&&s.sem.ok;
+  const h=SF.PAD+40+tit.length*(ft+4)+(foco.length?18+foco.length*50:0)+56+60+22+(semana?70:0)+(adesivo?62:0)+SF.PAD;
+  return{tit,foco,h,fim,semana,TW,X,CW,ft}}
+/* o card do treino, igual ao do app */
+function desenhaCard(c,s,Y,m,adesivo){
+  const {PAD,CD,CB,VERDE}=SF,X=m.X,CW=m.CW,TX=X+PAD,TW=m.TW,cor=/^#[0-9a-f]{6}$/i.test(s.d.cor||'')?s.d.cor:'#2456C8',fim=m.fim;
+  const card=(x,y,w,h,r)=>{c.beginPath();if(c.roundRect)c.roundRect(x,y,w,h,r);else c.rect(x,y,w,h)};
+  const visto=(x,y,r,esp)=>{c.strokeStyle='#ffffff';c.lineWidth=esp;c.lineCap='round';c.lineJoin='round';c.beginPath();c.moveTo(x-r*.42,y+r*.02);c.lineTo(x-r*.12,y+r*.32);c.lineTo(x+r*.45,y-r*.34);c.stroke()};
+  let g;
+  c.save();c.shadowColor=adesivo?'#00000059':'#00000080';c.shadowBlur=adesivo?30:60;c.shadowOffsetY=adesivo?8:20;card(X,Y,CW,m.h,44);c.fillStyle=adesivo?'#0e182b8c':'#121c2e';c.fill();c.restore();
+  c.save();card(X,Y,CW,m.h,44);c.clip();g=c.createLinearGradient(X,0,X+CW,0);g.addColorStop(0,cor);g.addColorStop(1,fim?VERDE:cor);c.fillStyle=g;c.fillRect(X,Y,CW,12);c.restore();
+  card(X,Y,CW,m.h,44);c.strokeStyle=adesivo?'#ffffff55':'#ffffff1f';c.lineWidth=adesivo?3:2;c.stroke();
+  if(adesivo){c.shadowColor='#000000a6';c.shadowBlur=10;c.shadowOffsetY=2} /* texto legível em cima de qualquer foto */
+  // dia e data discreta
+  c.textAlign='left';c.textBaseline='alphabetic';
+  const hoje=s.d.id===todayId;c.font='700 30px '+CB;c.fillStyle=clareia(cor,.45);
+  let y=Y+PAD+30;const wd=espacado(c,(s.d.nome+(hoje?' · hoje':' · feito hoje')).toUpperCase(),TX,y,5);
+  c.font='500 28px '+CB;c.fillStyle='#7f8da5';c.fillText('· '+todayKey.slice(8,10)+'/'+todayKey.slice(5,7),TX+wd+16,y);
+  // treino programado
+  y+=24;c.font=`700 ${m.ft}px `+CD;c.fillStyle='#ffffff';m.tit.forEach(l=>{y+=m.ft-2;c.fillText(l,TX,y)});
+  if(m.foco.length){y+=12;c.font='500 34px '+CB;c.fillStyle='#9fb0c3';m.foco.forEach(l=>{y+=50;c.fillText(l,TX,y)})}
+  // prova de que fez tudo
+  y+=86;c.font='700 46px '+CB;c.fillStyle='#ffffff';const n=String(s.done);c.fillText(n,TX,y);let x=TX+c.measureText(n).width+10;
+  c.font='500 34px '+CB;c.fillStyle=adesivo?'#dbe4f2':'#b5c2d6';const resto=` de ${s.total} exercícios feitos${fim?' · treino completo':''}`;c.fillText(resto,x,y);x+=c.measureText(resto).width+26;
+  if(fim){c.beginPath();c.arc(x,y-12,20,0,Math.PI*2);c.fillStyle=VERDE;c.fill();visto(x,y-12,20,5)}
+  // barra com degradê e brilho
+  y+=34;card(TX,y,TW,22,11);c.fillStyle='#1b2840';c.fill();
+  const bw=Math.max(22,TW*s.done/Math.max(1,s.total));g=c.createLinearGradient(TX,0,TX+bw,0);g.addColorStop(0,cor);g.addColorStop(1,fim?VERDE:cor);
+  c.save();c.shadowColor=(fim?VERDE:cor)+'aa';c.shadowBlur=24;card(TX,y,bw,22,11);c.fillStyle=g;c.fill();c.restore();
+  // semana completa: só quando todos os treinos da semana foram feitos
+  if(m.semana){y+=22+58;c.font='600 32px '+CB;c.fillStyle='#bfe8cf';const txt=`Semana completa · ${s.sem.f} de ${s.sem.n}`;c.fillText(txt,TX,y);
+    const cx=TX+c.measureText(txt).width+30;c.beginPath();c.arc(cx,y-11,17,0,Math.PI*2);c.fillStyle=VERDE;c.fill();visto(cx,y-11,17,4.5)}
+  // no adesivo a assinatura vai dentro do card
+  if(adesivo){c.font='500 26px '+CB;c.fillStyle='#ffffffb3';c.fillText('Treino por '+(PLAN.treinador||''),TX,Y+m.h-PAD+8)}
+  c.shadowColor='transparent';c.shadowBlur=0;c.shadowOffsetY=0}
+async function desenhaStory(s,formato){
+  try{await Promise.all(['700 88px "Barlow Condensed"','700 30px Barlow','500 34px Barlow','700 46px Barlow','600 32px Barlow'].map(f=>document.fonts.load(f)))}catch(e){}
+  const W=1080,cv=document.createElement('canvas'),c=cv.getContext('2d'),adesivo=formato==='adesivo',cor=/^#[0-9a-f]{6}$/i.test(s.d.cor||'')?s.d.cor:'#2456C8';
+  const m=medeCard(c,s,adesivo);
+  if(adesivo){ /* só o card, fundo transparente, para colar em cima de uma foto */
+    cv.width=m.CW+80;cv.height=m.h+90;const c2=cv.getContext('2d');desenhaCard(c2,s,36,medeCard(c2,s,true),true);
+    return new Promise(r=>cv.toBlob(r,'image/png'))}
+  const H=1920;cv.width=W;cv.height=H;
+  // fundo: a cor do dia escurecendo para o azul do app
+  let g=c.createLinearGradient(0,0,0,H);g.addColorStop(0,cor);g.addColorStop(.38,cor+'cc');g.addColorStop(.7,'#0f2236');g.addColorStop(1,'#0a1221');c.fillStyle=g;c.fillRect(0,0,W,H);
+  c.fillStyle='#00000026';c.fillRect(0,0,W,H);
+  { /* granulado bem leve, sempre igual (semente fixa) */
+    const gr=document.createElement('canvas');gr.width=gr.height=160;const gc=gr.getContext('2d'),im=gc.createImageData(160,160);let sd=7;
+    for(let i=0;i<im.data.length;i+=4){sd=(sd*16807)%2147483647;const v=sd%255;im.data[i]=im.data[i+1]=im.data[i+2]=v;im.data[i+3]=14}
+    gc.putImageData(im,0,0);c.fillStyle=c.createPattern(gr,'repeat');c.fillRect(0,0,W,H)}
+  const m2=medeCard(c,s,false),Y=Math.round(H*.47-m2.h/2);
+  // brilho na cor do dia atrás do card
+  g=c.createRadialGradient(W/2,Y+m2.h/2,m2.h*.2,W/2,Y+m2.h/2,m2.h*1.1);g.addColorStop(0,cor+'59');g.addColorStop(1,cor+'00');c.fillStyle=g;c.fillRect(0,Y-m2.h*.6,W,m2.h*2.2);
+  desenhaCard(c,s,Y,m2,false);
+  c.textAlign='center';c.font='500 28px '+SF.CB;c.fillStyle='#ffffff99';c.fillText('Treino por '+(PLAN.treinador||''),W/2,1700);
+  return new Promise(r=>cv.toBlob(r,'image/jpeg',.92))}
+/* gera as duas versões assim que o treino fecha, para o compartilhar abrir na hora */
+function preparaStory(formato){const s=dadosStory();if(!s||!s.done)return Promise.resolve(null);
+  if(!formato){preparaStory('story');return preparaStory('adesivo')}
+  const ch=s.chave+'|'+formato,cx=storyCache[formato];
+  if(!cx||cx.chave!==ch){const novo={chave:ch,blob:null};novo.prom=desenhaStory(s,formato).then(b=>{novo.blob=b;return b});storyCache[formato]=novo}
+  return storyCache[formato].prom}
+async function compartilhar(formato){
+  let blob;
+  if(modoShare==='mes'){const cx=mesCache[formato];blob=cx&&cx.blob;if(!blob&&cx){toast('Gerando a imagem…');blob=await cx.prom}}
+  else{const s=dadosStory();if(!s||!s.done){toast('Marque os exercícios feitos para gerar a imagem');return}
+    const cx=storyCache[formato];blob=cx&&cx.chave===s.chave+'|'+formato&&cx.blob;
+    if(!blob){toast('Gerando a imagem…');blob=await preparaStory(formato)}}
+  if(!blob){toast('Não deu para gerar a imagem neste aparelho');return}
+  const ext=formato==='adesivo'?'png':'jpg',nome=(modoShare==='mes'?(formato==='adesivo'?'adesivo-resumo-do-mes.':'resumo-do-mes.'):(formato==='adesivo'?'adesivo-treino.':'treino-concluido.'))+ext;
+  const arq=new File([blob],nome,{type:blob.type});
+  if(navigator.canShare&&navigator.canShare({files:[arq]})){try{await navigator.share({files:[arq]});return}catch(e){if(e&&e.name==='AbortError')return}}
+  const a=document.createElement('a');a.href=URL.createObjectURL(blob);a.download=nome;document.body.appendChild(a);a.click();setTimeout(()=>{URL.revokeObjectURL(a.href);a.remove()},4000);
+  toast(formato==='adesivo'?'Adesivo salvo: cole por cima da sua foto no story':'Imagem salva: poste no seu story')}
+/* o botão abre a escolha do formato */
+document.addEventListener('click',e=>{
+  if(e.target.closest('[data-share]')){e.stopPropagation();modoShare='dia';const cb=$('#celebrate');if(cb)cb.click();preparaStory();openSheet('shareSheet');return}
+  if(e.target.closest('[data-share-mes]')){e.stopPropagation();modoShare='mes';const cb=$('#celebrate');if(cb)cb.click();preparaMes();openSheet('shareSheet');return}
+  const f=e.target.closest('[data-formato]');if(f){e.stopPropagation();closeSheet(true);compartilhar(f.dataset.formato)}},true);
 /* ===== Aviso de atualização: quando o app ou o treino da pessoa mudam =====
    Percebe sozinho o que mudou (não precisa marcar nada). Para escrever um recado ao aluno,
    use PLAN.novidade. NOVIDADES_APP descreve a última melhoria do app (vale para todas as fichas). */
-const NOVIDADES_APP='Visual novo com tema escuro, abas dos dias presas no topo, botões embaixo, convite para repor treino que ficou para trás e GIFs mostrando a execução dos exercícios.';
+const NOVIDADES_APP='Terminou o treino? Agora dá para compartilhar o treino concluído no story: como imagem pronta ou como adesivo para colar na sua foto. E quem fecha todos os treinos da semana ganha o selo de semana completa. No calendário, dá para acompanhar a meta do mês e compartilhar o resumo. E quem fechar o mês inteiro ganha uma comemoração especial. Bateu a sua melhor carga? Aparece o 🔥 recorde, e tocando em "Última vez" você vê a evolução.';
 (function(){
   try{
     const hash=s=>{let h=5381;for(let i=0;i<s.length;i++)h=((h*33)^s.charCodeAt(i))>>>0;return h.toString(36)};
