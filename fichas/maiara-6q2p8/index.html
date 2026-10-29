@@ -873,11 +873,19 @@ init();
     try{
       const c=document.createElement('canvas');c.width=c.height=size;const x=c.getContext('2d');if(!x)return'';
       const u=size/100;
-      x.fillStyle='#0f2147';x.fillRect(0,0,size,size);
-      x.translate(size/2,size/2);x.scale(.82,.82);x.translate(-size/2,-size/2);
-      const rr=(a,b,w,h,r)=>{x.beginPath();if(x.roundRect)x.roundRect(a*u,b*u,w*u,h*u,r*u);else x.rect(a*u,b*u,w*u,h*u);x.fill()};
-      x.fillStyle='#ffffff';rr(27,47,46,6,3);rr(20,34,9,32,3);rr(71,34,9,32,3);
-      x.fillStyle='#6f98ff';rr(11,41,8,18,3);rr(81,41,8,18,3);
+      /* halter E.P visto de lado: anilhas brancas com o E e o P e a barra em azul → verde (a assinatura do story) */
+      const g=x.createLinearGradient(0,0,size,size);g.addColorStop(0,'#1d3b7c');g.addColorStop(.75,'#0f2147');x.fillStyle=g;x.fillRect(0,0,size,size);
+      x.translate(size/2,size/2);x.scale(.8,.8);x.translate(-size/2,-size/2);
+      const rr=(a,b,w,h,r,c)=>{x.fillStyle=c;x.beginPath();if(x.roundRect)x.roundRect(a*u,b*u,w*u,h*u,r*u);else x.rect(a*u,b*u,w*u,h*u);x.fill()};
+      const vert=(y0,y1,c1,c2)=>{const v=x.createLinearGradient(0,y0*u,0,y1*u);v.addColorStop(0,c1);v.addColorStop(1,c2);return v};
+      const bar=x.createLinearGradient(38*u,0,62*u,0);bar.addColorStop(0,'#7aa2ff');bar.addColorStop(1,'#4ade80');
+      rr(37,45,26,10,2.5,bar);rr(1.5,44,6,12,3,'#e8eef6');rr(92.5,44,6,12,3,'#e8eef6');                  /* barra e pontas */
+      const sm=vert(30,70,'#c9d6ee','#9fb2d8');rr(6,30,9,40,4,sm);rr(85,30,9,40,4,sm);                     /* anilhas menores */
+      const pl=vert(17,83,'#ffffff','#d6e0f2');rr(13,17,25,66,8,pl);rr(62,17,25,66,8,pl);                 /* anilhas grandes */
+      x.strokeStyle='#0f2147';x.lineWidth=6.4*u;x.lineCap='round';x.lineJoin='round';
+      const tr=pts=>{x.beginPath();pts.forEach((p,i)=>i?x.lineTo(p[0]*u,p[1]*u):x.moveTo(p[0]*u,p[1]*u));x.stroke()};
+      tr([[31,32],[20.5,32],[20.5,68],[31,68]]);tr([[20.5,50],[29.5,50]]);                                 /* E */
+      x.beginPath();x.moveTo(70*u,68*u);x.lineTo(70*u,32*u);x.lineTo(73.5*u,32*u);x.arc(73.5*u,41*u,9*u,-Math.PI/2,Math.PI/2);x.lineTo(70*u,50*u);x.stroke();  /* P */
       return c.toDataURL('image/png');
     }catch(e){return''}
   }
@@ -1135,7 +1143,7 @@ document.addEventListener('click',e=>{if(!e.target.closest('[data-copia-insta]')
 /* ===== Aviso de atualização: quando o app ou o treino da pessoa mudam =====
    Percebe sozinho o que mudou (não precisa marcar nada). Para escrever um recado ao aluno,
    use PLAN.novidade. NOVIDADES_APP descreve a última melhoria do app (vale para todas as fichas). */
-const NOVIDADES_APP='No "Mais" agora tem o passo a passo para postar as suas conquistas no story. E, perto do fim do seu ciclo de treino, a ficha te avisa para montar o próximo.';
+const NOVIDADES_APP='No "Mais" agora tem o passo a passo para postar as suas conquistas no story. E, perto do fim do seu ciclo de treino, a ficha te avisa para montar o próximo. O ícone do app também ficou novo (se ele não mudar na sua tela, remova o atalho e adicione de novo).';
 (function(){
   try{
     const hash=s=>{let h=5381;for(let i=0;i<s.length;i++)h=((h*33)^s.charCodeAt(i))>>>0;return h.toString(36)};
