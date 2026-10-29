@@ -86,6 +86,13 @@ body.has-rest .wrap{padding-bottom:calc(var(--barh) + var(--safe-b) + 250px)}
 .last.evo{display:inline-flex;align-items:center;gap:4px;border:0;background:none;padding:2px 0;font:inherit;font-size:13px;cursor:pointer;text-align:left}
 .evo-ico{font-size:12px;opacity:.8}
 .pr{font-size:11.5px;font-weight:700;color:#fb923c;white-space:nowrap}
+.peso-form{display:flex;align-items:center;gap:8px;margin-top:10px}
+.peso-form input{flex:1;min-width:0;height:48px;border:1px solid var(--line);border-radius:12px;background:var(--bg);color:var(--ink);padding:0 14px;font:inherit;font-size:17px}
+.peso-form input:focus{outline:2px solid var(--accent);outline-offset:1px}
+.peso-kg{color:var(--mute);font-weight:700}
+.peso-form .action{height:48px;background:var(--accent);border-color:var(--accent);color:var(--accent-ink)}
+.peso-dica{margin:10px 0 0;font-size:13.5px;color:var(--mute);line-height:1.45}
+.peso-hoje{margin-top:14px;font-size:15px;color:var(--mute)}.peso-hoje b{color:var(--ink)}
 .evo-svg{display:block;width:100%;height:auto;margin-top:12px}
 .evo-grade{stroke:var(--line);stroke-width:1;stroke-dasharray:3 4}
 .evo-eixo{fill:var(--mute);font-size:11px;font-family:inherit}
@@ -269,6 +276,19 @@ body.has-sheet{overflow:hidden}
   <div class="sheet-head"><h2 id="evoTitulo">Evolução</h2><button class="sheet-x" type="button" data-close aria-label="Fechar">✕</button></div>
   <div id="evoCorpo"></div>
 </section>
+<section class="sheet" id="pesoSheet" hidden role="dialog" aria-modal="true" aria-label="Peso corporal">
+  <div class="sheet-head"><h2>Peso corporal</h2><button class="sheet-x" type="button" data-close aria-label="Fechar">✕</button></div>
+  <form class="peso-form" id="pesoForm"><input id="pesoIn" type="text" inputmode="decimal" autocomplete="off" placeholder="Seu peso hoje" aria-label="Seu peso hoje, em kg"><span class="peso-kg">kg</span><button class="action" type="submit">Salvar</button></form>
+  <p class="peso-dica">Para comparar certinho: pese-se no mesmo horário, de preferência em jejum, uma vez por semana.</p>
+  <div id="pesoCorpo"></div>
+</section>
+<section class="sheet" id="backupSheet" hidden role="dialog" aria-modal="true" aria-label="Cópia de segurança">
+  <div class="sheet-head"><h2>Cópia de segurança</h2><button class="sheet-x" type="button" data-close aria-label="Fechar">✕</button></div>
+  <p class="peso-dica">Suas cargas, recordes, calendário e peso ficam só neste celular. Salve uma cópia de vez em quando (no Drive, nos arquivos ou mandando para você no WhatsApp) e, no celular novo, é só restaurar.</p>
+  <button class="menu-item" id="bkSalvar" type="button"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M12 4v11M7.5 10.5 12 15l4.5-4.5M5 19h14"/></svg><span><b>Salvar cópia</b><small>Gera um arquivo com todo o seu histórico</small></span></button>
+  <button class="menu-item" id="bkRestaurar" type="button"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M12 15V4M7.5 8.5 12 4l4.5 4.5M5 19h14"/></svg><span><b>Restaurar cópia</b><small>Traz de volta o histórico de um arquivo salvo</small></span></button>
+  <input type="file" id="bkArquivo" accept=".txt,.json,text/plain,application/json" hidden>
+</section>
 <section class="sheet" id="shareSheet" hidden role="dialog" aria-modal="true" aria-label="Compartilhar treino">
   <div class="sheet-head"><h2>Compartilhar treino</h2><button class="sheet-x" type="button" data-close aria-label="Fechar">✕</button></div>
   <button class="menu-item" type="button" data-formato="story"><svg viewBox="0 0 24 24" aria-hidden="true"><rect x="6" y="2.5" width="12" height="19" rx="3"/><path d="M9 15h6M9 11.5h6"/></svg><span><b>Story pronto</b><small>A imagem completa, pronta para o story</small></span></button>
@@ -279,6 +299,8 @@ body.has-sheet{overflow:hidden}
   <div class="sheet-head"><h2>Mais opções</h2><button class="sheet-x" type="button" data-close aria-label="Fechar">✕</button></div>
   <button class="menu-item" id="printBtn" type="button"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M7 9V3h10v6M7 17H5a2 2 0 0 1-2-2v-4a2 2 0 0 1 2-2h14a2 2 0 0 1 2 2v4a2 2 0 0 1-2 2h-2"/><rect x="7" y="14" width="10" height="7" rx="1"/></svg><span><b>Salvar em PDF / imprimir</b><small>A ficha completa, com todos os dias</small></span></button>
   <button class="menu-item" id="themeBtn" type="button"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M21 13A9 9 0 1 1 11 3a7 7 0 0 0 10 10z"/></svg><span><b>Tema claro / escuro</b><small id="themeLbl"></small></span></button>
+  <button class="menu-item" id="pesoBtn" type="button"><svg viewBox="0 0 24 24" aria-hidden="true"><rect x="3" y="3" width="18" height="18" rx="5"/><path d="M8.5 9.5a5 5 0 0 1 7 0M12 12.5l1.6-2.6"/></svg><span><b>Peso corporal</b><small>Anote o seu peso e veja a evolução</small></span></button>
+  <button class="menu-item" id="backupBtn" type="button"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M7 18a4.5 4.5 0 0 1-.5-9 6 6 0 0 1 11.6 1.5A3.8 3.8 0 0 1 17.5 18z"/><path d="M12 11v6M9.5 13.5 12 11l2.5 2.5"/></svg><span><b>Cópia de segurança</b><small>Para trocar de celular sem perder nada</small></span></button>
   <button class="menu-item" id="resetAllBtn" type="button"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M3 12a9 9 0 1 0 3-6.7L3 8M3 3v5h5"/></svg><span><b>Zerar marcações de hoje</b><small>Desmarca os exercícios marcados hoje</small></span></button>
   <button class="menu-item danger" id="wipeBtn" type="button"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M4 7h16M10 11v6M14 11v6M6 7l1 13h10l1-13M9 7V4h6v3"/></svg><span><b>Apagar histórico de cargas</b><small>Apaga as cargas salvas neste celular</small></span></button>
   <div class="howto">
@@ -289,7 +311,7 @@ body.has-sheet{overflow:hidden}
       <li>Anote a carga em <b>kg</b>. Na próxima vez aparece “Última vez”.</li>
       <li><b>⏱ Descanso</b> liga o cronômetro, que apita quando o tempo acaba. O botão Descanso aqui embaixo deixa escolher outro tempo.</li>
       <li>Faltou um dia? O treino fica <b>pendente</b> e você pode fazer em outro dia.</li>
-      <li>Tudo fica salvo só neste celular.</li>
+      <li>Tudo fica salvo neste celular. Vai trocar de aparelho? Use a <b>Cópia de segurança</b>.</li>
     </ol>
   </div>
   <div class="howto">
@@ -715,24 +737,40 @@ function init(){
   $('#meta').innerHTML=[PLAN.objetivo,PLAN.frequencia,PLAN.ciclo,opt('Início',PLAN.inicio),opt('Revisão',PLAN.revisao)].filter(Boolean).map(x=>`<span>${esc(x)}</span>`).join('');
   $('#notes').innerHTML=(PLAN.orientacoes||[]).map(x=>`<p><strong>${esc(x[0])}</strong><span class="muted">${esc(x[1])}</span></p>`).join('');$('#footer').textContent=PLAN.contato||'';render();
 }
-document.addEventListener('click',e=>{const day=e.target.closest('[data-day]');if(day){current=day.dataset.day;render();const y=$('#tabsWrap').offsetTop;if(window.scrollY>y)window.scrollTo({top:y,behavior:'smooth'});return}const check=e.target.closest('[data-check]');if(check){const k=check.dataset.check;state.marks[k]?delete state.marks[k]:state.marks[k]=1;save();chips();renderDay();{const nb=[...document.querySelectorAll('[data-check]')].find(b=>b.dataset.check===k);if(nb)nb.focus({preventScroll:true})}checkCelebrate();return}const reset=e.target.closest('[data-reset]');if(reset){Object.keys(state.marks).filter(k=>k.startsWith(`${todayKey}:${reset.dataset.reset}:`)).forEach(k=>delete state.marks[k]);delete state.cele[todayKey+':'+reset.dataset.reset];save();chips();renderDay();toast('Marcações do dia zeradas');return}});
+/* marcou ✓: a tela desliza até o próximo exercício que falta (se ele ainda não estiver à vista) */
+function proximoEx(btn){
+  const todos=[...document.querySelectorAll('#dayContent .exercise')],i=todos.indexOf(btn.closest('.exercise'));
+  const prox=todos.slice(i+1).find(x=>!x.classList.contains('done'));if(!prox)return;
+  const r=prox.getBoundingClientRect(),cima=$('#tabsWrap').getBoundingClientRect().bottom+8,baixo=window.innerHeight-(($('.bar')||{}).offsetHeight||0)-8;
+  if(r.top>=cima&&r.bottom<=baixo)return;
+  const suave=!matchMedia('(prefers-reduced-motion: reduce)').matches;
+  window.scrollTo({top:window.scrollY+r.top-cima,behavior:suave?'smooth':'auto'})}
+document.addEventListener('click',e=>{const day=e.target.closest('[data-day]');if(day){current=day.dataset.day;render();const y=$('#tabsWrap').offsetTop;if(window.scrollY>y)window.scrollTo({top:y,behavior:'smooth'});return}const check=e.target.closest('[data-check]');if(check){const k=check.dataset.check;state.marks[k]?delete state.marks[k]:state.marks[k]=1;save();chips();renderDay();{const nb=[...document.querySelectorAll('[data-check]')].find(b=>b.dataset.check===k);if(nb){nb.focus({preventScroll:true});if(state.marks[k])proximoEx(nb)}}checkCelebrate();return}const reset=e.target.closest('[data-reset]');if(reset){Object.keys(state.marks).filter(k=>k.startsWith(`${todayKey}:${reset.dataset.reset}:`)).forEach(k=>delete state.marks[k]);delete state.cele[todayKey+':'+reset.dataset.reset];save();chips();renderDay();toast('Marcações do dia zeradas');return}});
 document.addEventListener('input',e=>{const input=e.target.closest('[data-load]');if(input){const k=input.dataset.load,v=input.value.trim(),p=k.split(':'),ek=p.slice(1).join(':');state.loads[k]=input.value;state.hist[ek]=state.hist[ek]||{};if(v)state.hist[ek][p[0]]=v;else delete state.hist[ek][p[0]];save();
   const pr=document.querySelector(`[data-pr="${CSS.escape(k)}"]`);if(pr)pr.hidden=!ehRecorde(ek,v)}});
 /* ===== Janelas que sobem de baixo: calendário e "Mais" ===== */
-let sheetOpen=null,sheetBtn=null;
+/* botão "voltar" do celular: com uma janela aberta, ele fecha só a janela (e não o app) */
+let sheetOpen=null,sheetBtn=null,sheetHist=false,ignoraPop=false;
 function openSheet(id,btn){
-  closeSheet(true);
+  hideSheet(true);
   const s=$('#'+id);sheetOpen=s;sheetBtn=btn||null;
   $('#sheetBg').hidden=false;s.hidden=false;document.body.classList.add('has-sheet');
   if(btn)btn.setAttribute('aria-expanded','true');
   const f=s.querySelector('.sheet-x');if(f)f.focus({preventScroll:true});
+  if(!sheetHist){try{history.pushState({janela:1},'');sheetHist=true}catch(e){}}
 }
-function closeSheet(quiet){
+function hideSheet(quiet){
   if(!sheetOpen)return;
   sheetOpen.hidden=true;$('#sheetBg').hidden=true;document.body.classList.remove('has-sheet');
   if(sheetBtn){sheetBtn.setAttribute('aria-expanded','false');if(!quiet)sheetBtn.focus({preventScroll:true})}
   sheetOpen=sheetBtn=null;
 }
+function closeSheet(quiet){
+  if(!sheetOpen)return;
+  hideSheet(quiet);
+  if(sheetHist){sheetHist=false;ignoraPop=true;history.back()}   /* tira do histórico o passo que a janela criou */
+}
+window.addEventListener('popstate',()=>{if(ignoraPop){ignoraPop=false;return}if(sheetHist){sheetHist=false;hideSheet()}});
 $('#sheetBg').onclick=()=>closeSheet();
 document.addEventListener('click',e=>{if(e.target.closest('[data-close]'))closeSheet();if(e.target.closest('[data-repor-nao]')){try{localStorage.setItem('ficha-treino-repor:'+PLAN.codigo,todayKey)}catch(x){}renderDay()}});
 document.addEventListener('keydown',e=>{if(e.key==='Escape'&&sheetOpen)closeSheet()});
@@ -935,13 +973,13 @@ init();
   }catch(e){}
 })();
 /* ===== Evolução da carga de um exercício (gráfico simples) ===== */
-function abreEvolucao(ek){
-  const s=serieEx(ek).slice(-12);if(s.length<2)return;
+/* gráfico de linha: s = [[data, valor], ...]; destaque = índice do ponto em verde */
+function graficoSvg(s,destaque,rotulo){
   const W=320,H=170,pl=34,pr=14,pt=18,pb=26,vals=s.map(x=>x[1]),mn=Math.min(...vals),mx=Math.max(...vals),pad=(mx-mn)*.15||2,lo=Math.max(0,mn-pad),hi=mx+pad;
   const X=i=>pl+(W-pl-pr)*(s.length===1?.5:i/(s.length-1)),Y=v=>pt+(H-pt-pb)*(1-(v-lo)/(hi-lo));
   const pts=s.map((x,i)=>`${X(i).toFixed(1)},${Y(x[1]).toFixed(1)}`).join(' ');
-  const iMax=vals.lastIndexOf(mx),dm=d=>d.slice(8,10)+'/'+d.slice(5,7),fmt=v=>String(v).replace('.',',');
-  const svg=`<svg viewBox="0 0 ${W} ${H}" class="evo-svg" role="img" aria-label="Carga de ${fmt(vals[0])} kg até ${fmt(vals[vals.length-1])} kg">
+  const iMax=destaque,dm=d=>d.slice(8,10)+'/'+d.slice(5,7),fmt=v=>String(v).replace('.',',');
+  return `<svg viewBox="0 0 ${W} ${H}" class="evo-svg" role="img" aria-label="${rotulo} de ${fmt(vals[0])} kg até ${fmt(vals[vals.length-1])} kg">
     <defs><linearGradient id="evoG" x1="0" x2="1"><stop offset="0" stop-color="#2456C8"/><stop offset="1" stop-color="#22c55e"/></linearGradient>
     <linearGradient id="evoA" x1="0" y1="0" x2="0" y2="1"><stop offset="0" stop-color="#22c55e" stop-opacity=".22"/><stop offset="1" stop-color="#22c55e" stop-opacity="0"/></linearGradient></defs>
     <line x1="${pl}" y1="${Y(hi).toFixed(1)}" x2="${W-pr}" y2="${Y(hi).toFixed(1)}" class="evo-grade"/><line x1="${pl}" y1="${Y(lo).toFixed(1)}" x2="${W-pr}" y2="${Y(lo).toFixed(1)}" class="evo-grade"/>
@@ -949,11 +987,62 @@ function abreEvolucao(ek){
     <polygon points="${X(0).toFixed(1)},${(H-pb).toFixed(1)} ${pts} ${X(s.length-1).toFixed(1)},${(H-pb).toFixed(1)}" fill="url(#evoA)"/>
     <polyline points="${pts}" fill="none" stroke="url(#evoG)" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"/>
     ${s.map((x,i)=>`<circle cx="${X(i).toFixed(1)}" cy="${Y(x[1]).toFixed(1)}" r="${i===iMax?5.5:3.5}" class="${i===iMax?'evo-max':'evo-pt'}"/>`).join('')}
-    <text x="${X(0).toFixed(1)}" y="${H-6}" text-anchor="start" class="evo-eixo">${dm(s[0][0])}</text><text x="${X(s.length-1).toFixed(1)}" y="${H-6}" text-anchor="end" class="evo-eixo">${dm(s[s.length-1][0])}</text></svg>`;
+    <text x="${X(0).toFixed(1)}" y="${H-6}" text-anchor="start" class="evo-eixo">${dm(s[0][0])}</text><text x="${X(s.length-1).toFixed(1)}" y="${H-6}" text-anchor="end" class="evo-eixo">${dm(s[s.length-1][0])}</text></svg>`;}
+const fmtKg=v=>String(Math.round(v*10)/10).replace('.',',');
+function abreEvolucao(ek){
+  const s=serieEx(ek).slice(-12);if(s.length<2)return;
+  const vals=s.map(x=>x[1]),mx=Math.max(...vals),fmt=v=>String(v).replace('.',',');
+  const svg=graficoSvg(s,vals.lastIndexOf(mx),'Carga');
   const ganho=vals[vals.length-1]-vals[0];
   $('#evoTitulo').textContent=nomeEx(ek)||'Evolução';
   $('#evoCorpo').innerHTML=svg+`<div class="evo-resumo"><span>Primeira: <b>${fmt(vals[0])} kg</b></span><span>Melhor: <b>${fmt(mx)} kg</b> 🔥</span>${ganho>0?`<span>Evolução: <b>+${fmt(Math.round(ganho*10)/10)} kg</b></span>`:''}</div>`;
   openSheet('evoSheet')}
+/* ===== Tela acesa: com a ficha aberta, a tela não apaga no descanso.
+   Volta a apagar se a ficha for para segundo plano ou ficar 20 min sem nenhum toque (para não gastar bateria). ===== */
+(function(){
+  if(!('wakeLock' in navigator))return;
+  let trava=null,ocioso=null;
+  const solta=()=>{if(trava){trava.release().catch(()=>{});trava=null}};
+  const pede=async()=>{
+    clearTimeout(ocioso);ocioso=setTimeout(solta,20*60*1000);
+    if(trava||document.visibilityState!=='visible')return;
+    try{trava=await navigator.wakeLock.request('screen');trava.addEventListener('release',()=>{trava=null})}catch(e){trava=null}};
+  pede();
+  ['pointerdown','keydown'].forEach(ev=>document.addEventListener(ev,pede,{passive:true}));
+  document.addEventListener('visibilitychange',()=>{if(document.visibilityState==='visible')pede()});
+})();
+/* ===== Peso corporal: um valor por dia, com gráfico ===== */
+state.peso=state.peso||{};
+function renderPeso(){
+  const s=Object.keys(state.peso).sort().map(d=>[d,kgNum(state.peso[d])]).filter(x=>x[1]!==null),hoje=state.peso[todayKey];
+  $('#pesoIn').value=hoje?String(hoje).replace('.',','):'';
+  let h=hoje?`<div class="peso-hoje">Hoje: <b>${esc(fmtKg(kgNum(hoje)))} kg</b> (para corrigir, é só salvar de novo)</div>`:'';
+  if(s.length>=2){const ult=s.slice(-12),v=s.map(x=>x[1]),dif=v[v.length-1]-v[0];
+    h+=graficoSvg(ult,ult.length-1,'Peso')+`<div class="evo-resumo"><span>Início: <b>${fmtKg(v[0])} kg</b></span><span>Atual: <b>${fmtKg(v[v.length-1])} kg</b></span>${Math.abs(dif)>=.05?`<span>Variação: <b>${dif>0?'+':'−'}${fmtKg(Math.abs(dif))} kg</b></span>`:''}</div>`}
+  else if(s.length===1&&!hoje)h+=`<div class="peso-hoje">Último registro: <b>${fmtKg(s[0][1])} kg</b> em ${s[0][0].slice(8,10)}/${s[0][0].slice(5,7)}</div>`;
+  $('#pesoCorpo').innerHTML=h}
+$('#pesoBtn').onclick=()=>{renderPeso();openSheet('pesoSheet')};
+$('#pesoForm').onsubmit=e=>{e.preventDefault();const raw=$('#pesoIn').value.trim(),n=kgNum(raw);
+  if(!raw){delete state.peso[todayKey];save();renderPeso();return}
+  if(n===null||n<25||n>350){toast('Confira o peso: só o número, em kg');return}
+  state.peso[todayKey]=String(n);save();renderPeso();$('#pesoIn').blur();toast('Peso salvo')};
+/* ===== Cópia de segurança: arquivo com todo o histórico, para trocar de celular ===== */
+$('#backupBtn').onclick=()=>openSheet('backupSheet');
+$('#bkSalvar').onclick=async()=>{
+  const dados=JSON.stringify({app:'ficha-treino',codigo:PLAN.codigo,data:todayKey,estado:state});
+  const nome=`copia-treino-${PLAN.codigo}-${todayKey}.txt`,blob=new Blob([dados],{type:'text/plain'}),arq=new File([blob],nome,{type:'text/plain'});
+  if(navigator.canShare&&navigator.canShare({files:[arq]})){try{await navigator.share({files:[arq],title:'Cópia do meu treino'});return}catch(e){if(e&&e.name==='AbortError')return}}
+  const a=document.createElement('a');a.href=URL.createObjectURL(blob);a.download=nome;document.body.appendChild(a);a.click();setTimeout(()=>{URL.revokeObjectURL(a.href);a.remove()},4000);
+  toast('Cópia salva nos downloads do celular')};
+$('#bkRestaurar').onclick=()=>$('#bkArquivo').click();
+$('#bkArquivo').onchange=async e=>{const f=e.target.files&&e.target.files[0];e.target.value='';if(!f)return;
+  let c=null;try{c=JSON.parse(await f.text())}catch(x){}
+  if(!c||c.app!=='ficha-treino'||!c.estado||typeof c.estado!=='object'){toast('Esse arquivo não é uma cópia da ficha');return}
+  if(c.codigo!==PLAN.codigo){toast('Essa cópia é de outra ficha');return}
+  const dt=String(c.data||'');
+  if(!confirm(`Restaurar a cópia de ${dt.slice(8,10)}/${dt.slice(5,7)}/${dt.slice(0,4)}? O histórico atual deste celular será trocado pelo da cópia.`))return;
+  try{localStorage.setItem(storageKey,JSON.stringify(c.estado))}catch(x){toast('Não deu para restaurar neste celular');return}
+  location.reload()};
 document.addEventListener('click',e=>{const b=e.target.closest('[data-evo]');if(b){e.stopPropagation();abreEvolucao(b.dataset.evo)}},true);
 /* ===== Story do treino concluído: imagem 1080x1920 para Instagram/WhatsApp =====
    Mostra o card do dia (treino programado + "X de X exercícios feitos"): nada de cargas nem lista de exercícios. */
@@ -1143,7 +1232,7 @@ document.addEventListener('click',e=>{if(!e.target.closest('[data-copia-insta]')
 /* ===== Aviso de atualização: quando o app ou o treino da pessoa mudam =====
    Percebe sozinho o que mudou (não precisa marcar nada). Para escrever um recado ao aluno,
    use PLAN.novidade. NOVIDADES_APP descreve a última melhoria do app (vale para todas as fichas). */
-const NOVIDADES_APP='No "Mais" agora tem o passo a passo para postar as suas conquistas no story. E, perto do fim do seu ciclo de treino, a ficha te avisa para montar o próximo. O ícone do app também ficou novo (se ele não mudar na sua tela, remova o atalho e adicione de novo).';
+const NOVIDADES_APP='Agora a tela do celular fica acesa enquanto a ficha está aberta, sem apagar no descanso. Ao marcar um exercício, a ficha já desliza até o próximo. No "Mais" também dá para anotar o seu peso corporal e salvar uma cópia de segurança do histórico (para trocar de celular sem perder nada). Também tem o passo a passo para postar as suas conquistas no story. E, perto do fim do seu ciclo de treino, a ficha te avisa para montar o próximo. O ícone do app também ficou novo (se ele não mudar na sua tela, remova o atalho e adicione de novo).';
 (function(){
   try{
     const hash=s=>{let h=5381;for(let i=0;i<s.length;i++)h=((h*33)^s.charCodeAt(i))>>>0;return h.toString(36)};
