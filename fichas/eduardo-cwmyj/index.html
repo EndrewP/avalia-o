@@ -285,6 +285,7 @@ body.has-sheet{overflow:hidden}
 <section class="sheet" id="backupSheet" hidden role="dialog" aria-modal="true" aria-label="Cópia de segurança">
   <div class="sheet-head"><h2>Cópia de segurança</h2><button class="sheet-x" type="button" data-close aria-label="Fechar">✕</button></div>
   <p class="peso-dica" id="bkTexto">Suas cargas, recordes, calendário e peso ficam só neste celular. Salve uma cópia de vez em quando (no Drive, nos arquivos ou mandando para você no WhatsApp) e, no celular novo, é só restaurar.</p>
+  <p class="peso-dica" id="bkStatus"></p>
   <button class="menu-item" id="bkNuvem" type="button" hidden><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M7 18a4.5 4.5 0 0 1-.5-9 6 6 0 0 1 11.6 1.5A3.8 3.8 0 0 1 17.5 18z"/><path d="M12 17v-6M9.5 14.5 12 17l2.5-2.5"/></svg><span><b>Recuperar pelo Endrew.P</b><small>Trocou de celular? Peça o código de recuperação para ele</small></span></button>
   <button class="menu-item" id="bkSalvar" type="button"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M12 4v11M7.5 10.5 12 15l4.5-4.5M5 19h14"/></svg><span><b>Salvar cópia</b><small>Gera um arquivo com todo o seu histórico</small></span></button>
   <button class="menu-item" id="bkRestaurar" type="button"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M12 15V4M7.5 8.5 12 4l4.5 4.5M5 19h14"/></svg><span><b>Restaurar cópia</b><small>Traz de volta o histórico de um arquivo salvo</small></span></button>
@@ -1033,8 +1034,17 @@ function enviaNuvem(agora){
   if(!NUVEM||!state.chave)return;clearTimeout(nuvem.timer);
   const vai=()=>{const corpo=JSON.stringify({app:'ficha-treino',codigo:PLAN.codigo,aluno:PLAN.nomePublico,chave:state.chave,plano:planoResumo(),estado:state});
     if(corpo===nuvem.ultimo)return;nuvem.ultimo=corpo;
-    try{fetch(NUVEM,{method:'POST',mode:'no-cors',keepalive:corpo.length<60000,headers:{'Content-Type':'text/plain'},body:corpo}).catch(()=>{nuvem.ultimo=''})}catch(e){nuvem.ultimo=''}};
+    const marca=st=>{st.quando=Date.now();try{localStorage.setItem('ficha-nuvem:'+PLAN.codigo,JSON.stringify(st))}catch(e){}if(!st.ok)nuvem.ultimo='';statusNuvem()};
+    try{fetch(NUVEM,{method:'POST',keepalive:corpo.length<60000,headers:{'Content-Type':'text/plain'},body:corpo}).then(r=>r.json()).then(r=>marca({ok:!!(r&&r.ok),motivo:r&&r.motivo||''}),()=>marca({ok:false,motivo:'rede'}))}catch(e){nuvem.ultimo=''}};
   if(agora)vai();else nuvem.timer=setTimeout(vai,8000)}
+/* status do último envio, mostrado na Cópia de segurança */
+function statusNuvem(){const el=$('#bkStatus');if(!el||!NUVEM)return;let s=null;try{s=JSON.parse(localStorage.getItem('ficha-nuvem:'+PLAN.codigo)||'null')}catch(e){}
+  if(!s){el.textContent='Acompanhamento: ainda não enviado.';return}
+  const d=new Date(s.quando),hm=pad2(d.getHours())+':'+pad2(d.getMinutes()),dia=dkey(d)===todayKey?'hoje':dm(dkey(d));
+  el.textContent=s.ok?`✓ Acompanhamento ligado. Último envio: ${dia} às ${hm}.`
+   :s.motivo==='chave'?'⚠️ Este celular ainda não está ligado ao seu histórico com o Endrew.P (ele está ligado a outro aparelho ou navegador). Peça o código para ele e toque em "Recuperar pelo Endrew.P".'
+   :s.motivo==='menor'?'⚠️ Envio bloqueado: o histórico deste celular está bem menor que o guardado. Fale com o Endrew.P.'
+   :'Sem conexão no último envio. A ficha tenta de novo sozinha.'}
 if(NUVEM){
   if(!state.chave){state.chave=Array.from(crypto.getRandomValues(new Uint8Array(8)),b=>'abcdefghijkmnpqrstuvwxyz23456789'[b%32]).join('');save()}
   $('#bkTexto').textContent='Seu histórico também fica guardado com o Endrew.P. Trocou de celular? Peça para ele o código de recuperação e toque em "Recuperar pelo Endrew.P". A cópia em arquivo é uma garantia extra.';
@@ -1054,7 +1064,7 @@ $('#bkNuvem').onclick=async()=>{
   try{localStorage.setItem(storageKey,JSON.stringify(r.estado));sessionStorage.setItem('nuvem-recuperou','1')}catch(e){toast('Não deu para salvar neste celular');return}
   location.reload()};
 /* ===== Cópia de segurança: arquivo com todo o histórico, para trocar de celular ===== */
-$('#backupBtn').onclick=()=>openSheet('backupSheet');
+$('#backupBtn').onclick=()=>{statusNuvem();if(NUVEM){nuvem.ultimo='';enviaNuvem(true)}openSheet('backupSheet')};
 $('#bkSalvar').onclick=async()=>{
   const dados=JSON.stringify({app:'ficha-treino',codigo:PLAN.codigo,data:todayKey,estado:state});
   const nome=`copia-treino-${PLAN.codigo}-${todayKey}.txt`,blob=new Blob([dados],{type:'text/plain'}),arq=new File([blob],nome,{type:'text/plain'});
