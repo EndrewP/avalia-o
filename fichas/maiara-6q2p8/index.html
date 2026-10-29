@@ -952,12 +952,13 @@ init();
   }
   /* aviso "Use como aplicativo" (botão no Android, passo a passo no iPhone) */
   const KEY='ficha-treino-instalar';
-  let dismissed=false;try{dismissed=localStorage.getItem(KEY)==='1'}catch(e){}
+  /* '1' = a pessoa tocou em "Agora não"; 'app' = instalou (se desinstalar depois, o aviso pode voltar) */
+  let dismissed=false,instalou=false;try{const v=localStorage.getItem(KEY);dismissed=v==='1';instalou=v==='app'}catch(e){}
   let deferred=null;
   const ua=navigator.userAgent||'';
   const ios=/iphone|ipad|ipod/i.test(ua)||(navigator.platform==='MacIntel'&&navigator.maxTouchPoints>1);
   const android=/android/i.test(ua);
-  const hide=remember=>{const el=$('#install');if(el)el.remove();if(remember){dismissed=true;try{localStorage.setItem(KEY,'1')}catch(e){}}};
+  const hide=remember=>{const el=$('#install');if(el)el.remove();if(remember){dismissed=true;try{localStorage.setItem(KEY,remember==='app'?'app':'1')}catch(e){}}};
   function show(mode){
     if(standalone()||dismissed||$('#install'))return;
     const txt={
@@ -972,9 +973,10 @@ init();
     if(go)go.onclick=async()=>{if(!deferred)return;deferred.prompt();try{await deferred.userChoice}catch(e){}deferred=null;hide(false)};
     $('#installNo').onclick=()=>hide(true);
   }
-  window.addEventListener('beforeinstallprompt',e=>{e.preventDefault();deferred=e;hide(false);show('prompt')});
-  window.addEventListener('appinstalled',()=>hide(true));
-  if(ios)show('ios');else if(android)setTimeout(()=>{if(!deferred)show('android')},4000);
+  /* o Chrome só oferece instalar quando o app NÃO está instalado: se ele tinha sido instalado, foi removido */
+  window.addEventListener('beforeinstallprompt',e=>{e.preventDefault();deferred=e;if(instalou){instalou=false;dismissed=false;try{localStorage.removeItem(KEY)}catch(x){}}hide(false);show('prompt')});
+  window.addEventListener('appinstalled',()=>{hide('app');instalou=true});
+  if(!instalou){if(ios)show('ios');else if(android)setTimeout(()=>{if(!deferred)show('android')},4000)}
   }catch(e){}
 })();
 /* ===== Evolução da carga de um exercício (gráfico simples) ===== */
