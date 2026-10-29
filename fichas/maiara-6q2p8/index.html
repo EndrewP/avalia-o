@@ -147,6 +147,15 @@ body.has-sheet{overflow:hidden}
 .howto h3{margin:0 0 6px;font-size:19px}
 .howto ol{margin:0;padding-left:20px;font-size:14.5px}
 .howto li+li{margin-top:5px}
+.howto+.howto{margin-top:10px}
+.tag-insta{display:flex;gap:10px;align-items:flex-start;margin-top:12px;padding:12px 14px;border-radius:14px;background:var(--chip);font-size:14px;line-height:1.45;color:var(--mute)}
+.howto .tag-insta{background:var(--card)}
+.tag-insta>span{font-size:18px;line-height:1.2}
+.tag-insta b{color:var(--ink)}
+.insta-at{border:0;background:none;padding:0;font:inherit;font-weight:700;color:var(--accent);cursor:pointer;text-decoration:underline;text-underline-offset:3px}
+.renov{display:grid;gap:10px;border-left:5px solid var(--accent)}.renov p{margin:0;font-size:14.5px;color:var(--mute)}.renov p b{color:var(--ink)}
+.renov-btns{display:flex;flex-wrap:wrap;gap:8px}.renov-btns a{text-decoration:none}
+@media print{.renov{display:none!important}}
 /* ===== Calendário ===== */
 .cal{--g1:#137a3e;--g2:#4f9f6d;--gbg:rgba(19,122,62,.15)}
 @media(prefers-color-scheme:dark){:root:not([data-theme="light"]) .cal{--g1:#4ade80;--g2:#86d4a2;--gbg:rgba(74,222,128,.18)}}
@@ -219,7 +228,7 @@ body.has-sheet{overflow:hidden}
 <body>
 <div class="wrap">
   <header class="top" id="top">
-    <div class="brand"><span class="mono" id="mono" aria-hidden="true"></span><div><b id="trainer"></b><small>Educação Física</small></div></div>
+    <div class="brand"><span class="mono" id="mono" aria-hidden="true"></span><div><b id="trainer"></b><small id="trainerTit"></small></div></div>
     <h1 id="student"></h1>
     <p id="subtitle"></p>
     <div class="meta" id="meta"></div>
@@ -233,7 +242,7 @@ body.has-sheet{overflow:hidden}
     <summary>Orientações gerais</summary>
     <div id="notes"></div>
   </details>
-  <p class="footer"><span>Ficha montada por <b id="footBrand"></b> · Educação Física</span><span id="footer"></span></p>
+  <p class="footer"><span>Ficha montada por <b id="footBrand"></b> · <span id="footTit"></span></span><span id="footer"></span></p>
 </div>
 
 <nav class="bar" aria-label="Ferramentas"><div class="bar-in">
@@ -264,6 +273,7 @@ body.has-sheet{overflow:hidden}
   <div class="sheet-head"><h2>Compartilhar treino</h2><button class="sheet-x" type="button" data-close aria-label="Fechar">✕</button></div>
   <button class="menu-item" type="button" data-formato="story"><svg viewBox="0 0 24 24" aria-hidden="true"><rect x="6" y="2.5" width="12" height="19" rx="3"/><path d="M9 15h6M9 11.5h6"/></svg><span><b>Story pronto</b><small>A imagem completa, pronta para o story</small></span></button>
   <button class="menu-item" type="button" data-formato="adesivo"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M20 12.5V7a3 3 0 0 0-3-3H7a3 3 0 0 0-3 3v10a3 3 0 0 0 3 3h5.5z"/><path d="M12.5 20c0-4 3.5-7.5 7.5-7.5"/></svg><span><b>Adesivo para a sua foto</b><small>Só o card, com fundo transparente. No Instagram, cole por cima da sua foto como figurinha.</small></span></button>
+  <div class="tag-insta" data-tag-insta></div>
 </section>
 <section class="sheet" id="menu" hidden role="dialog" aria-modal="true" aria-label="Mais opções">
   <div class="sheet-head"><h2>Mais opções</h2><button class="sheet-x" type="button" data-close aria-label="Fechar">✕</button></div>
@@ -281,6 +291,15 @@ body.has-sheet{overflow:hidden}
       <li>Faltou um dia? O treino fica <b>pendente</b> e você pode fazer em outro dia.</li>
       <li>Tudo fica salvo só neste celular.</li>
     </ol>
+  </div>
+  <div class="howto">
+    <h3>📸 Mostre suas conquistas</h3>
+    <ol>
+      <li>Concluiu o treino? Toque em <b>Compartilhar no story</b>. O resumo do mês fica no <b>Calendário</b>.</li>
+      <li>Escolha <b>Story pronto</b> (a imagem completa) ou <b>Adesivo</b> (para colar por cima da sua foto).</li>
+      <li>Toque em <b>Instagram</b> e depois em <b>Story</b>. Se a imagem for salva no celular, crie um story e escolha ela na galeria.</li>
+    </ol>
+    <div class="tag-insta" data-tag-insta></div>
   </div>
 </section>
 
@@ -313,7 +332,7 @@ const PLAN={
   /* ordem dos dias mudou em 27/10/2026 (para treinar junto com o Eduardo): o histórico salvo acompanha cada treino */
   mudancas:[{data:"2026-10-27",ids:{ter:"qua",qua:"ter",qui:"sex",sex:"qui"}}],
   dias:[
-    {id:"seg",nome:"Segunda",curto:"Costas",cor:"#7C3AED",titulo:"Costas, bíceps e ombro",foco:"Largura, espessura e desenvolvimento completo da musculatura superior",grupos:[
+    {id:"seg",nome:"Segunda",curto:"Costas",cor:"#7C3AED",titulo:"Costas, bíceps e ombro",foco:"Largura e espessura das costas, com bíceps e ombros completos.",grupos:[
       {nome:"Costas",ex:[
         ["Puxada alta (polia)", "3 válidas", "8–12", "60–90 s", "https://www.youtube.com/results?search_query=puxada+alta+polia+execucao"],
         ["Remada baixa (polia)", "3 válidas", "8–12", "60–90 s", "https://www.youtube.com/results?search_query=remada+baixa+polia+execucao"]
@@ -326,7 +345,7 @@ const PLAN={
         ["Rosca martelo com halteres", "3 válidas", "8–12", "60–90 s", "https://www.youtube.com/results?search_query=rosca+martelo+halteres+execucao"]
       ]}
     ]},
-    {id:"ter",nome:"Terça",curto:"Peito",cor:"#FF6B6B",titulo:"Peito e tríceps",foco:"Desenvolvimento da musculatura do peitoral e tríceps",grupos:[
+    {id:"ter",nome:"Terça",curto:"Peito",cor:"#FF6B6B",titulo:"Peito e tríceps",foco:"Desenvolvimento do peitoral e tríceps.",grupos:[
       {nome:"Peito",ex:[
         ["Supino reto na máquina", "3 válidas", "8–12", "60–90 s", "https://www.youtube.com/results?search_query=supino+reto+maquina+execucao"],
         ["Supino inclinado na máquina", "3 válidas", "8–12", "60–90 s", "https://www.youtube.com/results?search_query=supino+inclinado+maquina+execucao"],
@@ -337,7 +356,7 @@ const PLAN={
         ["Tríceps francês na polia", "3 válidas", "8–12", "60–90 s", "https://www.youtube.com/results?search_query=triceps+frances+polia+execucao"]
       ]}
     ]},
-    {id:"qua",nome:"Quarta",curto:"Quadríceps",cor:"#0D9488",titulo:"Quadríceps, adutora e panturrilha",foco:"Desenvolvimento de quadríceps, adutores e panturrilhas",grupos:[
+    {id:"qua",nome:"Quarta",curto:"Quadríceps",cor:"#0D9488",titulo:"Quadríceps, adutora e panturrilha",foco:"Desenvolvimento de quadríceps, adutores e panturrilhas.",grupos:[
       {nome:"Quadríceps",ex:[
         ["Agachamento Goblet com halter", "3 válidas", "10–12", "60–90 s", "https://www.youtube.com/results?search_query=agachamento+goblet+halter+execucao"],
         ["Leg Press 45°", "3 válidas", "10–12", "90–120 s", "https://www.youtube.com/results?search_query=leg+press+45+execucao"],
@@ -350,7 +369,7 @@ const PLAN={
         ["Elevação de panturrilhas", "3 válidas", "15", "45–60 s", "https://www.youtube.com/results?search_query=elevacao+de+panturrilhas+execucao"]
       ]}
     ]},
-    {id:"qui",nome:"Quinta",curto:"Cardio",cor:"#2563EB",titulo:"Cardio e core",foco:"Condicionamento cardiovascular e fortalecimento do core",grupos:[
+    {id:"qui",nome:"Quinta",curto:"Cardio",cor:"#2563EB",titulo:"Cardio e core",foco:"Condicionamento cardiovascular e fortalecimento do core.",grupos:[
       {nome:"Aquecimento / Cardio",ex:[
         ["Esteira (Cardio inicial)", "1 bloco", "15–20 min", "—", "https://www.youtube.com/results?search_query=cardio+esteira+iniciante"]
       ]},
@@ -363,7 +382,7 @@ const PLAN={
         ["Caminhada leve (Finalização)", "1 bloco", "15 min", "—", "https://www.youtube.com/results?search_query=caminhada+leve+esteira"]
       ]}
     ]},
-    {id:"sex",nome:"Sexta",curto:"Glúteos",cor:"#DB2777",titulo:"Glúteo, posterior e abdutora",foco:"Desenvolvimento dos glúteos, posterior de coxa e abdutores",grupos:[
+    {id:"sex",nome:"Sexta",curto:"Glúteos",cor:"#DB2777",titulo:"Glúteo, posterior e abdutora",foco:"Desenvolvimento dos glúteos, posterior de coxa e abdutores.",grupos:[
       {nome:"Glúteos",ex:[
         ["Agachamento sumô", "3 válidas", "8–12", "60–90 s", "https://www.youtube.com/results?search_query=agachamento+sumo+execucao"],
         ["Afundo com halteres", "3 válidas", "8–12 reps por perna", "90–120 s", "https://www.youtube.com/results?search_query=afundo+com+halteres+execucao"],
@@ -464,6 +483,9 @@ function linkEx(e){
   const g=GIF_POR[chaveEx(e[0])];if(g)return{url:g,gif:true};
   return{url:shortVideo(p||('https://www.youtube.com/results?search_query='+encodeURIComponent(e[0]+' execução'))),gif:false};
 }
+/* dados do Endrew.P, iguais em todas as fichas (mude aqui e rode o atualizar-fichas) */
+const TITULO_TREINADOR='Estudante de Educação Física';   /* depois do CREF: 'Profissional de Educação Física · CREF ...' */
+const INSTA='Endrew.p';                                   /* @ do Instagram, sem o @ */
 const isOpt=e=>/\(opcional\)/i.test(e[0]);   /* exercício opcional: não conta como obrigatório */
 const today=()=>{const d=new Date(),p=n=>String(n).padStart(2,'0');return d.getFullYear()+'-'+p(d.getMonth()+1)+'-'+p(d.getDate())};
 const storageKey='ficha-treino-v1:'+PLAN.codigo;
@@ -689,7 +711,7 @@ const opt=(l,v)=>{v=String(v||'').trim();return v&&!/^a definir$/i.test(v)?l+': 
 /* "Endrew P." -> "EP" (a bolinha com as iniciais no topo) */
 const iniciais=n=>String(n||'').split(/[\s.]+/).filter(Boolean).map(w=>w[0]).join('').slice(0,2).toUpperCase();
 function init(){
-  document.title=`Ficha de treino · ${PLAN.nomePublico}`;$('#trainer').textContent=PLAN.treinador;$('#footBrand').textContent=PLAN.treinador;$('#mono').textContent=iniciais(PLAN.treinador);$('#student').textContent=PLAN.nomePublico;$('#subtitle').textContent=PLAN.subtitulo;
+  document.title=`Ficha de treino · ${PLAN.nomePublico}`;$('#trainer').textContent=PLAN.treinador;$('#trainerTit').textContent=$('#footTit').textContent=TITULO_TREINADOR;$('#footBrand').textContent=PLAN.treinador;$('#mono').textContent=iniciais(PLAN.treinador);$('#student').textContent=PLAN.nomePublico;$('#subtitle').textContent=PLAN.subtitulo;
   $('#meta').innerHTML=[PLAN.objetivo,PLAN.frequencia,PLAN.ciclo,opt('Início',PLAN.inicio),opt('Revisão',PLAN.revisao)].filter(Boolean).map(x=>`<span>${esc(x)}</span>`).join('');
   $('#notes').innerHTML=(PLAN.orientacoes||[]).map(x=>`<p><strong>${esc(x[0])}</strong><span class="muted">${esc(x[1])}</span></p>`).join('');$('#footer').textContent=PLAN.contato||'';render();
 }
@@ -1089,39 +1111,66 @@ document.addEventListener('click',e=>{
   if(e.target.closest('[data-share]')){e.stopPropagation();modoShare='dia';const cb=$('#celebrate');if(cb)cb.click();preparaStory();openSheet('shareSheet');return}
   if(e.target.closest('[data-share-mes]')){e.stopPropagation();modoShare='mes';const cb=$('#celebrate');if(cb)cb.click();preparaMes();openSheet('shareSheet');return}
   const f=e.target.closest('[data-formato]');if(f){e.stopPropagation();closeSheet(true);compartilhar(f.dataset.formato)}},true);
+/* pedido (sem obrigação) para marcar o @ no story: aparece no compartilhar e no Mais */
+document.querySelectorAll('[data-tag-insta]').forEach(el=>{el.innerHTML=`<span aria-hidden="true">❗</span><p style="margin:0"><b>Se puder, me marque no seu story:</b> <button type="button" class="insta-at" data-copia-insta aria-label="Copiar @${esc(INSTA)}">@${esc(INSTA)}</button><br>Assim eu consigo repostar a sua conquista. Sem obrigação nenhuma, mas ajuda muito o meu trabalho 💙</p>`});
+document.addEventListener('click',e=>{if(!e.target.closest('[data-copia-insta]'))return;e.stopPropagation();
+  const at='@'+INSTA,ok=()=>toast(at+' copiado: é só colar no story');
+  try{navigator.clipboard.writeText(at).then(ok,()=>toast('Marque '+at+' no story'))}catch(er){toast('Marque '+at+' no story')}},true);
+/* ===== Aviso de renovação: perto do fim do ciclo (PLAN.revisao), discreto e uma vez por etapa ===== */
+(function(){
+  try{
+    const m=String(PLAN.revisao||'').match(/^(\d{2})\/(\d{2})\/(\d{4})$/);if(!m)return;
+    const fim=new Date(+m[3],+m[2]-1,+m[1]),hj=kdate(todayKey),falta=Math.round((fim-hj)/864e5);
+    if(falta>7)return;
+    const k='renov:'+PLAN.revisao+':'+(falta>0?'perto':'fim');if(state.cele[k])return;
+    const quando=falta>1?`termina em ${falta} dias`:falta===1?'termina amanhã':falta===0?'termina hoje':'terminou';
+    const el=document.createElement('section');el.className='card renov';el.setAttribute('role','status');
+    el.innerHTML=`<p>⏳ <b>Seu ciclo de treino ${quando}.</b> ${falta<0?'Vamos':'Quer'} montar o próximo? Fale com ${esc(PLAN.treinador||'o seu treinador')}.</p>
+      <div class="renov-btns"><a class="action sm" href="https://ig.me/m/${encodeURIComponent(INSTA)}" target="_blank" rel="noopener">Falar com ${esc(PLAN.treinador||'o treinador')}</a><button class="action sm" type="button" data-renov-ok>Agora não</button></div>`;
+    $('#top').insertAdjacentElement('afterend',el);
+    el.querySelector('[data-renov-ok]').onclick=()=>{state.cele[k]=1;save();el.remove()};
+    el.querySelector('a').addEventListener('click',()=>{state.cele[k]=1;save()});
+  }catch(e){}
+})();
 /* ===== Aviso de atualização: quando o app ou o treino da pessoa mudam =====
    Percebe sozinho o que mudou (não precisa marcar nada). Para escrever um recado ao aluno,
    use PLAN.novidade. NOVIDADES_APP descreve a última melhoria do app (vale para todas as fichas). */
-const NOVIDADES_APP='Terminou o treino? Agora dá para compartilhar o treino concluído no story: como imagem pronta ou como adesivo para colar na sua foto. E quem fecha todos os treinos da semana ganha o selo de semana completa. No calendário, dá para acompanhar a meta do mês e compartilhar o resumo. E quem fechar o mês inteiro ganha uma comemoração especial. Bateu a sua melhor carga? Aparece o 🔥 recorde, e tocando em "Última vez" você vê a evolução.';
+const NOVIDADES_APP='No "Mais" agora tem o passo a passo para postar as suas conquistas no story. E, perto do fim do seu ciclo de treino, a ficha te avisa para montar o próximo.';
 (function(){
   try{
     const hash=s=>{let h=5381;for(let i=0;i<s.length;i++)h=((h*33)^s.charCodeAt(i))>>>0;return h.toString(36)};
     const fonte=(document.currentScript&&document.currentScript.textContent)||'';
     const a=fonte.indexOf('const PLAN'+'={'),b=fonte.indexOf('FIM DA ÁREA'+' DE EDIÇÃO'); /* texto partido de propósito: o atualizar-fichas procura esses marcadores */
     const codigo=(a>=0&&b>a?fonte.slice(0,a)+fonte.slice(b):fonte)+[...document.querySelectorAll('style')].map(s=>s.textContent).join('');
-    const agora={app:hash(codigo),plan:hash(JSON.stringify(PLAN)),dias:{}};
-    PLAN.dias.forEach(d=>{agora.dias[d.id]=hash(JSON.stringify(d))});
+    /* treino = exercícios de cada dia; cores e textos do dia são só visual */
+    const agora={v:2,app:hash(codigo),dias:{},cor:hash(PLAN.dias.map(d=>d.cor).join()),txt:hash(JSON.stringify(PLAN.dias.map(d=>[d.titulo,d.foco,d.curto]))),nov:hash(PLAN.novidade||'')};
+    PLAN.dias.forEach(d=>{agora.dias[d.id]=hash(JSON.stringify([!!d.descanso,d.grupos||[]]))});
     const KEYV='ficha-treino-versao:'+PLAN.codigo;
     let antes=null;try{antes=JSON.parse(localStorage.getItem(KEYV)||'null')}catch(e){}
     const guardar=()=>{try{localStorage.setItem(KEYV,JSON.stringify(agora))}catch(e){}};
-    let app=false,plan=false,dias=[];
+    let app=false,treino=false,dias=[],cores=false,textos=false,recado=false;
     if(!antes){
       let usou=false;try{usou=!!localStorage.getItem(storageKey)}catch(e){}
       if(!usou){guardar();return} /* primeira vez abrindo a ficha: nada a avisar */
-      app=true;plan=!!PLAN.novidade; /* já usava a ficha antes de existir este aviso */
+      app=true;recado=!!PLAN.novidade; /* já usava a ficha antes de existir este aviso */
+    }else if(antes.v!==2){
+      app=antes.app!==agora.app; /* versão antiga do aviso: não dá para saber se foi o treino ou só o visual, então não acusa mudança de treino */
     }else{
       app=antes.app!==agora.app;
-      plan=antes.plan!==agora.plan;
-      if(plan)dias=PLAN.dias.filter(d=>!d.descanso&&(antes.dias||{})[d.id]!==agora.dias[d.id]);
+      const mud=PLAN.dias.filter(d=>(antes.dias||{})[d.id]!==agora.dias[d.id]);
+      treino=mud.length>0||Object.keys(antes.dias||{}).some(id=>!agora.dias[id]);
+      dias=mud.filter(d=>!d.descanso);
+      cores=antes.cor!==agora.cor;textos=antes.txt!==agora.txt;
+      recado=antes.nov!==agora.nov&&!!PLAN.novidade;
     }
-    if(!app&&!plan){guardar();return}
+    if(!app&&!treino&&!cores&&!textos&&!recado){guardar();return}
     const el=document.createElement('section');el.className='card novo';el.id='novo';el.setAttribute('role','status');
     let h=`<strong>✨ Sua ficha foi atualizada</strong>`;
-    if(plan){
+    if(treino){
       h+=`<p><b>Seu treino mudou.</b> ${esc(PLAN.treinador||'')} fez alterações${dias.length?' nestes dias':''}. Dá uma olhada antes de treinar.</p>`;
-      if(PLAN.novidade)h+=`<p class="novo-msg">${esc(PLAN.novidade)}</p>`;
       if(dias.length)h+=`<div class="aviso-btns">${dias.map(d=>`<button class="action sm" type="button" data-day="${esc(d.id)}" style="--day-color:${esc(d.cor)}">${esc(d.nome.slice(0,3))} · ${esc(d.curto||d.titulo)}</button>`).join('')}</div>`;
-    }
+    }else if(cores||textos)h+=`<p><b>Visual atualizado:</b> ${cores&&textos?'as cores e as descrições dos dias mudaram':cores?'as cores dos dias mudaram':'as descrições dos dias foram revisadas'}. Os exercícios continuam os mesmos.</p>`;
+    if(recado)h+=`<p class="novo-msg">${esc(PLAN.novidade)}</p>`;
     if(app)h+=`<p><b>O app ganhou melhorias:</b> ${esc(NOVIDADES_APP)}</p>`;
     h+=`<button class="action ok" type="button" id="novoOk">Entendi</button>`;
     el.innerHTML=h;
