@@ -522,7 +522,7 @@ function linkEx(e){
 /* dados do Endrew.P, iguais em todas as fichas (mude aqui e rode o atualizar-fichas) */
 const TITULO_TREINADOR='Estudante de Educação Física';   /* depois do CREF: 'Profissional de Educação Física · CREF ...' */
 const INSTA='Endrew.p';                                   /* @ do Instagram, sem o @ */
-const NUVEM='';   /* acompanhamento: endereço do Apps Script da planilha (termina em /exec). Vazio = desligado */
+const NUVEM='https://script.google.com/macros/s/AKfycbztuLl-8gPUzOuDrnBJJUOjfsaDP43PifpO_vXQIQIwNnw5tbAxR6JtzB9uh6957rY/exec';   /* acompanhamento: endereço do Apps Script da planilha (termina em /exec). Vazio = desligado */
 const nuvem={ultimo:'',timer:null};
 const isOpt=e=>/\(opcional\)/i.test(e[0]);   /* exercício opcional: não conta como obrigatório */
 const today=()=>{const d=new Date(),p=n=>String(n).padStart(2,'0');return d.getFullYear()+'-'+p(d.getMonth()+1)+'-'+p(d.getDate())};
