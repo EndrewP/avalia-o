@@ -284,7 +284,8 @@ body.has-sheet{overflow:hidden}
 </section>
 <section class="sheet" id="backupSheet" hidden role="dialog" aria-modal="true" aria-label="Cópia de segurança">
   <div class="sheet-head"><h2>Cópia de segurança</h2><button class="sheet-x" type="button" data-close aria-label="Fechar">✕</button></div>
-  <p class="peso-dica">Suas cargas, recordes, calendário e peso ficam só neste celular. Salve uma cópia de vez em quando (no Drive, nos arquivos ou mandando para você no WhatsApp) e, no celular novo, é só restaurar.</p>
+  <p class="peso-dica" id="bkTexto">Suas cargas, recordes, calendário e peso ficam só neste celular. Salve uma cópia de vez em quando (no Drive, nos arquivos ou mandando para você no WhatsApp) e, no celular novo, é só restaurar.</p>
+  <button class="menu-item" id="bkNuvem" type="button" hidden><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M7 18a4.5 4.5 0 0 1-.5-9 6 6 0 0 1 11.6 1.5A3.8 3.8 0 0 1 17.5 18z"/><path d="M12 17v-6M9.5 14.5 12 17l2.5-2.5"/></svg><span><b>Recuperar pelo Endrew.P</b><small>Trocou de celular? Peça o código de recuperação para ele</small></span></button>
   <button class="menu-item" id="bkSalvar" type="button"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M12 4v11M7.5 10.5 12 15l4.5-4.5M5 19h14"/></svg><span><b>Salvar cópia</b><small>Gera um arquivo com todo o seu histórico</small></span></button>
   <button class="menu-item" id="bkRestaurar" type="button"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M12 15V4M7.5 8.5 12 4l4.5 4.5M5 19h14"/></svg><span><b>Restaurar cópia</b><small>Traz de volta o histórico de um arquivo salvo</small></span></button>
   <input type="file" id="bkArquivo" accept=".txt,.json,text/plain,application/json" hidden>
@@ -312,6 +313,7 @@ body.has-sheet{overflow:hidden}
       <li><b>⏱ Descanso</b> liga o cronômetro, que apita quando o tempo acaba. O botão Descanso aqui embaixo deixa escolher outro tempo.</li>
       <li>Faltou um dia? O treino fica <b>pendente</b> e você pode fazer em outro dia.</li>
       <li>Tudo fica salvo neste celular. Vai trocar de aparelho? Use a <b>Cópia de segurança</b>.</li>
+      <li data-nuvem hidden>📊 <b>Endrew.P acompanha o seu treino</b> pelas suas marcações: treinos feitos, cargas e peso. Assim ele vê a sua evolução e ajusta a ficha quando precisar.</li>
     </ol>
   </div>
   <div class="howto">
@@ -508,6 +510,8 @@ function linkEx(e){
 /* dados do Endrew.P, iguais em todas as fichas (mude aqui e rode o atualizar-fichas) */
 const TITULO_TREINADOR='Estudante de Educação Física';   /* depois do CREF: 'Profissional de Educação Física · CREF ...' */
 const INSTA='Endrew.p';                                   /* @ do Instagram, sem o @ */
+const NUVEM='https://script.google.com/macros/s/AKfycbztuLl-8gPUzOuDrnBJJUOjfsaDP43PifpO_vXQIQIwNnw5tbAxR6JtzB9uh6957rY/exec';   /* acompanhamento: endereço do Apps Script da planilha (termina em /exec). Vazio = desligado */
+const nuvem={ultimo:'',timer:null};
 const isOpt=e=>/\(opcional\)/i.test(e[0]);   /* exercício opcional: não conta como obrigatório */
 const today=()=>{const d=new Date(),p=n=>String(n).padStart(2,'0');return d.getFullYear()+'-'+p(d.getMonth()+1)+'-'+p(d.getDate())};
 const storageKey='ficha-treino-v1:'+PLAN.codigo;
@@ -567,7 +571,7 @@ function semana(){
 let current=diaPorId(todayId)?.id||PLAN.dias[0]?.id;
 {const hj=porData()[todayKey]||{},ids=Object.keys(hj).filter(id=>diaPorId(id));if(ids.length&&!hj[current])current=ids.sort((a,b)=>hj[b]-hj[a])[0]}
  
-function save(){try{localStorage.setItem(storageKey,JSON.stringify(state))}catch(e){}}
+function save(){try{localStorage.setItem(storageKey,JSON.stringify(state))}catch(e){}if(NUVEM)enviaNuvem()}
 function toast(msg){const t=$('#toast');t.textContent=msg;t.classList.add('show');clearTimeout(toast.timer);toast.timer=setTimeout(()=>t.classList.remove('show'),2400)}
 function markKey(d,gi,ei){return `${todayKey}:${d.id}:${xid(d,gi,ei)}`}
 function chips(){
@@ -1026,6 +1030,33 @@ $('#pesoForm').onsubmit=e=>{e.preventDefault();const raw=$('#pesoIn').value.trim
   if(!raw){delete state.peso[todayKey];save();renderPeso();return}
   if(n===null||n<25||n>350){toast('Confira o peso: só o número, em kg');return}
   state.peso[todayKey]=String(n);save();renderPeso();$('#pesoIn').blur();toast('Peso salvo')};
+/* ===== Acompanhamento: o histórico vai para a planilha do Endrew.P, sem o aluno fazer nada =====
+   Cada celular tem uma chave secreta (state.chave): sem ela ninguém lê nem troca os dados desta ficha. */
+function planoResumo(){return PLAN.dias.map(d=>({id:d.id,nome:d.nome,descanso:!!d.descanso,ex:(d.grupos||[]).flatMap((g,gi)=>(g.ex||[]).map((e,ei)=>[xid(d,gi,ei),e[0]]))}))}
+function enviaNuvem(agora){
+  if(!NUVEM||!state.chave)return;clearTimeout(nuvem.timer);
+  const vai=()=>{const corpo=JSON.stringify({app:'ficha-treino',codigo:PLAN.codigo,aluno:PLAN.nomePublico,chave:state.chave,plano:planoResumo(),estado:state});
+    if(corpo===nuvem.ultimo)return;nuvem.ultimo=corpo;
+    try{fetch(NUVEM,{method:'POST',mode:'no-cors',keepalive:corpo.length<60000,headers:{'Content-Type':'text/plain'},body:corpo}).catch(()=>{nuvem.ultimo=''})}catch(e){nuvem.ultimo=''}};
+  if(agora)vai();else nuvem.timer=setTimeout(vai,8000)}
+if(NUVEM){
+  if(!state.chave){state.chave=Array.from(crypto.getRandomValues(new Uint8Array(8)),b=>'abcdefghijkmnpqrstuvwxyz23456789'[b%32]).join('');save()}
+  $('#bkTexto').textContent='Seu histórico também fica guardado com o Endrew.P. Trocou de celular? Peça para ele o código de recuperação e toque em "Recuperar pelo Endrew.P". A cópia em arquivo é uma garantia extra.';
+  $('#bkNuvem').hidden=false;document.querySelectorAll('[data-nuvem]').forEach(el=>el.hidden=false);
+  document.addEventListener('visibilitychange',()=>{if(document.visibilityState==='hidden')enviaNuvem(true)});
+  setTimeout(()=>enviaNuvem(true),3000);
+  try{if(sessionStorage.getItem('nuvem-recuperou')){sessionStorage.removeItem('nuvem-recuperou');setTimeout(()=>toast('Seu histórico foi recuperado ✓'),700)}}catch(e){}
+}
+$('#bkNuvem').onclick=async()=>{
+  const cod=String(prompt('Digite o código de recuperação que o Endrew.P te mandou:')||'').trim().toLowerCase().replace(/\s+/g,'');if(!cod)return;
+  if(!/^[a-z0-9]{8}$/.test(cod)){toast('O código tem 8 letras e números. Confira com o Endrew.P');return}
+  toast('Buscando o seu histórico…');
+  let r=null;try{r=await (await fetch(NUVEM+'?codigo='+encodeURIComponent(PLAN.codigo)+'&chave='+cod)).json()}catch(e){toast('Sem conexão. Tente de novo com internet');return}
+  if(!r||!r.ok){toast(r&&r.motivo==='chave'?'Código não confere. Confira com o Endrew.P':'Não deu para recuperar agora');return}
+  if(!r.estado){toast('Ainda não há histórico guardado para esta ficha');return}
+  r.estado.chave=cod;
+  try{localStorage.setItem(storageKey,JSON.stringify(r.estado));sessionStorage.setItem('nuvem-recuperou','1')}catch(e){toast('Não deu para salvar neste celular');return}
+  location.reload()};
 /* ===== Cópia de segurança: arquivo com todo o histórico, para trocar de celular ===== */
 $('#backupBtn').onclick=()=>openSheet('backupSheet');
 $('#bkSalvar').onclick=async()=>{
@@ -1232,7 +1263,7 @@ document.addEventListener('click',e=>{if(!e.target.closest('[data-copia-insta]')
 /* ===== Aviso de atualização: quando o app ou o treino da pessoa mudam =====
    Percebe sozinho o que mudou (não precisa marcar nada). Para escrever um recado ao aluno,
    use PLAN.novidade. NOVIDADES_APP descreve a última melhoria do app (vale para todas as fichas). */
-const NOVIDADES_APP='Agora a tela do celular fica acesa enquanto a ficha está aberta, sem apagar no descanso. Ao marcar um exercício, a ficha já desliza até o próximo. No "Mais" também dá para anotar o seu peso corporal e salvar uma cópia de segurança do histórico (para trocar de celular sem perder nada). Também tem o passo a passo para postar as suas conquistas no story. E, perto do fim do seu ciclo de treino, a ficha te avisa para montar o próximo. O ícone do app também ficou novo (se ele não mudar na sua tela, remova o atalho e adicione de novo).';
+const NOVIDADES_APP='Agora o Endrew.P acompanha o seu treino pelo app: os treinos marcados, as cargas e o peso chegam até ele, para ver a sua evolução e ajustar a ficha. Também: a tela fica acesa durante o treino, a ficha desliza até o próximo exercício e, no "Mais", dá para anotar o seu peso e ver como postar no story.';
 (function(){
   try{
     const hash=s=>{let h=5381;for(let i=0;i<s.length;i++)h=((h*33)^s.charCodeAt(i))>>>0;return h.toString(36)};
